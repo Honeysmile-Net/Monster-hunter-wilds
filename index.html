@@ -1,1 +1,667 @@
-test
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Monster Hunter Wilds — Monster Field Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0a0804;
+    --surface: #110e09;
+    --card: #18130d;
+    --card-hover: #1f1810;
+    --border: #3a2e1e;
+    --border-glow: #6b4c1e;
+    --gold: #c8913a;
+    --gold-light: #e8b85a;
+    --gold-dim: #7a5520;
+    --text: #e8dcc8;
+    --text-muted: #8a7a62;
+    --text-dim: #5a4e3a;
+
+```
+--fire: #e84c1e;
+--water: #2a8ce8;
+--thunder: #f0d020;
+--ice: #60d0f0;
+--dragon: #9040e0;
+--poison: #80d040;
+--stun: #f0a030;
+--paralysis: #d0d040;
+--sleep: #8080d0;
+--blast: #ff6060;
+--none: #3a3a3a;
+--resist: #e83030;
+```
+
+}
+
+- { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+background: var(–bg);
+color: var(–text);
+font-family: ‘Lato’, sans-serif;
+min-height: 100vh;
+overflow-x: hidden;
+}
+
+/* Textured background */
+body::before {
+content: ‘’;
+position: fixed;
+inset: 0;
+background:
+radial-gradient(ellipse 80% 60% at 50% -10%, #2a1a08 0%, transparent 60%),
+radial-gradient(ellipse 60% 40% at 100% 100%, #1a0a04 0%, transparent 50%),
+url(“data:image/svg+xml,%3Csvg xmlns=‘http://www.w3.org/2000/svg’ width=‘4’ height=‘4’%3E%3Crect width=‘4’ height=‘4’ fill=’%230a0804’/%3E%3Crect x=‘0’ y=‘0’ width=‘1’ height=‘1’ fill=’%23120e08’ opacity=‘0.5’/%3E%3Crect x=‘2’ y=‘2’ width=‘1’ height=‘1’ fill=’%23120e08’ opacity=‘0.3’/%3E%3C/svg%3E”);
+pointer-events: none;
+z-index: 0;
+}
+
+/* ── HEADER ── */
+header {
+position: relative;
+text-align: center;
+padding: 1.2rem 1rem 0.9rem;
+z-index: 1;
+border-bottom: 1px solid var(–border);
+background: linear-gradient(180deg, #1a0e06 0%, transparent 100%);
+}
+
+.header-crest {
+font-size: 1.4rem;
+margin-bottom: 0.15rem;
+filter: drop-shadow(0 0 16px #c8913a88);
+animation: pulse-glow 3s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+0%, 100% { filter: drop-shadow(0 0 12px #c8913a66); }
+50% { filter: drop-shadow(0 0 24px #c8913aaa); }
+}
+
+header h1 {
+font-family: ‘Cinzel Decorative’, serif;
+font-size: clamp(0.85rem, 4.5vw, 2rem);
+font-weight: 900;
+letter-spacing: 0.03em;
+color: var(–gold-light);
+text-shadow: 0 0 30px #c8913a66, 0 2px 4px #000;
+line-height: 1.1;
+}
+
+header h1 span {
+display: block;
+font-size: 0.4em;
+letter-spacing: 0.18em;
+color: var(–text-muted);
+font-family: ‘Cinzel’, serif;
+font-weight: 600;
+margin-top: 0.25rem;
+text-transform: uppercase;
+}
+
+.header-divider {
+display: flex;
+align-items: center;
+gap: 0.6rem;
+margin: 0.6rem auto 0;
+max-width: 220px;
+color: var(–gold-dim);
+font-size: 0.7rem;
+}
+.header-divider::before,
+.header-divider::after {
+content: ‘’;
+flex: 1;
+height: 1px;
+background: linear-gradient(90deg, transparent, var(–gold-dim), transparent);
+}
+
+/* ── CONTROLS ── */
+.controls {
+position: relative;
+z-index: 1;
+max-width: 1300px;
+margin: 0 auto;
+padding: 0.6rem 0.6rem 0.4rem;
+display: flex;
+flex-direction: column;
+gap: 0.4rem;
+}
+
+.search-wrap {
+position: relative;
+width: 100%;
+}
+.search-wrap svg {
+position: absolute;
+left: 0.6rem;
+top: 50%;
+transform: translateY(-50%);
+color: var(–text-muted);
+pointer-events: none;
+}
+input[type=“text”] {
+width: 100%;
+padding: 0.45rem 0.6rem 0.45rem 2rem;
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 4px;
+color: var(–text);
+font-family: ‘Lato’, sans-serif;
+font-size: 0.78rem;
+outline: none;
+transition: border-color 0.2s, box-shadow 0.2s;
+}
+input[type=“text”]::placeholder { color: var(–text-dim); }
+input[type=“text”]:focus {
+border-color: var(–gold-dim);
+box-shadow: 0 0 0 2px #c8913a22;
+}
+
+.controls-row {
+display: flex;
+gap: 0.4rem;
+align-items: center;
+}
+
+.filter-group {
+display: flex;
+flex: 1;
+gap: 0.25rem;
+overflow-x: auto;
+-webkit-overflow-scrolling: touch;
+scrollbar-width: none;
+padding-bottom: 1px;
+}
+.filter-group::-webkit-scrollbar { display: none; }
+
+.filter-btn {
+display: flex;
+align-items: center;
+gap: 0.25rem;
+padding: 0.28rem 0.5rem;
+border-radius: 4px;
+border: 1px solid var(–border);
+background: var(–surface);
+color: var(–text-muted);
+font-family: ‘Cinzel’, serif;
+font-size: 0.58rem;
+font-weight: 600;
+letter-spacing: 0.03em;
+cursor: pointer;
+transition: all 0.18s;
+white-space: nowrap;
+flex-shrink: 0;
+}
+.filter-btn:hover { border-color: var(–gold-dim); color: var(–text); }
+.filter-btn.active {
+border-color: var(–gold);
+color: var(–gold-light);
+background: #2a1e0d;
+box-shadow: 0 0 6px #c8913a33;
+}
+.filter-dot {
+width: 6px; height: 6px;
+border-radius: 50%;
+flex-shrink: 0;
+}
+
+/* sort select */
+select {
+padding: 0.28rem 1.4rem 0.28rem 0.5rem;
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 4px;
+color: var(–text-muted);
+font-family: ‘Lato’, sans-serif;
+font-size: 0.65rem;
+outline: none;
+cursor: pointer;
+appearance: none;
+flex-shrink: 0;
+background-image: url(“data:image/svg+xml,%3Csvg xmlns=‘http://www.w3.org/2000/svg’ width=‘8’ height=‘5’%3E%3Cpath d=‘M0 0l4 5 4-5z’ fill=’%238a7a62’/%3E%3C/svg%3E”);
+background-repeat: no-repeat;
+background-position: right 0.4rem center;
+transition: border-color 0.2s;
+}
+select:focus { border-color: var(–gold-dim); }
+
+/* ── STATS BAR ── */
+.stats-bar {
+position: relative;
+z-index: 1;
+max-width: 1300px;
+margin: 0 auto;
+padding: 0.2rem 0.6rem 0.3rem;
+display: flex;
+align-items: center;
+gap: 1rem;
+font-size: 0.62rem;
+color: var(–text-muted);
+font-family: ‘Cinzel’, serif;
+letter-spacing: 0.04em;
+}
+.stats-bar strong { color: var(–gold); }
+
+/* ── GRID ── */
+.grid {
+position: relative;
+z-index: 1;
+max-width: 1300px;
+margin: 0 auto;
+padding: 0 0.6rem 3rem;
+display: flex;
+flex-direction: column;
+gap: 0.35rem;
+}
+
+/* ── CARD ── */
+.card {
+background: var(–card);
+border: 1px solid var(–border);
+border-radius: 5px;
+padding: 0.45rem 0.6rem;
+cursor: default;
+transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+animation: card-in 0.3s ease both;
+position: relative;
+overflow: hidden;
+display: flex;
+align-items: center;
+gap: 0.5rem;
+}
+
+.card::before {
+content: ‘’;
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 2px;
+background: linear-gradient(90deg, transparent, var(–gold-dim), transparent);
+opacity: 0;
+transition: opacity 0.2s;
+}
+
+.card:hover {
+background: var(–card-hover);
+border-color: var(–border-glow);
+box-shadow: 0 4px 16px #00000066, 0 0 10px #c8913a14;
+}
+.card:hover::before { opacity: 1; }
+
+@keyframes card-in {
+from { opacity: 0; transform: translateY(6px); }
+to   { opacity: 1; transform: translateY(0); }
+}
+
+.card-header {
+display: flex;
+align-items: center;
+gap: 0.4rem;
+flex-shrink: 0;
+min-width: 0;
+width: 135px;
+}
+
+.monster-icon {
+width: 24px; height: 24px;
+border-radius: 50%;
+background: #2a1e0d;
+border: 1px solid var(–border);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 0.8rem;
+flex-shrink: 0;
+transition: border-color 0.2s;
+}
+.card:hover .monster-icon { border-color: var(–gold-dim); }
+
+.monster-info { min-width: 0; }
+
+.monster-name {
+font-family: ‘Cinzel’, serif;
+font-size: 0.68rem;
+font-weight: 700;
+color: var(–gold-light);
+letter-spacing: 0.01em;
+line-height: 1.2;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+.monster-type {
+font-size: 0.5rem;
+color: var(–text-dim);
+letter-spacing: 0.04em;
+text-transform: uppercase;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+/* card info row — fills remaining space */
+.card-info {
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 0.35rem;
+flex: 1;
+min-width: 0;
+}
+
+.card-sep {
+width: 1px;
+height: 20px;
+background: var(–border);
+flex-shrink: 0;
+}
+
+.tags {
+display: flex;
+flex-wrap: nowrap;
+gap: 0.2rem;
+align-items: center;
+}
+
+.tag {
+display: inline-flex;
+align-items: center;
+gap: 0.15rem;
+padding: 0.15rem 0.35rem;
+border-radius: 3px;
+font-size: 0.52rem;
+font-weight: 700;
+letter-spacing: 0.03em;
+text-transform: uppercase;
+border: 1px solid transparent;
+}
+
+.tag-icon { font-size: 0.6rem; }
+
+/* Element tag colors */
+.tag-fire     { background: #2a0f08; border-color: #6b2010; color: var(–fire); }
+.tag-water    { background: #081828; border-color: #1040a0; color: var(–water); }
+.tag-thunder  { background: #281e04; border-color: #806010; color: var(–thunder); }
+.tag-ice      { background: #082028; border-color: #2080a0; color: var(–ice); }
+.tag-dragon   { background: #180828; border-color: #601090; color: var(–dragon); }
+.tag-poison   { background: #101e08; border-color: #407020; color: var(–poison); }
+.tag-none     { background: #141414; border-color: #2a2a2a; color: #5a5a5a; }
+.tag-resist   { background: #1e0808; border-color: #501010; color: var(–resist); }
+.tag-stun     { background: #241808; border-color: #704010; color: var(–stun); }
+
+/* ── COATING ── */
+.coating-pill {
+display: inline-flex;
+align-items: center;
+gap: 0.2rem;
+padding: 0.15rem 0.4rem;
+border-radius: 20px;
+font-size: 0.5rem;
+font-weight: 700;
+font-family: ‘Cinzel’, serif;
+letter-spacing: 0.03em;
+text-transform: uppercase;
+border: 1px solid transparent;
+flex-shrink: 0;
+white-space: nowrap;
+}
+
+.coating-pierce {
+background: #0d1e2a;
+border-color: #1a5080;
+color: #60b8e8;
+}
+.coating-close {
+background: #1e1a08;
+border-color: #705820;
+color: #e0a830;
+}
+
+/* ── EMPTY STATE ── */
+.empty {
+text-align: center;
+padding: 3rem 1rem;
+}
+.empty p {
+font-family: ‘Cinzel’, serif;
+font-size: 0.85rem;
+color: var(–text-dim);
+letter-spacing: 0.05em;
+}
+.empty small {
+display: block;
+margin-top: 0.4rem;
+font-size: 0.7rem;
+color: var(–text-dim);
+}
+
+/* ── LEGEND ── */
+.legend {
+position: relative;
+z-index: 1;
+max-width: 1300px;
+margin: 0 auto;
+padding: 0 0.6rem 0.6rem;
+display: flex;
+flex-wrap: wrap;
+gap: 0.25rem;
+align-items: center;
+}
+.legend-title {
+font-family: ‘Cinzel’, serif;
+font-size: 0.5rem;
+color: var(–text-dim);
+letter-spacing: 0.08em;
+text-transform: uppercase;
+margin-right: 0.15rem;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(–bg); }
+::-webkit-scrollbar-thumb { background: var(–border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(–gold-dim); }
+</style>
+
+</head>
+<body>
+
+<header>
+  <div class="header-crest">⚔️</div>
+  <h1>
+    Monster Hunter Wilds
+    <span>Monster Field Guide</span>
+  </h1>
+  <div class="header-divider">✦</div>
+</header>
+
+<div class="controls">
+  <div class="search-wrap">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <input type="text" id="search" placeholder="Search monsters…" autocomplete="off" />
+  </div>
+  <div class="controls-row">
+    <div class="filter-group" id="element-filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="fire"><span class="filter-dot" style="background:var(--fire)"></span>Fire</button>
+      <button class="filter-btn" data-filter="water"><span class="filter-dot" style="background:var(--water)"></span>Water</button>
+      <button class="filter-btn" data-filter="thunder"><span class="filter-dot" style="background:var(--thunder)"></span>Thunder</button>
+      <button class="filter-btn" data-filter="ice"><span class="filter-dot" style="background:var(--ice)"></span>Ice</button>
+      <button class="filter-btn" data-filter="dragon"><span class="filter-dot" style="background:var(--dragon)"></span>Dragon</button>
+    </div>
+    <select id="sort-select">
+      <option value="name">A–Z</option>
+      <option value="type">Type</option>
+    </select>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <span>Showing <strong id="count">34</strong> large monsters</span>
+</div>
+
+<div class="legend">
+  <span class="legend-title">Elements:</span>
+  <span class="tag tag-fire"><span class="tag-icon">🔥</span>Fire</span>
+  <span class="tag tag-water"><span class="tag-icon">💧</span>Water</span>
+  <span class="tag tag-thunder"><span class="tag-icon">⚡</span>Thunder</span>
+  <span class="tag tag-ice"><span class="tag-icon">❄️</span>Ice</span>
+  <span class="tag tag-dragon"><span class="tag-icon">🐉</span>Dragon</span>
+  <span style="display:inline-flex;align-items:center;gap:0.3rem;margin-left:0.4rem;border-left:1px solid var(--border);padding-left:0.4rem">
+    <span class="legend-title">Bow:</span>
+    <span class="coating-pill coating-pierce">🏹 Pierce</span>
+    <span class="coating-pill coating-close">🎯 Close</span>
+  </span>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<script>
+const ELEMENTS = {
+  fire:    { label: 'Fire',    icon: '🔥', cls: 'tag-fire'    },
+  water:   { label: 'Water',   icon: '💧', cls: 'tag-water'   },
+  thunder: { label: 'Thunder', icon: '⚡', cls: 'tag-thunder' },
+  ice:     { label: 'Ice',     icon: '❄️', cls: 'tag-ice'     },
+  dragon:  { label: 'Dragon',  icon: '🐉', cls: 'tag-dragon'  },
+  poison:  { label: 'Poison',  icon: '☠️', cls: 'tag-poison'  },
+};
+
+// coating: 'pierce' | 'close' | 'both'
+// tip: short reason why
+const MONSTERS = [
+  { name: 'Ajarakan',                type: 'Fanged Beast',   icon: '🦧', chapter: 2, weak: ['water'],                  resist: ['fire'],           coating: 'close',  tip: 'Gorilla-like — stay close and punish its torso' },
+  { name: 'Arkveld',                 type: 'Elder Dragon',   icon: '👑', chapter: 6, weak: ['dragon'],                 resist: [],                 coating: 'pierce', tip: 'Chain-blade elder — pierce through the exposed wings' },
+  { name: 'Balahara',                type: 'Leviathan',      icon: '🐊', chapter: 1, weak: ['thunder'],                resist: ['water'],          coating: 'pierce', tip: 'Long serpentine body — pierce along its spine' },
+  { name: 'Blangonga',               type: 'Fanged Beast',   icon: '🦁', chapter: 4, weak: ['fire'],                   resist: ['dragon','ice'],   coating: 'close',  tip: 'Ape-like brawler — stay close and punish with burst shots' },
+  { name: 'Chatacabra',              type: 'Amphibian',      icon: '🦎', chapter: 1, weak: ['thunder'],                resist: ['dragon'],         coating: 'both',   tip: 'Works both ways — pierce the long body or go close' },
+  { name: 'Congalala',               type: 'Fanged Beast',   icon: '🦍', chapter: 1, weak: ['fire'],                   resist: [],                 coating: 'close',  tip: 'Bulky frame — stay close and unload' },
+  { name: 'Doshaguma',               type: 'Fanged Beast',   icon: '🐻', chapter: 1, weak: ['fire'],                   resist: [],                 coating: 'close',  tip: 'Massive tanky beast — close range for big damage' },
+  { name: 'Gogmazios',               type: 'Elder Dragon',   icon: '👑', chapter: 6, weak: ['fire','dragon'],          resist: [],                 coating: 'pierce', tip: 'Massive oily elder — pierce along its enormous frame' },
+  { name: 'Gore Magala',             type: 'Elder Dragon',   icon: '👑', chapter: 5, weak: ['fire'],                   resist: ['water'],          coating: 'close',  tip: 'Chaotic flier — close range when it lands' },
+  { name: 'Gravios',                 type: 'Flying Wyvern',  icon: '🪨', chapter: 4, weak: ['water'],                  resist: ['fire'],           coating: 'pierce', tip: 'Armored giant — pierce breaks through its hardened length' },
+  { name: 'Guardian Arkveld',        type: 'Elder Dragon',   icon: '💠', chapter: 3, weak: ['dragon'],                 resist: [],                 coating: 'pierce', tip: 'Long dragon frame with chain wings — pierce through its body' },
+  { name: 'Guardian Doshaguma',      type: 'Fanged Beast',   icon: '💠', chapter: 3, weak: ['fire'],                   resist: [],                 coating: 'close',  tip: 'Enhanced Doshaguma — same massive frame, go close' },
+  { name: 'Guardian Ebony Odogaron', type: 'Fanged Wyvern',  icon: '💠', chapter: 3, weak: ['water'],                  resist: [],                 coating: 'close',  tip: 'Agile and fast — close range burst between its dashes' },
+  { name: 'Guardian Fulgur Anjanath',type: 'Brute Wyvern',   icon: '💠', chapter: 3, weak: ['ice'],                    resist: [],                 coating: 'both',   tip: 'Upright brute — works at close or piercing through torso' },
+  { name: 'Guardian Rathalos',       type: 'Flying Wyvern',  icon: '💠', chapter: 3, weak: ['dragon'],                 resist: ['fire'],           coating: 'both',   tip: 'Effective both ways — pierce airborne or close when grounded' },
+  { name: 'Gypceros',                type: 'Bird Wyvern',    icon: '🦚', chapter: 4, weak: ['fire'],                   resist: [],                 coating: 'close',  tip: 'Erratic small bird — close range for reliable hits' },
+  { name: 'Hirabami',                type: 'Flying Wyvern',  icon: '🐍', chapter: 2, weak: ['fire'],                   resist: ['ice'],            coating: 'both',   tip: 'Slender snake-wyvern — pierce its length or go close on the head' },
+  { name: 'Jin Dahaad',              type: 'Brute Wyvern',   icon: '🌋', chapter: 5, weak: ['fire'],                   resist: ['ice'],            coating: 'pierce', tip: 'Towering brute — pierce from snout all the way to tail' },
+  { name: 'Lagiacrus',               type: 'Leviathan',      icon: '⚡', chapter: 4, weak: ['fire'],                   resist: ['thunder'],        coating: 'pierce', tip: 'Long eel-like leviathan — pierce along its full body' },
+  { name: 'Lala Barina',             type: 'Bird Wyvern',    icon: '🌸', chapter: 1, weak: ['fire'],                   resist: ['dragon','water'], coating: 'close',  tip: 'Small & agile — close range burst wins' },
+  { name: 'Mizutsune',               type: 'Leviathan',      icon: '🦊', chapter: 4, weak: ['thunder'],                resist: ['water'],          coating: 'both',   tip: 'Elegant leviathan — pierce its serpentine body or go close' },
+  { name: 'Nerscylla',               type: 'Temnoceran',     icon: '🕷️', chapter: 2, weak: ['fire'],                   resist: ['dragon','water'], coating: 'close',  tip: 'Spider build — close range hits multiple legs at once' },
+  { name: 'Nu Udra',                 type: 'Cephalopod',     icon: '🐙', chapter: 2, weak: ['water'],                  resist: ['fire'],           coating: 'pierce', tip: 'Starfish form — pierce cuts through its spread limbs' },
+  { name: 'Omega Planetes',          type: 'Construct',      icon: '⚙️', chapter: 6, weak: ['thunder'],                resist: [],                 coating: 'close',  tip: 'Mechanical construct — close range on its core' },
+  { name: 'Quematrice',              type: 'Bird Wyvern',    icon: '🐦', chapter: 1, weak: ['water'],                  resist: ['fire'],           coating: 'both',   tip: 'Works both ways — long neck for pierce or close to the body' },
+  { name: 'Rathalos',                type: 'Flying Wyvern',  icon: '🔴', chapter: 4, weak: ['dragon'],                 resist: ['fire'],           coating: 'close',  tip: 'Airborne king — close range when it lands' },
+  { name: 'Rathian',                 type: 'Flying Wyvern',  icon: '🌿', chapter: 4, weak: ['dragon'],                 resist: ['fire'],           coating: 'close',  tip: 'Ground-hugging wyvern — stay close for consistent hits' },
+  { name: 'Rey Dau',                 type: 'Flying Wyvern',  icon: '🦅', chapter: 2, weak: ['ice'],                    resist: ['thunder'],        coating: 'pierce', tip: 'Flies often — pierce through wings & body' },
+  { name: 'Rompopolo',               type: 'Neopteron',      icon: '🦂', chapter: 2, weak: ['water'],                  resist: ['poison'],         coating: 'close',  tip: 'Compact scorpion body — close range punishes weak spots' },
+  { name: 'Seregios',                type: 'Flying Wyvern',  icon: '🦎', chapter: 4, weak: ['thunder'],                resist: [],                 coating: 'pierce', tip: 'Sleek aggressive wyvern — pierce through its lean body' },
+  { name: 'Uth Duna',                type: 'Leviathan',      icon: '🌊', chapter: 1, weak: ['thunder'],                resist: ['water'],          coating: 'close',  tip: 'Water dancer — close range while it surfaces' },
+  { name: 'Xu Wu',                   type: 'Fanged Beast',   icon: '🐉', chapter: 3, weak: ['ice'],                    resist: ['dragon'],         coating: 'close',  tip: 'Dense fluffy form — close range into the chest' },
+  { name: 'Yian Kut-Ku',             type: 'Bird Wyvern',    icon: '🐔', chapter: 4, weak: ['ice'],                    resist: ['dragon'],         coating: 'close',  tip: 'Bird wyvern — close range hits the weak head' },
+  { name: 'Zoh Shia',                type: 'Elder Dragon',   icon: '👑', chapter: 3, weak: ['dragon'],                 resist: [],                 coating: 'pierce', tip: 'Massive elder — pierce through the crystal core' },
+];
+
+const TYPES = [...new Set(MONSTERS.map(m => m.type))].sort();
+
+function makeTag(el, isResist = false) {
+  if (el === 'none') return `<span class="tag tag-none">—</span>`;
+  if (isResist) return `<span class="tag tag-resist">⛔ ${el.charAt(0).toUpperCase()+el.slice(1)}</span>`;
+  const e = ELEMENTS[el];
+  if (!e) return '';
+  return `<span class="tag ${e.cls}"><span class="tag-icon">${e.icon}</span>${e.label}</span>`;
+}
+
+function makeCoating(m) {
+  if (m.coating === 'pierce') {
+    return `<span class="coating-pill coating-pierce">🏹 Pierce</span>`;
+  } else if (m.coating === 'close') {
+    return `<span class="coating-pill coating-close">🎯 Close Range</span>`;
+  } else {
+    return `<span style="display:inline-flex;gap:0.3rem;flex-shrink:0"><span class="coating-pill coating-close">🎯 Close</span><span class="coating-pill coating-pierce">🏹 Pierce</span></span>`;
+  }
+}
+
+function makeCard(m) {
+  const weakTags = m.weak.length ? m.weak.map(w => makeTag(w)).join('') : makeTag('none');
+  return `
+  <div class="card">
+    <div class="card-header">
+      <div class="monster-icon">${m.icon}</div>
+      <div class="monster-info">
+        <div class="monster-name">${m.name}</div>
+        <div class="monster-type">${m.type}</div>
+      </div>
+    </div>
+    <div class="card-sep"></div>
+    <div class="card-info">
+      <div class="tags">${weakTags}</div>
+      <div style="margin-left:auto;flex-shrink:0">${makeCoating(m)}</div>
+    </div>
+  </div>`;
+}
+
+let activeFilter = 'all';
+let activeSort = 'name';
+
+function render() {
+  const query = document.getElementById('search').value.toLowerCase().trim();
+  let list = MONSTERS.filter(m => {
+    const matchSearch = !query || m.name.toLowerCase().includes(query) || m.type.toLowerCase().includes(query);
+    const matchFilter = activeFilter === 'all' || m.weak.includes(activeFilter);
+    return matchSearch && matchFilter;
+  });
+
+  if (activeSort === 'name') list.sort((a,b) => a.name.localeCompare(b.name));
+  else if (activeSort === 'type') list.sort((a,b) => a.type.localeCompare(b.type) || a.name.localeCompare(b.name));
+
+  const grid = document.getElementById('grid');
+  document.getElementById('count').textContent = list.length;
+
+  if (!list.length) {
+    grid.innerHTML = `<div class="empty"><p>No monsters found</p><small>Try adjusting your search or filters</small></div>`;
+    return;
+  }
+
+  // Stagger animation
+  grid.innerHTML = list.map((m, i) => {
+    const card = makeCard(m);
+    return card.replace('<div class="card">', `<div class="card" style="animation-delay:${i * 0.03}s">`);
+  }).join('');
+}
+
+// Search
+document.getElementById('search').addEventListener('input', render);
+
+// Filters
+document.getElementById('element-filters').addEventListener('click', e => {
+  const btn = e.target.closest('.filter-btn');
+  if (!btn) return;
+  activeFilter = btn.dataset.filter;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+});
+
+// Sort
+document.getElementById('sort-select').addEventListener('change', e => {
+  activeSort = e.target.value;
+  render();
+});
+
+render();
+</script>
+
+</body>
+</html>
