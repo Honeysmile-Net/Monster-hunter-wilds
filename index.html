@@ -320,15 +320,22 @@
     border: 1px solid var(--border);
     border-radius: 5px;
     padding: 0.45rem 0.6rem;
-    cursor: default;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
     transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
     animation: card-in 0.3s ease both;
     position: relative;
     overflow: hidden;
     display: flex;
+    flex-direction: column;
+    gap: 0;
+    box-shadow: 0 1px 4px #c8c0e020;
+  }
+
+  .card-row {
+    display: flex;
     align-items: center;
     gap: 0.5rem;
-    box-shadow: 0 1px 4px #c8c0e020;
   }
 
   .card::before {
@@ -522,6 +529,79 @@
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
   ::-webkit-scrollbar-thumb:hover { background: var(--gold-dim); }
+
+  /* ── HITZONE EXPAND ── */
+
+  .hitzone-panel {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+    opacity: 0;
+    padding: 0 0.2rem;
+  }
+  .card.open .hitzone-panel {
+    max-height: 200px;
+    opacity: 1;
+    padding: 0.5rem 0.2rem 0.1rem;
+  }
+
+  .hitzone-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 0 -0.6rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .card.open .hitzone-divider { opacity: 1; }
+
+  .hz-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.48rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 0.4rem;
+  }
+
+  .hz-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.28rem;
+  }
+
+  .hz-row {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .hz-part {
+    font-family: 'Cinzel', serif;
+    font-size: 0.52rem;
+    color: var(--text-muted);
+    flex: 1;
+    letter-spacing: 0.02em;
+  }
+
+  .hz-val {
+    font-family: 'Cinzel', serif;
+    font-size: 0.52rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .hz-val.excellent { color: #5a985a; }
+  .hz-val.good      { color: #8a9830; }
+  .hz-val.moderate  { color: #9a7020; }
+  .hz-val.poor      { color: #a06060; }
+
+  .card-chevron {
+    font-size: 0.55rem;
+    color: var(--text-dim);
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    margin-left: 0.1rem;
+  }
+  .card.open .card-chevron { transform: rotate(180deg); }
 </style>
 </head>
 <body>
@@ -589,45 +669,53 @@ const TYPE_ICONS = {
   'Construct':      '\u2699\uFE0F',
 };
 
+// hz: [{part, val}] — shot hitzone values for bow (higher = better)
 const MONSTERS = [
-  { name: 'Ajarakan',                type: 'Fanged Beast',   weak: ['water'],         coating: 'close'  },
-  { name: 'Arkveld',                 type: 'Elder Dragon',   weak: ['dragon'],        coating: 'pierce' },
-  { name: 'Balahara',                type: 'Leviathan',      weak: ['thunder'],       coating: 'pierce' },
-  { name: 'Blangonga',               type: 'Fanged Beast',   weak: ['fire'],          coating: 'close'  },
-  { name: 'Chatacabra',              type: 'Amphibian',      weak: ['thunder'],       coating: 'both'   },
-  { name: 'Congalala',               type: 'Fanged Beast',   weak: ['fire'],          coating: 'close'  },
-  { name: 'Doshaguma',               type: 'Fanged Beast',   weak: ['fire'],          coating: 'close'  },
-  { name: 'Gogmazios',               type: 'Elder Dragon',   weak: ['fire','dragon'], coating: 'pierce' },
-  { name: 'Gore Magala',             type: 'Elder Dragon',   weak: ['fire'],          coating: 'close'  },
-  { name: 'Gravios',                 type: 'Flying Wyvern',  weak: ['water'],         coating: 'pierce' },
-  { name: 'Guardian Arkveld',        type: 'Elder Dragon',   weak: ['dragon'],        coating: 'pierce' },
-  { name: 'Guardian Doshaguma',      type: 'Fanged Beast',   weak: ['fire'],          coating: 'close'  },
-  { name: 'Guardian Ebony Odogaron', type: 'Fanged Wyvern',  weak: ['water'],         coating: 'close'  },
-  { name: 'Guardian Fulgur Anjanath',type: 'Brute Wyvern',   weak: ['ice'],           coating: 'both'   },
-  { name: 'Guardian Rathalos',       type: 'Flying Wyvern',  weak: ['dragon'],        coating: 'both'   },
-  { name: 'Gypceros',                type: 'Bird Wyvern',    weak: ['fire'],          coating: 'close'  },
-  { name: 'Hirabami',                type: 'Flying Wyvern',  weak: ['fire'],          coating: 'both'   },
-  { name: 'Jin Dahaad',              type: 'Brute Wyvern',   weak: ['fire'],          coating: 'pierce' },
-  { name: 'Lagiacrus',               type: 'Leviathan',      weak: ['fire'],          coating: 'pierce' },
-  { name: 'Lala Barina',             type: 'Bird Wyvern',    weak: ['fire'],          coating: 'close'  },
-  { name: 'Mizutsune',               type: 'Leviathan',      weak: ['thunder'],       coating: 'both'   },
-  { name: 'Nerscylla',               type: 'Temnoceran',     weak: ['fire'],          coating: 'close'  },
-  { name: 'Nu Udra',                 type: 'Cephalopod',     weak: ['water'],         coating: 'pierce' },
-  { name: 'Omega Planetes',          type: 'Construct',      weak: ['thunder'],       coating: 'close'  },
-  { name: 'Quematrice',              type: 'Bird Wyvern',    weak: ['water'],         coating: 'both'   },
-  { name: 'Rathalos',                type: 'Flying Wyvern',  weak: ['dragon'],        coating: 'close'  },
-  { name: 'Rathian',                 type: 'Flying Wyvern',  weak: ['dragon'],        coating: 'close'  },
-  { name: 'Rey Dau',                 type: 'Flying Wyvern',  weak: ['ice'],           coating: 'pierce' },
-  { name: 'Rompopolo',               type: 'Neopteron',      weak: ['water'],         coating: 'close'  },
-  { name: 'Seregios',                type: 'Flying Wyvern',  weak: ['thunder'],       coating: 'pierce' },
-  { name: 'Uth Duna',                type: 'Leviathan',      weak: ['thunder'],       coating: 'close'  },
-  { name: 'Xu Wu',                   type: 'Fanged Beast',   weak: ['ice'],           coating: 'close'  },
-  { name: 'Yian Kut-Ku',             type: 'Bird Wyvern',    weak: ['ice'],           coating: 'close'  },
-  { name: 'Zoh Shia',                type: 'Elder Dragon',   weak: ['dragon'],        coating: 'pierce' },
+  { name: 'Ajarakan',                type: 'Fanged Beast',   weak: ['water'],         coating: 'close',  hz: [{p:'Head',v:70},{p:'Chest',v:55},{p:'Foreleg',v:45},{p:'Back',v:35}] },
+  { name: 'Arkveld',                 type: 'Elder Dragon',   weak: ['dragon'],        coating: 'pierce', hz: [{p:'Head',v:75},{p:'Wings',v:65},{p:'Chest',v:55},{p:'Tail',v:45}] },
+  { name: 'Balahara',                type: 'Leviathan',      weak: ['thunder'],       coating: 'pierce', hz: [{p:'Head',v:65},{p:'Belly',v:55},{p:'Body',v:45},{p:'Tail',v:40}] },
+  { name: 'Blangonga',               type: 'Fanged Beast',   weak: ['fire'],          coating: 'close',  hz: [{p:'Head',v:72},{p:'Mane',v:58},{p:'Foreleg',v:45},{p:'Back',v:35}] },
+  { name: 'Chatacabra',              type: 'Amphibian',      weak: ['thunder'],       coating: 'both',   hz: [{p:'Head',v:68},{p:'Chin',v:75},{p:'Body',v:40},{p:'Tail',v:35}] },
+  { name: 'Congalala',               type: 'Fanged Beast',   weak: ['fire'],          coating: 'close',  hz: [{p:'Head',v:65},{p:'Chest',v:50},{p:'Foreleg',v:42},{p:'Back',v:32}] },
+  { name: 'Doshaguma',               type: 'Fanged Beast',   weak: ['fire'],          coating: 'close',  hz: [{p:'Head',v:70},{p:'Chest',v:55},{p:'Foreleg',v:40},{p:'Back',v:30}] },
+  { name: 'Gogmazios',               type: 'Elder Dragon',   weak: ['fire','dragon'], coating: 'pierce', hz: [{p:'Head',v:65},{p:'Neck',v:55},{p:'Chest',v:60},{p:'Tail',v:45}] },
+  { name: 'Gore Magala',             type: 'Elder Dragon',   weak: ['fire'],          coating: 'close',  hz: [{p:'Head',v:75},{p:'Wings',v:60},{p:'Chest',v:50},{p:'Tail',v:40}] },
+  { name: 'Gravios',                 type: 'Flying Wyvern',  weak: ['water'],         coating: 'pierce', hz: [{p:'Head',v:55},{p:'Belly',v:70},{p:'Wings',v:45},{p:'Tail',v:40}] },
+  { name: 'Guardian Arkveld',        type: 'Elder Dragon',   weak: ['dragon'],        coating: 'pierce', hz: [{p:'Head',v:70},{p:'Wings',v:65},{p:'Chest',v:55},{p:'Tail',v:45}] },
+  { name: 'Guardian Doshaguma',      type: 'Fanged Beast',   weak: ['fire'],          coating: 'close',  hz: [{p:'Head',v:68},{p:'Chest',v:52},{p:'Foreleg',v:40},{p:'Back',v:30}] },
+  { name: 'Guardian Ebony Odogaron', type: 'Fanged Wyvern',  weak: ['water'],         coating: 'close',  hz: [{p:'Head',v:72},{p:'Chest',v:55},{p:'Foreleg',v:48},{p:'Tail',v:42}] },
+  { name: 'Guardian Fulgur Anjanath',type: 'Brute Wyvern',   weak: ['ice'],           coating: 'both',   hz: [{p:'Head',v:70},{p:'Chest',v:60},{p:'Foreleg',v:45},{p:'Tail',v:38}] },
+  { name: 'Guardian Rathalos',       type: 'Flying Wyvern',  weak: ['dragon'],        coating: 'both',   hz: [{p:'Head',v:80},{p:'Neck',v:65},{p:'Wings',v:55},{p:'Tail',v:45}] },
+  { name: 'Gypceros',                type: 'Bird Wyvern',    weak: ['fire'],          coating: 'close',  hz: [{p:'Head',v:80},{p:'Crest',v:70},{p:'Chest',v:50},{p:'Tail',v:35}] },
+  { name: 'Hirabami',                type: 'Flying Wyvern',  weak: ['fire'],          coating: 'both',   hz: [{p:'Head',v:75},{p:'Neck',v:65},{p:'Body',v:48},{p:'Tail',v:42}] },
+  { name: 'Jin Dahaad',              type: 'Brute Wyvern',   weak: ['fire'],          coating: 'pierce', hz: [{p:'Head',v:65},{p:'Chest',v:55},{p:'Foreleg',v:45},{p:'Tail',v:40}] },
+  { name: 'Lagiacrus',               type: 'Leviathan',      weak: ['fire'],          coating: 'pierce', hz: [{p:'Head',v:70},{p:'Chest',v:60},{p:'Back',v:45},{p:'Tail',v:40}] },
+  { name: 'Lala Barina',             type: 'Bird Wyvern',    weak: ['fire'],          coating: 'close',  hz: [{p:'Head',v:75},{p:'Mantle',v:65},{p:'Body',v:45},{p:'Legs',v:30}] },
+  { name: 'Mizutsune',               type: 'Leviathan',      weak: ['thunder'],       coating: 'both',   hz: [{p:'Head',v:75},{p:'Chest',v:60},{p:'Forelegs',v:50},{p:'Tail',v:45}] },
+  { name: 'Nerscylla',               type: 'Temnoceran',     weak: ['fire'],          coating: 'close',  hz: [{p:'Head',v:70},{p:'Abdomen',v:65},{p:'Legs',v:45},{p:'Back',v:35}] },
+  { name: 'Nu Udra',                 type: 'Cephalopod',     weak: ['water'],         coating: 'pierce', hz: [{p:'Core',v:80},{p:'Head',v:65},{p:'Tentacle',v:50},{p:'Body',v:40}] },
+  { name: 'Omega Planetes',          type: 'Construct',      weak: ['thunder'],       coating: 'close',  hz: [{p:'Core',v:80},{p:'Head',v:65},{p:'Arms',v:45},{p:'Body',v:35}] },
+  { name: 'Quematrice',              type: 'Bird Wyvern',    weak: ['water'],         coating: 'both',   hz: [{p:'Head',v:75},{p:'Neck',v:60},{p:'Wings',v:50},{p:'Tail',v:42}] },
+  { name: 'Rathalos',                type: 'Flying Wyvern',  weak: ['dragon'],        coating: 'close',  hz: [{p:'Head',v:80},{p:'Neck',v:65},{p:'Wings',v:55},{p:'Tail',v:45}] },
+  { name: 'Rathian',                 type: 'Flying Wyvern',  weak: ['dragon'],        coating: 'close',  hz: [{p:'Head',v:75},{p:'Neck',v:60},{p:'Wings',v:50},{p:'Tail',v:45}] },
+  { name: 'Rey Dau',                 type: 'Flying Wyvern',  weak: ['ice'],           coating: 'pierce', hz: [{p:'Head',v:80},{p:'Wings',v:65},{p:'Chest',v:50},{p:'Tail',v:40}] },
+  { name: 'Rompopolo',               type: 'Neopteron',      weak: ['water'],         coating: 'close',  hz: [{p:'Head',v:70},{p:'Pincers',v:55},{p:'Abdomen',v:65},{p:'Legs',v:35}] },
+  { name: 'Seregios',                type: 'Flying Wyvern',  weak: ['thunder'],       coating: 'pierce', hz: [{p:'Head',v:75},{p:'Wings',v:60},{p:'Chest',v:50},{p:'Tail',v:45}] },
+  { name: 'Uth Duna',                type: 'Leviathan',      weak: ['thunder'],       coating: 'close',  hz: [{p:'Head',v:70},{p:'Chest',v:55},{p:'Back',v:45},{p:'Tail',v:38}] },
+  { name: 'Xu Wu',                   type: 'Fanged Beast',   weak: ['ice'],           coating: 'close',  hz: [{p:'Head',v:68},{p:'Chest',v:55},{p:'Foreleg',v:42},{p:'Back',v:35}] },
+  { name: 'Yian Kut-Ku',             type: 'Bird Wyvern',    weak: ['ice'],           coating: 'close',  hz: [{p:'Head',v:80},{p:'Ear',v:70},{p:'Chest',v:50},{p:'Tail',v:38}] },
+  { name: 'Zoh Shia',                type: 'Elder Dragon',   weak: ['dragon'],        coating: 'pierce', hz: [{p:'Head',v:75},{p:'Core',v:80},{p:'Wings',v:55},{p:'Tail',v:45}] },
 ];
 
+function hzClass(v) {
+  if (v >= 65) return 'excellent';
+  if (v >= 45) return 'good';
+  if (v >= 25) return 'moderate';
+  return 'poor';
+}
+
 function makeTag(el) {
-  const e = ELEMENTS[el];
+  var e = ELEMENTS[el];
   if (!e) return '';
   return '<span class="tag ' + e.cls + '"><span class="tag-icon">' + e.icon + '</span>' + e.label + '</span>';
 }
@@ -642,10 +730,26 @@ function makeCoating(coating) {
   }
 }
 
+function makeHitzonePanel(hz) {
+  var rows = hz.map(function(h) {
+    var cls = hzClass(h.v);
+    return '<div class="hz-row">'
+      + '<div class="hz-part">' + h.p + '</div>'
+      + '<div class="hz-val ' + cls + '">' + h.v + '</div>'
+      + '</div>';
+  }).join('');
+  return '<div class="hitzone-divider"></div>'
+    + '<div class="hitzone-panel">'
+    + '<div class="hz-title">\uD83C\uDFAF Shot Hitzone (Bow)</div>'
+    + '<div class="hz-list">' + rows + '</div>'
+    + '</div>';
+}
+
 function makeCard(m, delay) {
-  const weakTags = m.weak.map(makeTag).join('');
-  const icon = TYPE_ICONS[m.type] || '\uD83D\uDC32';
-  return '<div class="card" style="animation-delay:' + delay + 's">'
+  var weakTags = m.weak.map(makeTag).join('');
+  var icon = TYPE_ICONS[m.type] || '\uD83D\uDC32';
+  return '<div class="card" style="animation-delay:' + delay + 's" onclick="toggleCard(this)">'
+    + '<div class="card-row">'
     + '<div class="card-header">'
     + '<div class="monster-icon">' + icon + '</div>'
     + '<div class="monster-info">'
@@ -655,8 +759,16 @@ function makeCard(m, delay) {
     + '<div class="card-sep"></div>'
     + '<div class="card-info">'
     + '<div class="tags">' + weakTags + '</div>'
-    + '<div style="margin-left:auto;flex-shrink:0">' + makeCoating(m.coating) + '</div>'
-    + '</div></div>';
+    + '<div style="margin-left:auto;flex-shrink:0;display:flex;align-items:center;gap:0.3rem">'
+    + makeCoating(m.coating)
+    + '<span class="card-chevron">\u25BE</span>'
+    + '</div></div></div>'
+    + makeHitzonePanel(m.hz)
+    + '</div>';
+}
+
+function toggleCard(card) {
+  card.classList.toggle('open');
 }
 
 var activeFilter = 'all';
