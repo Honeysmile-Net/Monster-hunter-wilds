@@ -545,6 +545,42 @@
   .hz-col-block { flex: 1; min-width: 0; }
   .hz-col-sep { width: 1px; background: var(--border); align-self: stretch; margin: 0 0.5rem; flex-shrink: 0; }
 
+  /* Elemental hitzone table */
+  .ehz-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.2rem;
+    padding-bottom: 0.15rem;
+    border-bottom: 1px solid var(--border);
+    gap: 0.2rem;
+  }
+  .ehz-row { display: flex; align-items: center; gap: 0.2rem; }
+  .ehz-part { font-family: 'Cinzel', serif; font-size: 0.48rem; color: var(--text); flex: 1; }
+  .ehz-val {
+    font-family: 'Cinzel', serif;
+    font-size: 0.5rem;
+    font-weight: 700;
+    width: 22px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .ehz-lbl {
+    font-family: 'Cinzel', serif;
+    font-size: 0.38rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    width: 22px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .ehz-fire    { color: #c05050; }
+  .ehz-water   { color: #3878b8; }
+  .ehz-thunder { color: #9a7020; }
+  .ehz-ice     { color: #2888a8; }
+  .ehz-dragon  { color: #7040b8; }
+  .ehz-zero    { color: #c0b8d0; }
+
   .hz-title { font-family: 'Cinzel', serif; font-size: 0.48rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text); font-weight: 700; margin-bottom: 0.3rem; }
   .hz-list { display: flex; flex-direction: column; gap: 0.22rem; }
 
@@ -735,40 +771,40 @@ const TYPE_ICONS = {
 
 // hz: [{p, shot, cut, blunt}]
 const MONSTERS = [
-  { name: 'Ajarakan',                type: 'Fanged Beast',   weak: ['water'],         coating: 'close',  hz: [{p:'Head',    s:70,c:75,b:80},{p:'Chest',  s:55,c:60,b:65},{p:'Foreleg', s:45,c:50,b:45},{p:'Back',   s:35,c:35,b:30}], st:{poison:3,para:2,sleep:2,stun:3,blast:2} },
-  { name: 'Arkveld',                 type: 'Elder Dragon',   weak: ['dragon'],        coating: 'pierce', hz: [{p:'Head',    s:75,c:80,b:70},{p:'Wings',  s:65,c:60,b:50},{p:'Chest',  s:55,c:55,b:60},{p:'Tail',   s:45,c:55,b:40}], st:{poison:0,para:0,sleep:2,stun:0,blast:2} },
-  { name: 'Balahara',                type: 'Leviathan',      weak: ['thunder'],       coating: 'pierce', hz: [{p:'Head',    s:65,c:70,b:65},{p:'Belly',  s:55,c:60,b:50},{p:'Body',   s:45,c:45,b:40},{p:'Tail',   s:40,c:50,b:35}], st:{poison:2,para:2,sleep:3,stun:2,blast:1} },
-  { name: 'Blangonga',               type: 'Fanged Beast',   weak: ['fire'],          coating: 'close',  hz: [{p:'Head',    s:72,c:75,b:80},{p:'Mane',   s:58,c:55,b:60},{p:'Foreleg',s:45,c:50,b:45},{p:'Back',   s:35,c:35,b:30}], st:{poison:2,para:3,sleep:2,stun:3,blast:2} },
-  { name: 'Chatacabra',              type: 'Amphibian',      weak: ['thunder'],       coating: 'both',   hz: [{p:'Head',    s:68,c:70,b:75},{p:'Chin',   s:75,c:65,b:80},{p:'Body',   s:40,c:40,b:35},{p:'Tail',   s:35,c:45,b:30}], st:{poison:3,para:2,sleep:2,stun:2,blast:3} },
-  { name: 'Congalala',               type: 'Fanged Beast',   weak: ['fire'],          coating: 'close',  hz: [{p:'Head',    s:65,c:70,b:75},{p:'Chest',  s:50,c:55,b:58},{p:'Foreleg',s:42,c:45,b:42},{p:'Back',   s:32,c:32,b:28}], st:{poison:3,para:2,sleep:3,stun:2,blast:2} },
-  { name: 'Doshaguma',               type: 'Fanged Beast',   weak: ['fire'],          coating: 'close',  hz: [{p:'Head',    s:70,c:72,b:78},{p:'Chest',  s:55,c:58,b:62},{p:'Foreleg',s:40,c:42,b:40},{p:'Back',   s:30,c:30,b:25}], st:{poison:2,para:3,sleep:2,stun:3,blast:2} },
-  { name: 'Gogmazios',               type: 'Elder Dragon',   weak: ['fire','dragon'], coating: 'pierce', hz: [{p:'Head',    s:65,c:68,b:65},{p:'Neck',   s:55,c:58,b:52},{p:'Chest',  s:60,c:62,b:58},{p:'Tail',   s:45,c:52,b:40}], st:{poison:0,para:0,sleep:1,stun:0,blast:2} },
-  { name: 'Gore Magala',             type: 'Elder Dragon',   weak: ['fire'],          coating: 'close',  hz: [{p:'Head',    s:75,c:80,b:72},{p:'Wings',  s:60,c:65,b:52},{p:'Chest',  s:50,c:55,b:55},{p:'Tail',   s:40,c:50,b:35}], st:{poison:2,para:0,sleep:2,stun:0,blast:3} },
-  { name: 'Gravios',                 type: 'Flying Wyvern',  weak: ['water'],         coating: 'pierce', hz: [{p:'Head',    s:55,c:55,b:60},{p:'Belly',  s:70,c:65,b:72},{p:'Wings',  s:45,c:48,b:40},{p:'Tail',   s:40,c:48,b:35}], st:{poison:2,para:2,sleep:3,stun:2,blast:1} },
-  { name: 'Guardian Arkveld',        type: 'Elder Dragon',   weak: ['dragon'],        coating: 'pierce', hz: [{p:'Head',    s:70,c:75,b:68},{p:'Wings',  s:65,c:60,b:52},{p:'Chest',  s:55,c:58,b:60},{p:'Tail',   s:45,c:55,b:40}], st:{poison:0,para:0,sleep:2,stun:0,blast:2} },
-  { name: 'Guardian Doshaguma',      type: 'Fanged Beast',   weak: ['fire'],          coating: 'close',  hz: [{p:'Head',    s:68,c:70,b:75},{p:'Chest',  s:52,c:55,b:60},{p:'Foreleg',s:40,c:42,b:40},{p:'Back',   s:30,c:30,b:25}], st:{poison:2,para:3,sleep:2,stun:3,blast:2} },
-  { name: 'Guardian Ebony Odogaron', type: 'Fanged Wyvern',  weak: ['water'],         coating: 'close',  hz: [{p:'Head',    s:72,c:75,b:68},{p:'Chest',  s:55,c:60,b:55},{p:'Foreleg',s:48,c:52,b:45},{p:'Tail',   s:42,c:55,b:38}], st:{poison:3,para:2,sleep:2,stun:2,blast:3} },
-  { name: 'Guardian Fulgur Anjanath',type: 'Brute Wyvern',   weak: ['ice'],           coating: 'both',   hz: [{p:'Head',    s:70,c:72,b:75},{p:'Chest',  s:60,c:62,b:65},{p:'Foreleg',s:45,c:48,b:45},{p:'Tail',   s:38,c:45,b:35}], st:{poison:2,para:2,sleep:3,stun:2,blast:2} },
-  { name: 'Guardian Rathalos',       type: 'Flying Wyvern',  weak: ['dragon'],        coating: 'both',   hz: [{p:'Head',    s:80,c:85,b:75},{p:'Neck',   s:65,c:68,b:60},{p:'Wings',  s:55,c:60,b:50},{p:'Tail',   s:45,c:55,b:40}], st:{poison:2,para:0,sleep:2,stun:0,blast:3} },
-  { name: 'Gypceros',                type: 'Bird Wyvern',    weak: ['fire'],          coating: 'close',  hz: [{p:'Head',    s:80,c:80,b:85},{p:'Crest',  s:70,c:65,b:75},{p:'Chest',  s:50,c:52,b:55},{p:'Tail',   s:35,c:42,b:30}], st:{poison:3,para:3,sleep:3,stun:2,blast:2} },
-  { name: 'Hirabami',                type: 'Flying Wyvern',  weak: ['fire'],          coating: 'both',   hz: [{p:'Head',    s:75,c:78,b:70},{p:'Neck',   s:65,c:68,b:60},{p:'Body',   s:48,c:50,b:45},{p:'Tail',   s:42,c:52,b:38}], st:{poison:2,para:2,sleep:2,stun:2,blast:3} },
-  { name: 'Jin Dahaad',              type: 'Brute Wyvern',   weak: ['fire'],          coating: 'pierce', hz: [{p:'Head',    s:65,c:68,b:72},{p:'Chest',  s:55,c:58,b:62},{p:'Foreleg',s:45,c:48,b:45},{p:'Tail',   s:40,c:48,b:35}], st:{poison:2,para:2,sleep:2,stun:3,blast:2} },
-  { name: 'Lagiacrus',               type: 'Leviathan',      weak: ['fire'],          coating: 'pierce', hz: [{p:'Head',    s:70,c:72,b:68},{p:'Chest',  s:60,c:62,b:58},{p:'Back',   s:45,c:48,b:42},{p:'Tail',   s:40,c:50,b:35}], st:{poison:2,para:3,sleep:2,stun:2,blast:2} },
-  { name: 'Lala Barina',             type: 'Bird Wyvern',    weak: ['fire'],          coating: 'close',  hz: [{p:'Head',    s:75,c:78,b:80},{p:'Mantle', s:65,c:60,b:68},{p:'Body',   s:45,c:48,b:45},{p:'Legs',   s:30,c:32,b:28}], st:{poison:3,para:2,sleep:3,stun:2,blast:2} },
-  { name: 'Mizutsune',               type: 'Leviathan',      weak: ['thunder'],       coating: 'both',   hz: [{p:'Head',    s:75,c:80,b:72},{p:'Chest',  s:60,c:65,b:58},{p:'Forelegs',s:50,c:55,b:48},{p:'Tail',  s:45,c:55,b:40}], st:{poison:2,para:2,sleep:2,stun:2,blast:3} },
-  { name: 'Nerscylla',               type: 'Temnoceran',     weak: ['fire'],          coating: 'close',  hz: [{p:'Head',    s:70,c:72,b:68},{p:'Abdomen',s:65,c:60,b:70},{p:'Legs',   s:45,c:48,b:40},{p:'Back',   s:35,c:38,b:32}], st:{poison:0,para:3,sleep:3,stun:2,blast:2} },
-  { name: 'Nu Udra',                 type: 'Cephalopod',     weak: ['water'],         coating: 'pierce', hz: [{p:'Core',    s:80,c:75,b:78},{p:'Head',   s:65,c:68,b:62},{p:'Tentacle',s:50,c:55,b:45},{p:'Body',  s:40,c:42,b:38}], st:{poison:2,para:2,sleep:3,stun:2,blast:2} },
-  { name: 'Omega Planetes',          type: 'Construct',      weak: ['thunder'],       coating: 'close',  hz: [{p:'Core',    s:80,c:75,b:78},{p:'Head',   s:65,c:62,b:68},{p:'Arms',   s:45,c:48,b:42},{p:'Body',   s:35,c:35,b:32}], st:{poison:0,para:0,sleep:0,stun:3,blast:3} },
-  { name: 'Quematrice',              type: 'Bird Wyvern',    weak: ['water'],         coating: 'both',   hz: [{p:'Head',    s:75,c:78,b:72},{p:'Neck',   s:60,c:62,b:58},{p:'Wings',  s:50,c:55,b:45},{p:'Tail',   s:42,c:52,b:38}], st:{poison:3,para:2,sleep:2,stun:2,blast:3} },
-  { name: 'Rathalos',                type: 'Flying Wyvern',  weak: ['dragon'],        coating: 'close',  hz: [{p:'Head',    s:80,c:85,b:75},{p:'Neck',   s:65,c:68,b:60},{p:'Wings',  s:55,c:60,b:50},{p:'Tail',   s:45,c:55,b:40}], st:{poison:3,para:0,sleep:2,stun:0,blast:3} },
-  { name: 'Rathian',                 type: 'Flying Wyvern',  weak: ['dragon'],        coating: 'close',  hz: [{p:'Head',    s:75,c:80,b:72},{p:'Neck',   s:60,c:62,b:58},{p:'Wings',  s:50,c:55,b:45},{p:'Tail',   s:45,c:55,b:40}], st:{poison:3,para:0,sleep:2,stun:0,blast:3} },
-  { name: 'Rey Dau',                 type: 'Flying Wyvern',  weak: ['ice'],           coating: 'pierce', hz: [{p:'Head',    s:80,c:82,b:78},{p:'Wings',  s:65,c:68,b:58},{p:'Chest',  s:50,c:52,b:55},{p:'Tail',   s:40,c:50,b:35}], st:{poison:2,para:2,sleep:2,stun:2,blast:3} },
-  { name: 'Rompopolo',               type: 'Neopteron',      weak: ['water'],         coating: 'close',  hz: [{p:'Head',    s:70,c:72,b:68},{p:'Pincers',s:55,c:60,b:50},{p:'Abdomen',s:65,c:58,b:70},{p:'Legs',  s:35,c:38,b:32}], st:{poison:0,para:3,sleep:2,stun:2,blast:3} },
-  { name: 'Seregios',                type: 'Flying Wyvern',  weak: ['thunder'],       coating: 'pierce', hz: [{p:'Head',    s:75,c:78,b:72},{p:'Wings',  s:60,c:65,b:55},{p:'Chest',  s:50,c:52,b:55},{p:'Tail',   s:45,c:55,b:40}], st:{poison:3,para:2,sleep:2,stun:2,blast:3} },
-  { name: 'Uth Duna',                type: 'Leviathan',      weak: ['thunder'],       coating: 'close',  hz: [{p:'Head',    s:70,c:72,b:68},{p:'Chest',  s:55,c:58,b:52},{p:'Back',   s:45,c:48,b:42},{p:'Tail',   s:38,c:48,b:32}], st:{poison:2,para:2,sleep:3,stun:2,blast:2} },
-  { name: 'Xu Wu',                   type: 'Fanged Beast',   weak: ['ice'],           coating: 'close',  hz: [{p:'Head',    s:68,c:70,b:75},{p:'Chest',  s:55,c:58,b:62},{p:'Foreleg',s:42,c:45,b:42},{p:'Back',   s:35,c:35,b:30}], st:{poison:2,para:3,sleep:2,stun:3,blast:2} },
-  { name: 'Yian Kut-Ku',             type: 'Bird Wyvern',    weak: ['ice'],           coating: 'close',  hz: [{p:'Head',    s:80,c:82,b:85},{p:'Ear',    s:70,c:68,b:75},{p:'Chest',  s:50,c:52,b:55},{p:'Tail',   s:38,c:45,b:32}], st:{poison:3,para:3,sleep:2,stun:2,blast:2} },
-  { name: 'Zoh Shia',                type: 'Elder Dragon',   weak: ['dragon'],        coating: 'pierce', hz: [{p:'Head',    s:75,c:78,b:72},{p:'Core',   s:80,c:75,b:78},{p:'Wings',  s:55,c:58,b:50},{p:'Tail',   s:45,c:55,b:40}], st:{poison:0,para:0,sleep:2,stun:0,blast:3} },
+  { name: 'Ajarakan',                type: 'Fanged Beast',   weak: ['water'],         coating: 'close',  hz: [{p:'Head',    s:70,c:75,b:80},{p:'Chest',  s:55,c:60,b:65},{p:'Foreleg', s:45,c:50,b:45},{p:'Back',   s:35,c:35,b:30}], st:{poison:3,para:2,sleep:2,stun:3,blast:2}, ehz:[{p:'Head',fire:0,water:20,thunder:5,ice:15,dragon:10},{p:'Chest',fire:0,water:25,thunder:5,ice:15,dragon:10},{p:'Forelegs',fire:0,water:25,thunder:5,ice:15,dragon:10},{p:'Back',fire:0,water:20,thunder:5,ice:10,dragon:10}] },
+  { name: 'Arkveld',                 type: 'Elder Dragon',   weak: ['dragon'],        coating: 'pierce', hz: [{p:'Head',    s:75,c:80,b:70},{p:'Wings',  s:65,c:60,b:50},{p:'Chest',  s:55,c:55,b:60},{p:'Tail',   s:45,c:55,b:40}], st:{poison:0,para:0,sleep:2,stun:0,blast:2}, ehz:[{p:'Head',fire:5,water:5,thunder:5,ice:5,dragon:5},{p:'Wings',fire:5,water:5,thunder:5,ice:5,dragon:5},{p:'Chest',fire:5,water:5,thunder:5,ice:5,dragon:5},{p:'Tail',fire:5,water:5,thunder:5,ice:5,dragon:5}] },
+  { name: 'Balahara',                type: 'Leviathan',      weak: ['thunder'],       coating: 'pierce', hz: [{p:'Head',    s:65,c:70,b:65},{p:'Belly',  s:55,c:60,b:50},{p:'Body',   s:45,c:45,b:40},{p:'Tail',   s:40,c:50,b:35}], st:{poison:2,para:2,sleep:3,stun:2,blast:1}, ehz:[{p:'Head',fire:10,water:0,thunder:20,ice:5,dragon:5},{p:'Belly',fire:5,water:0,thunder:15,ice:5,dragon:5},{p:'Tail',fire:5,water:0,thunder:10,ice:5,dragon:5}] },
+  { name: 'Blangonga',               type: 'Fanged Beast',   weak: ['fire'],          coating: 'close',  hz: [{p:'Head',    s:72,c:75,b:80},{p:'Mane',   s:58,c:55,b:60},{p:'Foreleg',s:45,c:50,b:45},{p:'Back',   s:35,c:35,b:30}], st:{poison:2,para:3,sleep:2,stun:3,blast:2}, ehz:[{p:'Head',fire:30,water:5,thunder:15,ice:0,dragon:0},{p:'Mane',fire:20,water:5,thunder:15,ice:0,dragon:0},{p:'Tail',fire:15,water:5,thunder:15,ice:0,dragon:0}] },
+  { name: 'Chatacabra',              type: 'Amphibian',      weak: ['thunder'],       coating: 'both',   hz: [{p:'Head',    s:68,c:70,b:75},{p:'Chin',   s:75,c:65,b:80},{p:'Body',   s:40,c:40,b:35},{p:'Tail',   s:35,c:45,b:30}], st:{poison:3,para:2,sleep:2,stun:2,blast:3}, ehz:[{p:'Head',fire:10,water:5,thunder:25,ice:10,dragon:0},{p:'Body',fire:10,water:5,thunder:20,ice:15,dragon:0},{p:'Tail',fire:5,water:5,thunder:15,ice:10,dragon:0}] },
+  { name: 'Congalala',               type: 'Fanged Beast',   weak: ['fire'],          coating: 'close',  hz: [{p:'Head',    s:65,c:70,b:75},{p:'Chest',  s:50,c:55,b:58},{p:'Foreleg',s:42,c:45,b:42},{p:'Back',   s:32,c:32,b:28}], st:{poison:3,para:2,sleep:3,stun:2,blast:2}, ehz:[{p:'Head',fire:10,water:15,thunder:10,ice:10,dragon:5},{p:'Chest',fire:10,water:10,thunder:10,ice:10,dragon:5},{p:'Back',fire:5,water:10,thunder:5,ice:5,dragon:5}] },
+  { name: 'Doshaguma',               type: 'Fanged Beast',   weak: ['fire'],          coating: 'close',  hz: [{p:'Head',    s:70,c:72,b:78},{p:'Chest',  s:55,c:58,b:62},{p:'Foreleg',s:40,c:42,b:40},{p:'Back',   s:30,c:30,b:25}], st:{poison:2,para:3,sleep:2,stun:3,blast:2}, ehz:[{p:'Head',fire:10,water:15,thunder:5,ice:5,dragon:5},{p:'Chest',fire:10,water:10,thunder:5,ice:5,dragon:5},{p:'Forelegs',fire:5,water:10,thunder:5,ice:5,dragon:5}] },
+  { name: 'Gogmazios',               type: 'Elder Dragon',   weak: ['fire','dragon'], coating: 'pierce', hz: [{p:'Head',    s:65,c:68,b:65},{p:'Neck',   s:55,c:58,b:52},{p:'Chest',  s:60,c:62,b:58},{p:'Tail',   s:45,c:52,b:40}], st:{poison:0,para:0,sleep:1,stun:0,blast:2}, ehz:[{p:'Head',fire:5,water:10,thunder:5,ice:5,dragon:15},{p:'Chest',fire:5,water:10,thunder:5,ice:5,dragon:15},{p:'Tail',fire:5,water:10,thunder:5,ice:5,dragon:10}] },
+  { name: 'Gore Magala',             type: 'Elder Dragon',   weak: ['fire'],          coating: 'close',  hz: [{p:'Head',    s:75,c:80,b:72},{p:'Wings',  s:60,c:65,b:52},{p:'Chest',  s:50,c:55,b:55},{p:'Tail',   s:40,c:50,b:35}], st:{poison:2,para:0,sleep:2,stun:0,blast:3}, ehz:[{p:'Head',fire:15,water:0,thunder:15,ice:5,dragon:15},{p:'Wings',fire:20,water:0,thunder:10,ice:5,dragon:10},{p:'Tail',fire:10,water:0,thunder:10,ice:5,dragon:15}] },
+  { name: 'Gravios',                 type: 'Flying Wyvern',  weak: ['water'],         coating: 'pierce', hz: [{p:'Head',    s:55,c:55,b:60},{p:'Belly',  s:70,c:65,b:72},{p:'Wings',  s:45,c:48,b:40},{p:'Tail',   s:40,c:48,b:35}], st:{poison:2,para:2,sleep:3,stun:2,blast:1}, ehz:[{p:'Head',fire:0,water:15,thunder:5,ice:5,dragon:25},{p:'Belly',fire:0,water:35,thunder:5,ice:15,dragon:30},{p:'Tail',fire:0,water:30,thunder:5,ice:10,dragon:20}] },
+  { name: 'Guardian Arkveld',        type: 'Elder Dragon',   weak: ['dragon'],        coating: 'pierce', hz: [{p:'Head',    s:70,c:75,b:68},{p:'Wings',  s:65,c:60,b:52},{p:'Chest',  s:55,c:58,b:60},{p:'Tail',   s:45,c:55,b:40}], st:{poison:0,para:0,sleep:2,stun:0,blast:2}, ehz:[{p:'Head',fire:5,water:5,thunder:5,ice:5,dragon:5},{p:'Wings',fire:5,water:5,thunder:5,ice:5,dragon:5},{p:'Tail',fire:5,water:5,thunder:5,ice:5,dragon:5}] },
+  { name: 'Guardian Doshaguma',      type: 'Fanged Beast',   weak: ['fire'],          coating: 'close',  hz: [{p:'Head',    s:68,c:70,b:75},{p:'Chest',  s:52,c:55,b:60},{p:'Foreleg',s:40,c:42,b:40},{p:'Back',   s:30,c:30,b:25}], st:{poison:2,para:3,sleep:2,stun:3,blast:2}, ehz:[{p:'Head',fire:10,water:15,thunder:5,ice:5,dragon:5},{p:'Chest',fire:10,water:10,thunder:5,ice:5,dragon:5}] },
+  { name: 'Guardian Ebony Odogaron', type: 'Fanged Wyvern',  weak: ['water'],         coating: 'close',  hz: [{p:'Head',    s:72,c:75,b:68},{p:'Chest',  s:55,c:60,b:55},{p:'Foreleg',s:48,c:52,b:45},{p:'Tail',   s:42,c:55,b:38}], st:{poison:3,para:2,sleep:2,stun:2,blast:3}, ehz:[{p:'Head',fire:5,water:20,thunder:10,ice:10,dragon:15},{p:'Forelegs',fire:5,water:15,thunder:10,ice:10,dragon:15},{p:'Tail',fire:5,water:20,thunder:10,ice:10,dragon:15}] },
+  { name: 'Guardian Fulgur Anjanath',type: 'Brute Wyvern',   weak: ['ice'],           coating: 'both',   hz: [{p:'Head',    s:70,c:72,b:75},{p:'Chest',  s:60,c:62,b:65},{p:'Foreleg',s:45,c:48,b:45},{p:'Tail',   s:38,c:45,b:35}], st:{poison:2,para:2,sleep:3,stun:2,blast:2}, ehz:[{p:'Head',fire:10,water:5,thunder:0,ice:20,dragon:10},{p:'Chest',fire:10,water:5,thunder:0,ice:15,dragon:10},{p:'Tail',fire:5,water:5,thunder:0,ice:15,dragon:10}] },
+  { name: 'Guardian Rathalos',       type: 'Flying Wyvern',  weak: ['dragon'],        coating: 'both',   hz: [{p:'Head',    s:80,c:85,b:75},{p:'Neck',   s:65,c:68,b:60},{p:'Wings',  s:55,c:60,b:50},{p:'Tail',   s:45,c:55,b:40}], st:{poison:2,para:0,sleep:2,stun:0,blast:3}, ehz:[{p:'Head',fire:0,water:15,thunder:10,ice:10,dragon:25},{p:'Wings',fire:0,water:10,thunder:10,ice:10,dragon:20},{p:'Tail',fire:0,water:10,thunder:8,ice:8,dragon:15}] },
+  { name: 'Gypceros',                type: 'Bird Wyvern',    weak: ['fire'],          coating: 'close',  hz: [{p:'Head',    s:80,c:80,b:85},{p:'Crest',  s:70,c:65,b:75},{p:'Chest',  s:50,c:52,b:55},{p:'Tail',   s:35,c:42,b:30}], st:{poison:3,para:3,sleep:3,stun:2,blast:2}, ehz:[{p:'Head',fire:30,water:10,thunder:0,ice:20,dragon:10},{p:'Crest',fire:20,water:5,thunder:0,ice:10,dragon:5},{p:'Tail',fire:20,water:5,thunder:0,ice:10,dragon:10}] },
+  { name: 'Hirabami',                type: 'Flying Wyvern',  weak: ['fire'],          coating: 'both',   hz: [{p:'Head',    s:75,c:78,b:70},{p:'Neck',   s:65,c:68,b:60},{p:'Body',   s:48,c:50,b:45},{p:'Tail',   s:42,c:52,b:38}], st:{poison:2,para:2,sleep:2,stun:2,blast:3}, ehz:[{p:'Head',fire:20,water:10,thunder:20,ice:0,dragon:10},{p:'Neck',fire:20,water:10,thunder:20,ice:0,dragon:10},{p:'Tail',fire:15,water:5,thunder:15,ice:0,dragon:5}] },
+  { name: 'Jin Dahaad',              type: 'Brute Wyvern',   weak: ['fire'],          coating: 'pierce', hz: [{p:'Head',    s:65,c:68,b:72},{p:'Chest',  s:55,c:58,b:62},{p:'Foreleg',s:45,c:48,b:45},{p:'Tail',   s:40,c:48,b:35}], st:{poison:2,para:2,sleep:2,stun:3,blast:2}, ehz:[{p:'Head',fire:20,water:5,thunder:5,ice:0,dragon:5},{p:'Chest',fire:10,water:5,thunder:5,ice:0,dragon:5},{p:'Tail',fire:10,water:5,thunder:5,ice:0,dragon:5}] },
+  { name: 'Lagiacrus',               type: 'Leviathan',      weak: ['fire'],          coating: 'pierce', hz: [{p:'Head',    s:70,c:72,b:68},{p:'Chest',  s:60,c:62,b:58},{p:'Back',   s:45,c:48,b:42},{p:'Tail',   s:40,c:50,b:35}], st:{poison:2,para:3,sleep:2,stun:2,blast:2}, ehz:[{p:'Head',fire:15,water:0,thunder:0,ice:10,dragon:10},{p:'Chest',fire:10,water:0,thunder:0,ice:10,dragon:10},{p:'Back',fire:25,water:0,thunder:0,ice:15,dragon:15},{p:'Tail',fire:20,water:0,thunder:0,ice:10,dragon:10}] },
+  { name: 'Lala Barina',             type: 'Bird Wyvern',    weak: ['fire'],          coating: 'close',  hz: [{p:'Head',    s:75,c:78,b:80},{p:'Mantle', s:65,c:60,b:68},{p:'Body',   s:45,c:48,b:45},{p:'Legs',   s:30,c:32,b:28}], st:{poison:3,para:2,sleep:3,stun:2,blast:2}, ehz:[{p:'Head',fire:15,water:10,thunder:5,ice:10,dragon:5},{p:'Body',fire:10,water:5,thunder:5,ice:5,dragon:5}] },
+  { name: 'Mizutsune',               type: 'Leviathan',      weak: ['thunder'],       coating: 'both',   hz: [{p:'Head',    s:75,c:80,b:72},{p:'Chest',  s:60,c:65,b:58},{p:'Forelegs',s:50,c:55,b:48},{p:'Tail',  s:45,c:55,b:40}], st:{poison:2,para:2,sleep:2,stun:2,blast:3}, ehz:[{p:'Head',fire:5,water:0,thunder:10,ice:5,dragon:8},{p:'Left Claw',fire:5,water:0,thunder:30,ice:15,dragon:30},{p:'Left Leg',fire:5,water:0,thunder:25,ice:15,dragon:30},{p:'Tail',fire:5,water:0,thunder:10,ice:5,dragon:5}] },
+  { name: 'Nerscylla',               type: 'Temnoceran',     weak: ['fire'],          coating: 'close',  hz: [{p:'Head',    s:70,c:72,b:68},{p:'Abdomen',s:65,c:60,b:70},{p:'Legs',   s:45,c:48,b:40},{p:'Back',   s:35,c:38,b:32}], st:{poison:0,para:3,sleep:3,stun:2,blast:2}, ehz:[{p:'Head',fire:15,water:0,thunder:0,ice:5,dragon:0},{p:'Abdomen',fire:25,water:0,thunder:0,ice:5,dragon:0},{p:'Legs',fire:10,water:0,thunder:0,ice:5,dragon:0}] },
+  { name: 'Nu Udra',                 type: 'Cephalopod',     weak: ['water'],         coating: 'pierce', hz: [{p:'Core',    s:80,c:75,b:78},{p:'Head',   s:65,c:68,b:62},{p:'Tentacle',s:50,c:55,b:45},{p:'Body',  s:40,c:42,b:38}], st:{poison:2,para:2,sleep:3,stun:2,blast:2}, ehz:[{p:'Head',fire:0,water:15,thunder:10,ice:5,dragon:10},{p:'Core',fire:0,water:15,thunder:10,ice:5,dragon:10},{p:'Tentacle',fire:0,water:15,thunder:10,ice:5,dragon:10}] },
+  { name: 'Omega Planetes',          type: 'Construct',      weak: ['thunder'],       coating: 'close',  hz: [{p:'Core',    s:80,c:75,b:78},{p:'Head',   s:65,c:62,b:68},{p:'Arms',   s:45,c:48,b:42},{p:'Body',   s:35,c:35,b:32}], st:{poison:0,para:0,sleep:0,stun:3,blast:3}, ehz:[{p:'Core',fire:0,water:10,thunder:25,ice:5,dragon:20},{p:'Head',fire:0,water:5,thunder:20,ice:5,dragon:15},{p:'Arms',fire:0,water:5,thunder:20,ice:5,dragon:15}] },
+  { name: 'Quematrice',              type: 'Bird Wyvern',    weak: ['water'],         coating: 'both',   hz: [{p:'Head',    s:75,c:78,b:72},{p:'Neck',   s:60,c:62,b:58},{p:'Wings',  s:50,c:55,b:45},{p:'Tail',   s:42,c:52,b:38}], st:{poison:3,para:2,sleep:2,stun:2,blast:3}, ehz:[{p:'Head',fire:0,water:20,thunder:10,ice:15,dragon:10},{p:'Neck',fire:0,water:15,thunder:10,ice:10,dragon:10},{p:'Tail',fire:0,water:15,thunder:8,ice:10,dragon:8}] },
+  { name: 'Rathalos',                type: 'Flying Wyvern',  weak: ['dragon'],        coating: 'close',  hz: [{p:'Head',    s:80,c:85,b:75},{p:'Neck',   s:65,c:68,b:60},{p:'Wings',  s:55,c:60,b:50},{p:'Tail',   s:45,c:55,b:40}], st:{poison:3,para:0,sleep:2,stun:0,blast:3}, ehz:[{p:'Head',fire:0,water:25,thunder:20,ice:15,dragon:30},{p:'Neck',fire:0,water:15,thunder:12,ice:10,dragon:18},{p:'Wings',fire:0,water:15,thunder:10,ice:10,dragon:20},{p:'Tail',fire:0,water:10,thunder:8,ice:8,dragon:15}] },
+  { name: 'Rathian',                 type: 'Flying Wyvern',  weak: ['dragon'],        coating: 'close',  hz: [{p:'Head',    s:75,c:80,b:72},{p:'Neck',   s:60,c:62,b:58},{p:'Wings',  s:50,c:55,b:45},{p:'Tail',   s:45,c:55,b:40}], st:{poison:3,para:0,sleep:2,stun:0,blast:3}, ehz:[{p:'Head',fire:0,water:25,thunder:20,ice:15,dragon:30},{p:'Neck',fire:0,water:15,thunder:12,ice:10,dragon:18},{p:'Wings',fire:0,water:15,thunder:10,ice:10,dragon:20},{p:'Tail',fire:0,water:10,thunder:8,ice:8,dragon:15}] },
+  { name: 'Rey Dau',                 type: 'Flying Wyvern',  weak: ['ice'],           coating: 'pierce', hz: [{p:'Head',    s:80,c:82,b:78},{p:'Wings',  s:65,c:68,b:58},{p:'Chest',  s:50,c:52,b:55},{p:'Tail',   s:40,c:50,b:35}], st:{poison:2,para:2,sleep:2,stun:2,blast:3}, ehz:[{p:'Head',fire:0,water:20,thunder:15,ice:10,dragon:25},{p:'Wings',fire:0,water:15,thunder:10,ice:10,dragon:20},{p:'Tail',fire:0,water:10,thunder:8,ice:8,dragon:15}] },
+  { name: 'Rompopolo',               type: 'Neopteron',      weak: ['water'],         coating: 'close',  hz: [{p:'Head',    s:70,c:72,b:68},{p:'Pincers',s:55,c:60,b:50},{p:'Abdomen',s:65,c:58,b:70},{p:'Legs',  s:35,c:38,b:32}], st:{poison:0,para:3,sleep:2,stun:2,blast:3}, ehz:[{p:'Head',fire:5,water:10,thunder:0,ice:30,dragon:10},{p:'Wings',fire:5,water:5,thunder:0,ice:25,dragon:10},{p:'Chest',fire:5,water:5,thunder:0,ice:15,dragon:10},{p:'Tail',fire:5,water:5,thunder:0,ice:20,dragon:5}] },
+  { name: 'Seregios',                type: 'Flying Wyvern',  weak: ['thunder'],       coating: 'pierce', hz: [{p:'Head',    s:75,c:78,b:72},{p:'Wings',  s:60,c:65,b:55},{p:'Chest',  s:50,c:52,b:55},{p:'Tail',   s:45,c:55,b:40}], st:{poison:3,para:2,sleep:2,stun:2,blast:3}, ehz:[{p:'Head',fire:5,water:20,thunder:15,ice:5,dragon:10},{p:'Abdomen',fire:5,water:15,thunder:10,ice:5,dragon:10},{p:'Pincers',fire:5,water:15,thunder:10,ice:5,dragon:5}] },
+  { name: 'Uth Duna',                type: 'Leviathan',      weak: ['thunder'],       coating: 'close',  hz: [{p:'Head',    s:70,c:72,b:68},{p:'Chest',  s:55,c:58,b:52},{p:'Back',   s:45,c:48,b:42},{p:'Tail',   s:38,c:48,b:32}], st:{poison:2,para:2,sleep:3,stun:2,blast:2}, ehz:[{p:'Head',fire:5,water:10,thunder:20,ice:10,dragon:15},{p:'Wings',fire:5,water:10,thunder:15,ice:10,dragon:15},{p:'Tail',fire:5,water:8,thunder:15,ice:8,dragon:10}] },
+  { name: 'Xu Wu',                   type: 'Fanged Beast',   weak: ['ice'],           coating: 'close',  hz: [{p:'Head',    s:68,c:70,b:75},{p:'Chest',  s:55,c:58,b:62},{p:'Foreleg',s:42,c:45,b:42},{p:'Back',   s:35,c:35,b:30}], st:{poison:2,para:3,sleep:2,stun:3,blast:2}, ehz:[{p:'Head',fire:10,water:0,thunder:15,ice:5,dragon:10},{p:'Chest',fire:10,water:0,thunder:10,ice:5,dragon:10},{p:'Tail',fire:5,water:0,thunder:10,ice:5,dragon:8}] },
+  { name: 'Yian Kut-Ku',             type: 'Bird Wyvern',    weak: ['ice'],           coating: 'close',  hz: [{p:'Head',    s:80,c:82,b:85},{p:'Ear',    s:70,c:68,b:75},{p:'Chest',  s:50,c:52,b:55},{p:'Tail',   s:38,c:45,b:32}], st:{poison:3,para:3,sleep:2,stun:2,blast:2}, ehz:[{p:'Head',fire:10,water:15,thunder:5,ice:20,dragon:10},{p:'Chest',fire:10,water:10,thunder:5,ice:15,dragon:10},{p:'Back',fire:5,water:10,thunder:5,ice:15,dragon:5}] },
+  { name: 'Zoh Shia',                type: 'Elder Dragon',   weak: ['dragon'],        coating: 'pierce', hz: [{p:'Head',    s:75,c:78,b:72},{p:'Core',   s:80,c:75,b:78},{p:'Wings',  s:55,c:58,b:50},{p:'Tail',   s:45,c:55,b:40}], st:{poison:0,para:0,sleep:2,stun:0,blast:3}, ehz:[{p:'Head',fire:0,water:10,thunder:5,ice:20,dragon:5},{p:'Ear',fire:0,water:10,thunder:5,ice:15,dragon:5},{p:'Chest',fire:0,water:5,thunder:5,ice:10,dragon:5}] },
 ];
 
 function hzClass(v) {
@@ -823,7 +859,7 @@ function makeStatusPanel(st) {
     + '<div class="hz-list">' + rows + '</div>';
 }
 
-function makeHitzonePanel(hz, st) {
+function makeHitzonePanel(hz, st, ehz) {
   var hzHeader = '<div class="hz-header">'
     + '<div class="hz-col-label">Part</div>'
     + '<div class="hz-col-label">Shot</div>'
@@ -855,6 +891,33 @@ function makeHitzonePanel(hz, st) {
       + '</div>';
   }).join('');
 
+  // Elemental hitzone section
+  var ehzHtml = '';
+  if (ehz && ehz.length) {
+    var ehzHeader = '<div class="ehz-header">'
+      + '<div class="ehz-part" style="flex:1"></div>'
+      + '<div class="ehz-lbl ehz-fire">\uD83D\uDD25</div>'
+      + '<div class="ehz-lbl ehz-water">\uD83D\uDCA7</div>'
+      + '<div class="ehz-lbl ehz-thunder">\u26A1</div>'
+      + '<div class="ehz-lbl ehz-ice">\u2744</div>'
+      + '<div class="ehz-lbl ehz-dragon">\uD83D\uDC09</div>'
+      + '</div>';
+    var ehzRows = ehz.map(function(e) {
+      return '<div class="ehz-row">'
+        + '<div class="ehz-part">' + e.p + '</div>'
+        + '<div class="ehz-val ' + (e.fire===0?'ehz-zero':'ehz-fire') + '">' + e.fire + '</div>'
+        + '<div class="ehz-val ' + (e.water===0?'ehz-zero':'ehz-water') + '">' + e.water + '</div>'
+        + '<div class="ehz-val ' + (e.thunder===0?'ehz-zero':'ehz-thunder') + '">' + e.thunder + '</div>'
+        + '<div class="ehz-val ' + (e.ice===0?'ehz-zero':'ehz-ice') + '">' + e.ice + '</div>'
+        + '<div class="ehz-val ' + (e.dragon===0?'ehz-zero':'ehz-dragon') + '">' + e.dragon + '</div>'
+        + '</div>';
+    }).join('');
+    ehzHtml = '<div class="hz-section-sep"></div>'
+      + '<div class="hz-title">Elemental Hitzone</div>'
+      + ehzHeader
+      + '<div class="hz-list">' + ehzRows + '</div>';
+  }
+
   return '<div class="hitzone-divider"></div>'
     + '<div class="hitzone-panel">'
     + '<div class="hz-two-col">'
@@ -862,6 +925,7 @@ function makeHitzonePanel(hz, st) {
     + '<div class="hz-title">Hitzone</div>'
     + hzHeader
     + '<div class="hz-list">' + hzRows + '</div>'
+    + ehzHtml
     + '</div>'
     + '<div class="hz-col-sep"></div>'
     + '<div class="hz-col-block">'
@@ -893,7 +957,7 @@ function makeCard(m, delay) {
     + makeCoating(m.coating)
     + '<span class="card-chevron">\u25BE</span>'
     + '</div></div></div>'
-    + makeHitzonePanel(m.hz, m.st)
+    + makeHitzonePanel(m.hz, m.st, m.ehz || null)
     + '</div>';
 }
 
