@@ -669,6 +669,382 @@
   .eff-1 .status-stars { color: #b4a8cc; }
   .eff-0 { background: #f5f5f5; border-color: #e0e0e0; }
   .eff-0 .status-stars { color: #c0c0c0; }
+
+  /* ── NAV TABS ───────────────────────────────────────── */
+  .main-tabs {
+    display: flex;
+    background: #1e1830;
+    border-bottom: 2px solid #4a3878;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .main-tab {
+    flex: 1;
+    padding: 0.55rem 0.5rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.5rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #9080b8;
+    cursor: pointer;
+    text-align: center;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: all 0.15s;
+    user-select: none;
+  }
+  .main-tab.active {
+    color: #e0d0ff;
+    border-bottom-color: #9b7ec8;
+    background: rgba(155,126,200,0.08);
+  }
+  .main-tab .tab-icon { font-size: 0.7rem; display: block; margin-bottom: 0.1rem; }
+
+  /* ── SECTION VISIBILITY ─────────────────────────────── */
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* ── GATHERING UI ───────────────────────────────────── */
+  .map-tabs {
+    display: flex;
+    overflow-x: auto;
+    background: var(--surface);
+    border-bottom: 2px solid var(--border);
+    scrollbar-width: none;
+    padding: 0.3rem 0.5rem 0;
+    gap: 0.2rem;
+  }
+  .map-tabs::-webkit-scrollbar { display: none; }
+  .map-tab {
+    flex-shrink: 0;
+    padding: 0.5rem 0.75rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.48rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: none;
+    color: #7060a0;
+    background: transparent;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .map-tab:hover { color: var(--text); }
+  .map-tab.active {
+    color: #3d3352;
+    background: var(--card);
+    border-bottom-color: var(--gold-light);
+    border-radius: 4px 4px 0 0;
+  }
+
+  .g-type-filter {
+    display: flex;
+    gap: 0.4rem;
+    padding: 0.5rem 0.8rem;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .g-type-filter::-webkit-scrollbar { display: none; }
+  .g-type-btn {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    font-family: 'Cinzel', serif;
+    font-size: 0.42rem;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .g-type-btn.on-mining { background:#fff0e8; border-color:#c87040; color:#c87040; }
+  .g-type-btn.on-bone   { background:#f8f0e0; border-color:#b09060; color:#b09060; }
+  .g-type-btn.on-plant  { background:#eef8ee; border-color:#60a860; color:#60a860; }
+  .g-type-btn.on-insect { background:#f8f8e0; border-color:#a0a030; color:#a0a030; }
+  .g-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+  .gd-mining{background:#c87040;} .gd-bone{background:#b09060;} .gd-plant{background:#60a860;} .gd-insect{background:#a0a030;}
+
+  .g-stats {
+    display: flex;
+    gap: 0.8rem;
+    padding: 0.4rem 0.8rem;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .g-stat { font-family:'Cinzel',serif; font-size:0.42rem; color:var(--text-muted); display:flex; align-items:center; gap:0.25rem; }
+  .g-stat b { font-size:0.6rem; color:var(--text); }
+
+  .g-content { padding: 0.6rem 0.8rem 3rem; }
+  .g-area-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.46rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 0.35rem 0 0.25rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 0.4rem;
+    margin-top: 0.4rem;
+  }
+  .g-node-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 0.4rem;
+    overflow: hidden;
+  }
+  .g-node-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.6rem;
+    cursor: pointer;
+  }
+  .g-pill {
+    display: flex; align-items: center; gap: 0.2rem;
+    padding: 0.12rem 0.4rem; border-radius: 999px;
+    font-family: 'Cinzel', serif; font-size: 0.38rem;
+    font-weight: 700; flex-shrink: 0;
+  }
+  .gp-mining{background:#fff0e8;color:#c87040;border:1px solid #e8b090;}
+  .gp-bone  {background:#f8f0e0;color:#b09060;border:1px solid #d0b888;}
+  .gp-plant {background:#eef8ee;color:#60a860;border:1px solid #90c890;}
+  .gp-insect{background:#f8f8e0;color:#a0a030;border:1px solid #b8b860;}
+
+  .g-node-info { flex:1; min-width:0; }
+  .g-node-id { font-family:'Cinzel',serif; font-size:0.48rem; font-weight:600; color:var(--text); }
+  .g-node-landmark { font-size:0.52rem; color:var(--text-muted); font-style:italic; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .g-node-count { font-family:'Cinzel',serif; font-size:0.42rem; color:var(--text-dim); flex-shrink:0; }
+  .g-chevron { font-size:0.5rem; color:var(--text-dim); transition:transform 0.2s; flex-shrink:0; }
+  .g-node-card.open .g-chevron { transform:rotate(180deg); }
+
+  .g-loot-panel { display:none; border-top:1px solid var(--border); padding:0.35rem 0.6rem 0.45rem; background:#faf8ff; }
+  .g-node-card.open .g-loot-panel { display:block; }
+  .g-loot-row { display:flex; align-items:center; gap:0.4rem; padding:0.18rem 0; font-size:0.58rem; color:var(--text); border-bottom:1px solid #f0ecf8; }
+  .g-loot-row:last-child { border-bottom:none; }
+  .g-rarity { font-family:'Cinzel',serif; font-size:0.36rem; padding:0.08rem 0.28rem; border-radius:3px; flex-shrink:0; font-weight:700; }
+  .gr-common  {background:#e8f4e8;color:#508050;}
+  .gr-uncommon{background:#e8eef8;color:#4060a0;}
+  .gr-rare    {background:#f4e8f8;color:#8040a0;}
+  .gr-vyrare  {background:#fff4d8;color:#a07000;}
+
+  .g-empty { text-align:center; padding:3rem 1rem; font-family:'Cinzel',serif; font-size:0.55rem; color:var(--text-dim); line-height:2; }
+
+  /* Simple loot cards */
+  .g-loot-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 0.6rem;
+    overflow: hidden;
+  }
+  .g-loot-card-header {
+    padding: 0.4rem 0.6rem;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+  }
+  .g-loot-list { padding: 0.2rem 0.6rem 0.3rem; }
+  .g-loot-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.22rem 0;
+    font-size: 0.6rem;
+    color: var(--text);
+    border-bottom: 1px solid #f0ecf8;
+  }
+  .g-loot-row:last-child { border-bottom: none; }
+  .g-loot-row.excl-row { background: #fffbee; }
+
+
+  /* ── RANK TABS ──────────────────────────────────────── */
+  .rank-tabs {
+    display: flex;
+    gap: 0;
+    padding: 0.5rem 0.8rem 0;
+    background: var(--bg);
+  }
+  .rank-tab {
+    padding: 0.3rem 0.9rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.46rem;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    border-radius: 6px 6px 0 0;
+    border: 1px solid var(--border);
+    border-bottom: none;
+    cursor: pointer;
+    color: var(--text-muted);
+    background: var(--surface);
+    margin-right: 0.3rem;
+    transition: all 0.15s;
+  }
+  .rank-tab.active-LR { background:#fff8e8; color:#b07820; border-color:#d4a843; }
+  .rank-tab.active-HR { background:#fff0f0; color:#b03030; border-color:#d06060; }
+  .rank-divider {
+    border-top: 2px solid var(--border);
+    margin: 0 0.8rem 0;
+  }
+  .rank-divider.divider-LR { border-color: #d4a843; }
+  .rank-divider.divider-HR { border-color: #d06060; }
+  .rank-badge {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.36rem;
+    font-weight: 900;
+    padding: 0.08rem 0.3rem;
+    border-radius: 3px;
+    flex-shrink: 0;
+    letter-spacing: 0.05em;
+  }
+  .rb-LR { background: #fff8e8; color: #b07820; border: 1px solid #d4a843; }
+  .rb-HR { background: #fff0f0; color: #b03030; border: 1px solid #d06060; }
+
+
+  /* ── GATHERING SEARCH ───────────────────────────────── */
+  .g-search-wrap {
+    padding: 0.5rem 0.8rem;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 42px;
+    z-index: 90;
+  }
+  .g-search-input {
+    width: 100%;
+    padding: 0.4rem 0.7rem 0.4rem 2rem;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: var(--surface);
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.65rem;
+    color: var(--text);
+    outline: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' stroke='%238878aa' stroke-width='2' viewBox='0 0 24 24'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: 0.5rem center;
+  }
+  .g-search-input:focus { border-color: var(--gold); }
+  .g-search-input::placeholder { color: var(--text-dim); }
+
+  /* search results */
+  .g-search-results { padding: 0.6rem 0.8rem 3rem; }
+  .g-result-ore {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 0.6rem;
+    overflow: hidden;
+  }
+  .g-result-ore-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    font-weight: 700;
+    color: var(--text);
+    padding: 0.4rem 0.6rem 0.3rem;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+  }
+  .g-result-map-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0.6rem;
+    border-bottom: 1px solid #f0ecf8;
+    font-size: 0.58rem;
+    color: var(--text);
+  }
+  .g-result-map-row:last-child { border-bottom: none; }
+  .g-result-map-name { flex: 1; }
+  .g-result-ranks { display: flex; gap: 0.25rem; }
+
+
+  /* exclusive ore highlight */
+  .g-result-ore.exclusive { border-color: #c8a030; }
+  .g-result-ore-name.exclusive {
+    background: linear-gradient(90deg, #fff8e0 0%, #fff3c8 100%);
+    border-bottom-color: #d4a843;
+  }
+  .excl-badge {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.35rem;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    padding: 0.08rem 0.35rem;
+    border-radius: 3px;
+    background: #c8a030;
+    color: #fff;
+    margin-left: 0.4rem;
+    vertical-align: middle;
+  }
+
+
+  /* Per-map tab colors */
+  .map-tab[data-map="Windward Plains"]  { color: #b08030; }  /* sandy gold */
+  .map-tab[data-map="Scarlet Forest"]   { color: #507840; }  /* forest green */
+  .map-tab[data-map="Iceshard Cliffs"]  { color: #3878a8; }  /* icy blue */
+  .map-tab[data-map="Oilwell Basin"]    { color: #904030; }  /* deep red/fire */
+  .map-tab[data-map="Ruins of Wyveria"] { color: #7040b0; }  /* mystic purple */
+
+  .map-tab.active[data-map="Windward Plains"]  { color: #7a5810; border-bottom-color: #b08030; }
+  .map-tab.active[data-map="Scarlet Forest"]   { color: #2d5020; border-bottom-color: #507840; }
+  .map-tab.active[data-map="Iceshard Cliffs"]  { color: #1a5080; border-bottom-color: #3878a8; }
+  .map-tab.active[data-map="Oilwell Basin"]    { color: #6a2010; border-bottom-color: #904030; }
+  .map-tab.active[data-map="Ruins of Wyveria"] { color: #4a1890; border-bottom-color: #7040b0; }
+
+
+  .hr-only-badge {
+    font-family: 'Cinzel', serif;
+    font-size: 0.33rem;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    padding: 0.06rem 0.3rem;
+    border-radius: 3px;
+    background: #e8e0ff;
+    color: #5030a0;
+    border: 1px solid #9070d0;
+    margin-left: 0.35rem;
+    vertical-align: middle;
+    flex-shrink: 0;
+  }
+  .g-loot-row.hr-only {
+    background: #f0ecff;
+    color: #5030a0;
+  }
+  .g-loot-row.hr-only .g-rarity { color: #7050c0; }
+
+
+  .g-loot-row.lr-only {
+    background: #eef6ff;
+    color: #204880;
+  }
+  .g-loot-row.lr-only .g-rarity { color: #3060a0; }
+  .lr-only-badge {
+    font-family: 'Cinzel', serif;
+    font-size: 0.33rem;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    padding: 0.06rem 0.3rem;
+    border-radius: 3px;
+    background: #ddeeff;
+    color: #204880;
+    border: 1px solid #5080c0;
+    margin-left: 0.35rem;
+    vertical-align: middle;
+    flex-shrink: 0;
+  }
+
 </style>
 </head>
 <body>
@@ -682,6 +1058,17 @@
   <div class="header-divider">❖</div>
 
 </header>
+
+<div class="main-tabs">
+  <div class="main-tab active" id="tab-monsters" onclick="switchTab('monsters')">
+    <span class="tab-icon">🐉</span>Monsters
+  </div>
+  <div class="main-tab" id="tab-gathering" onclick="switchTab('gathering')">
+    <span class="tab-icon">⛏</span>Gathering
+  </div>
+</div>
+
+<div class="section active" id="section-monsters">
 
 <div class="controls">
   <div class="search-wrap">
@@ -711,6 +1098,28 @@
 </div>
 
 <div class="grid" id="grid"></div>
+
+
+</div><!-- end section-monsters -->
+
+<div class="section" id="section-gathering">
+  <div class="map-tabs" id="g-map-tabs"></div>
+  <div class="g-search-wrap"><input class="g-search-input" id="g-search" placeholder="Search ore or material…" oninput="gSearch(this.value)" autocomplete="off"></div>
+  <div class="g-type-filter" id="g-type-filter">
+    <button class="g-type-btn on-mining" data-gtype="mining" onclick="gToggleType('mining',this)"><span class="g-dot gd-mining"></span>⛏ Mining</button>
+    <button class="g-type-btn on-bone"   data-gtype="bone"   onclick="gToggleType('bone',this)"><span class="g-dot gd-bone"></span>🦴 Bonepile</button>
+    
+    
+  </div>
+  <div class="rank-tabs" id="g-rank-tabs">
+    <div class="rank-tab active-LR" data-rank="LR" onclick="gSwitchRank('LR')">⚔ Low Rank</div>
+    <div class="rank-tab" data-rank="HR" onclick="gSwitchRank('HR')">🔥 High Rank</div>
+  </div>
+  <div class="rank-divider divider-LR" id="g-rank-divider"></div>
+  <div class="g-stats" id="g-stats"></div>
+  <div id="g-normal-view"><div class="g-content" id="g-content"></div></div>
+  <div id="g-search-view" style="display:none" class="g-search-results"></div>
+</div><!-- end section-gathering -->
 
 <script>
 var MONSTER_ICONS = {
@@ -775,40 +1184,40 @@ const TYPE_ICONS = {
 
 // hz: [{p, shot, cut, blunt}]
 const MONSTERS = [
-  { verified:true, name: 'Ajarakan',                type: 'Fanged Beast',   weak: ['water'],         coating: 'close',  hz: [{p:'Forelegs',s:45,c:50,b:50},{p:'Head',s:40,c:45,b:45},{p:'Tail Tip',s:45,c:45,b:45},{p:'Back',s:25,c:30,b:30}], st:{poison:[150,100,550],para:[180,130,960],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670]}, ehz:[{p:'Head',fire:0,water:20,thunder:5,ice:15,dragon:10},{p:'Forelegs',fire:0,water:25,thunder:5,ice:15,dragon:10},{p:'Tail Tip',fire:0,water:20,thunder:5,ice:15,dragon:10},{p:'Back',fire:0,water:20,thunder:5,ice:15,dragon:10}] },
-  { verified:true, name: 'Arkveld',                 type: 'Elder Dragon',   weak: ['dragon'],        coating: 'pierce', hz: [{p:'Head',s:45,c:45,b:48},{p:'Tail',s:42,c:45,b:40},{p:'Wings',s:38,c:42,b:40},{p:'Chainblade',s:45,c:50,b:50}], st:{poison:[150,100,550],para:[180,130,960],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670]}, ehz:[{p:'Head',fire:5,water:5,thunder:5,ice:5,dragon:5},{p:'Wings',fire:2,water:2,thunder:2,ice:2,dragon:4},{p:'Tail',fire:5,water:5,thunder:5,ice:5,dragon:5},{p:'Chainblade*',fire:20,water:20,thunder:20,ice:20,dragon:25}] },
-  { verified:true, name: 'Balahara',                type: 'Leviathan',      weak: ['thunder'],       coating: 'pierce', hz: [{p:'Head',s:45,c:50,b:60},{p:'Neck',s:45,c:50,b:60},{p:'Tail',s:45,c:55,b:45},{p:'Torso',s:30,c:38,b:40}], st:{poison:[150,100,550],para:[130,75,580],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670]}, ehz:[{p:'Head',fire:10,water:0,thunder:20,ice:5,dragon:5},{p:'Neck',fire:10,water:0,thunder:20,ice:5,dragon:5},{p:'Tail',fire:10,water:0,thunder:15,ice:5,dragon:5},{p:'Torso',fire:5,water:0,thunder:15,ice:5,dragon:5}] },
-  { verified:true, name: 'Blangonga',               type: 'Fanged Beast',   weak: ['fire'],          coating: 'close',  hz: [{p:'Head',s:60,c:70,b:70},{p:'Torso',s:40,c:45,b:50},{p:'Legs',s:30,c:45,b:40},{p:'Tail',s:25,c:50,b:40}], st:{poison:[150,100,550],para:[180,130,960],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670]}, ehz:[{p:'Head',fire:30,water:5,thunder:15,ice:0,dragon:0},{p:'Torso',fire:20,water:5,thunder:15,ice:0,dragon:0},{p:'Legs',fire:15,water:5,thunder:15,ice:0,dragon:0},{p:'Tail',fire:15,water:5,thunder:15,ice:0,dragon:0}] },
-  { verified:true, name: 'Chatacabra',              type: 'Amphibian',      weak: ['thunder'],       coating: 'both',   hz: [{p:'Tongue',s:90,c:85,b:85},{p:'Head',s:60,c:60,b:65},{p:'Forelegs',s:65,c:60,b:60},{p:'Torso',s:45,c:45,b:45}], st:{poison:[100,90,370],para:[130,75,580],sleep:[150,100,750],stun:[100,75,550],blast:[70,30,670]}, ehz:[{p:'Head',fire:10,water:5,thunder:25,ice:10,dragon:0},{p:'Tongue',fire:10,water:5,thunder:25,ice:15,dragon:0},{p:'Forelegs',fire:5,water:5,thunder:15,ice:10,dragon:0},{p:'Torso',fire:10,water:5,thunder:20,ice:15,dragon:0}] },
-  { verified:true, name: 'Congalala',               type: 'Fanged Beast',   weak: ['fire'],          coating: 'close',  hz: [{p:'Head',s:60,c:65,b:70},{p:'Forelegs',s:45,c:45,b:45},{p:'Tail',s:45,c:45,b:45},{p:'Torso',s:35,c:35,b:35}], st:{poison:[150,100,550],para:[180,130,960],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670]}, ehz:[{p:'Head',fire:25,water:10,thunder:10,ice:15,dragon:5},{p:'Torso',fire:10,water:5,thunder:5,ice:10,dragon:5},{p:'Forelegs',fire:15,water:10,thunder:10,ice:15,dragon:5},{p:'Tail',fire:15,water:10,thunder:10,ice:15,dragon:5}] },
-  { verified:true, name: 'Doshaguma',               type: 'Fanged Beast',   weak: ['fire'],          coating: 'close',  hz: [{p:'Head',s:45,c:48,b:54},{p:'Forelegs',s:40,c:47,b:45},{p:'Hind Legs',s:35,c:40,b:30},{p:'Torso',s:25,c:38,b:40}], st:{poison:[150,100,550],para:[180,130,960],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670]}, ehz:[{p:'Head',fire:20,water:10,thunder:20,ice:10,dragon:5},{p:'Torso',fire:20,water:5,thunder:15,ice:5,dragon:5},{p:'Forelegs',fire:15,water:5,thunder:5,ice:5,dragon:5},{p:'Hind Legs',fire:15,water:5,thunder:10,ice:5,dragon:5}] },
-  { verified:true, name: 'Gogmazios',               type: 'Elder Dragon',   weak: ['fire','dragon'], coating: 'pierce', hz: [{p:'Head',s:32,c:40,b:40},{p:'Wingarms',s:32,c:40,b:40},{p:'Back',s:30,c:38,b:38},{p:'Tail',s:5,c:25,b:25}], st:{poison:[0,0,0],para:[0,0,0],sleep:[0,0,0],stun:[2250,500,3750],blast:[70,30,670]}, ehz:[{p:'Head',fire:15,water:0,thunder:0,ice:0,dragon:5},{p:'Wingarms',fire:15,water:0,thunder:0,ice:0,dragon:5},{p:'Back',fire:10,water:0,thunder:0,ice:0,dragon:5},{p:'Head*',fire:5,water:0,thunder:5,ice:0,dragon:50}] },
-  { verified:true, name: 'Gore Magala',             type: 'Elder Dragon',   weak: ['fire'],          coating: 'close',  hz: [{p:'Antenna',s:50,c:75,b:70},{p:'Head',s:45,c:65,b:55},{p:'Wingarms',s:20,c:27,b:27},{p:'Tail',s:25,c:38,b:38}], st:{poison:[250,150,700],para:[300,200,1500],sleep:[250,150,1150],stun:[150,120,870],blast:[70,30,670]}, ehz:[{p:'Head',fire:15,water:0,thunder:15,ice:5,dragon:15},{p:'Antenna',fire:20,water:0,thunder:10,ice:5,dragon:25},{p:'Wingarms',fire:20,water:0,thunder:15,ice:5,dragon:10},{p:'Tail',fire:10,water:0,thunder:10,ice:5,dragon:5}] },
-  { verified:true, name: 'Gravios',                 type: 'Flying Wyvern',  weak: ['water'],         coating: 'pierce', hz: [{p:'Belly',s:30,c:25,b:30},{p:'Head',s:20,c:20,b:28},{p:'Neck',s:20,c:25,b:30},{p:'Tail',s:20,c:25,b:30}], st:{poison:[150,100,550],para:[180,130,960],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670]}, ehz:[{p:'Head',fire:0,water:15,thunder:5,ice:5,dragon:25},{p:'Belly',fire:0,water:35,thunder:5,ice:15,dragon:30},{p:'Neck',fire:0,water:30,thunder:5,ice:10,dragon:20},{p:'Tail',fire:0,water:30,thunder:5,ice:10,dragon:20}] },
-  { verified:true, name: 'Guardian Arkveld',        type: 'Elder Dragon',   weak: ['dragon'],        coating: 'pierce', hz: [{p:'Head',s:45,c:45,b:48},{p:'Tail',s:42,c:45,b:40},{p:'Wings',s:38,c:42,b:40},{p:'Chainblade',s:45,c:50,b:50}], st:{poison:[150,100,550],para:[180,130,960],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670]}, ehz:[{p:'Head',fire:5,water:5,thunder:5,ice:5,dragon:5},{p:'Wings',fire:2,water:2,thunder:2,ice:2,dragon:4},{p:'Tail',fire:5,water:5,thunder:5,ice:5,dragon:5},{p:'Chainblade*',fire:20,water:20,thunder:20,ice:20,dragon:25}] },
-  { verified:true, name: 'Guardian Doshaguma',      type: 'Fanged Beast',   weak: ['fire'],          coating: 'close',  hz: [{p:'Forelegs',s:65,c:60,b:60},{p:'Head',s:45,c:55,b:60},{p:'Hind Legs',s:35,c:40,b:35},{p:'Torso',s:25,c:38,b:38}], st:{poison:[150,100,550],para:[180,130,960],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670]}, ehz:[{p:'Head',fire:25,water:5,thunder:20,ice:15,dragon:5},{p:'Forelegs',fire:20,water:5,thunder:5,ice:20,dragon:30},{p:'Hind Legs',fire:10,water:5,thunder:15,ice:20,dragon:5},{p:'Torso',fire:25,water:5,thunder:15,ice:10,dragon:5}] },
-  { verified:true, name: 'Guardian Ebony Odogaron', type: 'Fanged Wyvern',  weak: ['water'],         coating: 'close',  hz: [{p:'Head',s:45,c:45,b:45},{p:'Tail Tip',s:40,c:45,b:30},{p:'Forelegs',s:30,c:35,b:40},{p:'Tail',s:20,c:30,b:25}], st:{poison:[150,100,550],para:[130,75,580],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670]}, ehz:[{p:'Head',fire:25,water:40,thunder:25,ice:25,dragon:5},{p:'Forelegs',fire:20,water:35,thunder:20,ice:20,dragon:30},{p:'Tail',fire:20,water:35,thunder:20,ice:20,dragon:30},{p:'Hind Legs',fire:20,water:35,thunder:20,ice:20,dragon:5}] },
-  { verified:true, name: 'Guardian Fulgur Anjanath',type: 'Brute Wyvern',   weak: ['ice'],           coating: 'both',   hz: [{p:'Tail',s:75,c:60,b:60},{p:'Nose',s:55,c:65,b:60},{p:'Wings',s:55,c:65,b:45},{p:'Head',s:45,c:60,b:60}], st:{poison:[250,150,700],para:[180,130,960],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670]}, ehz:[{p:'Head',fire:10,water:20,thunder:0,ice:30,dragon:30},{p:'Nose',fire:15,water:25,thunder:0,ice:35,dragon:30},{p:'Wings',fire:15,water:25,thunder:0,ice:35,dragon:10},{p:'Tail',fire:10,water:20,thunder:0,ice:25,dragon:5}] },
-  { verified:true, name: 'Guardian Rathalos',       type: 'Flying Wyvern',  weak: ['dragon'],        coating: 'both',   hz: [{p:'Head',s:55,c:65,b:70},{p:'Legs',s:50,c:60,b:50},{p:'Wings',s:30,c:40,b:40},{p:'Tail',s:30,c:35,b:35}], st:{poison:[250,150,700],para:[180,130,960],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670]}, ehz:[{p:'Head',fire:0,water:10,thunder:15,ice:10,dragon:25},{p:'Legs',fire:0,water:15,thunder:20,ice:15,dragon:30},{p:'Wings',fire:0,water:10,thunder:15,ice:10,dragon:25},{p:'Tail',fire:0,water:0,thunder:5,ice:0,dragon:15}] },
-  { verified:true, name: 'Gypceros',                type: 'Bird Wyvern',    weak: ['fire'],          coating: 'close',  hz: [{p:'Tail',s:80,c:70,b:40},{p:'Head',s:45,c:45,b:55},{p:'Neck',s:40,c:50,b:25},{p:'Wings',s:30,c:42,b:30}], st:{poison:[250,150,700],para:[180,130,960],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670]}, ehz:[{p:'Head',fire:30,water:10,thunder:0,ice:20,dragon:10},{p:'Tail',fire:20,water:5,thunder:0,ice:10,dragon:10},{p:'Wings',fire:20,water:10,thunder:0,ice:20,dragon:10},{p:'Torso',fire:20,water:5,thunder:0,ice:10,dragon:10}] },
-  { verified:true, name: 'Hirabami',                type: 'Leviathan',      weak: ['fire'],          coating: 'pierce', hz: [{p:'Head',s:45,c:55,b:70},{p:'Neck',s:45,c:55,b:70},{p:'Tail',s:45,c:50,b:45},{p:'Forelegs',s:40,c:45,b:45}], st:{poison:[100,90,370],para:[180,130,960],sleep:[100,90,640],stun:[120,100,720],blast:[70,30,670]}, ehz:[{p:'Head',fire:20,water:10,thunder:20,ice:0,dragon:10},{p:'Neck',fire:20,water:10,thunder:20,ice:0,dragon:10},{p:'Tail',fire:20,water:5,thunder:10,ice:0,dragon:5},{p:'Forelegs',fire:10,water:5,thunder:10,ice:0,dragon:5}] },
-  { verified:true, name: 'Jin Dahaad',              type: 'Brute Wyvern',   weak: ['fire'],          coating: 'pierce', hz: [{p:'Abd. Iceplate',s:45,c:75,b:75},{p:'Head',s:45,c:65,b:65},{p:'Tail',s:45,c:55,b:55},{p:'Legs',s:30,c:45,b:45}], st:{poison:[250,150,700],para:[300,200,1500],sleep:[250,150,1150],stun:[200,150,1100],blast:[70,30,670]}, ehz:[{p:'Head',fire:20,water:5,thunder:5,ice:0,dragon:5},{p:'Neck',fire:10,water:5,thunder:5,ice:0,dragon:5},{p:'Tail',fire:10,water:5,thunder:5,ice:0,dragon:5},{p:'Iceplate',fire:10,water:5,thunder:5,ice:0,dragon:5}] },
-  { verified:true, name: 'Lagiacrus',               type: 'Leviathan',      weak: ['fire'],          coating: 'pierce', hz: [{p:'Head',s:45,c:45,b:45},{p:'Chest',s:35,c:55,b:45},{p:'Back',s:15,c:45,b:45},{p:'Tail',s:20,c:30,b:35}], st:{poison:[150,100,550],para:[300,200,1500],sleep:[150,100,750],stun:[150,120,870],blast:[70,30,670]}, ehz:[{p:'Head',fire:15,water:0,thunder:0,ice:10,dragon:10},{p:'Back',fire:25,water:0,thunder:0,ice:15,dragon:15},{p:'Chest',fire:10,water:0,thunder:0,ice:10,dragon:10},{p:'Tail',fire:20,water:0,thunder:0,ice:10,dragon:10}] },
-  { verified:true, name: 'Lala Barina',             type: 'Temnoceran',     weak: ['fire'],          coating: 'close',  hz: [{p:'Tail',s:50,c:60,b:60},{p:'Head',s:50,c:55,b:60},{p:'Claws',s:40,c:45,b:45},{p:'Torso',s:30,c:40,b:40}], st:{poison:[100,90,370],para:[100,75,475],sleep:[100,90,640],stun:[100,75,550],blast:[70,30,670]}, ehz:[{p:'Head',fire:20,water:0,thunder:10,ice:5,dragon:0},{p:'Tail',fire:25,water:0,thunder:10,ice:5,dragon:0},{p:'Claws',fire:15,water:0,thunder:10,ice:5,dragon:0},{p:'Torso',fire:15,water:0,thunder:10,ice:5,dragon:0}] },
-  { verified:true, name: 'Mizutsune',               type: 'Leviathan',      weak: ['thunder'],       coating: 'both',   hz: [{p:'Head',s:45,c:63,b:63},{p:'Dorsal Fin',s:45,c:43,b:43},{p:'Tail',s:40,c:43,b:33},{p:'Hind Legs',s:25,c:38,b:38}], st:{poison:[150,100,550],para:[180,130,960],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670]}, ehz:[{p:'Head',fire:5,water:0,thunder:10,ice:5,dragon:8},{p:'Claws',fire:5,water:0,thunder:30,ice:15,dragon:30},{p:'Legs',fire:5,water:0,thunder:25,ice:15,dragon:30},{p:'Dorsal Fin',fire:8,water:0,thunder:15,ice:5,dragon:10}] },
-  { verified:true, name: 'Nerscylla',               type: 'Temnoceran',     weak: ['fire'],          coating: 'close',  hz: [{p:'Stinger',s:65,c:28,b:35},{p:'Belly',s:45,c:65,b:50},{p:'Head',s:50,c:50,b:65},{p:'Torso',s:40,c:36,b:36}], st:{poison:[150,100,550],para:[130,75,580],sleep:[250,150,1150],stun:[120,100,720],blast:[70,30,670]}, ehz:[{p:'Head',fire:15,water:0,thunder:0,ice:5,dragon:0},{p:'Torso',fire:25,water:0,thunder:0,ice:5,dragon:0},{p:'Belly',fire:15,water:0,thunder:20,ice:5,dragon:0},{p:'Stinger',fire:25,water:0,thunder:0,ice:5,dragon:0}] },
-  { verified:true, name: 'Nu Udra',                 type: 'Cephalopod',     weak: ['water'],         coating: 'pierce', hz: [{p:'Mouth',s:80,c:80,b:80},{p:'Head',s:50,c:70,b:75},{p:'Arms',s:48,c:55,b:48},{p:'Torso',s:43,c:50,b:65}], st:{poison:[150,100,550],para:[300,200,1500],sleep:[150,100,750],stun:[120,100,720],blast:[120,90,1920]}, ehz:[{p:'Head',fire:0,water:15,thunder:10,ice:5,dragon:10},{p:'Arms',fire:0,water:15,thunder:10,ice:5,dragon:10},{p:'Mouth',fire:0,water:20,thunder:5,ice:5,dragon:10},{p:'Torso',fire:0,water:15,thunder:10,ice:5,dragon:10}] },
-  { verified:true, name: 'Omega Planetes',          type: 'Elder Dragon',   weak: ['thunder'],       coating: 'pierce', hz: [{p:'Rear Power',s:10,c:75,b:100},{p:'Forelegs',s:40,c:40,b:65},{p:'Hind Legs',s:60,c:60,b:40},{p:'Head',s:45,c:45,b:50}], st:{poison:[0,0,0],para:[300,1000,6300],sleep:[0,0,0],stun:[300,250,1800],blast:[70,30,670]}, ehz:[{p:'Head',fire:0,water:10,thunder:25,ice:5,dragon:20},{p:'Rear Power',fire:0,water:5,thunder:15,ice:5,dragon:30},{p:'Forelegs',fire:0,water:5,thunder:20,ice:5,dragon:15},{p:'Hind Legs',fire:0,water:5,thunder:20,ice:5,dragon:15}] },
-  { verified:true, name: 'Quematrice',              type: 'Brute Wyvern',   weak: ['water'],         coating: 'both',   hz: [{p:'Tail',s:60,c:65,b:60},{p:'Head',s:60,c:60,b:65},{p:'Torso',s:30,c:40,b:40},{p:'Legs',s:35,c:40,b:35}], st:{poison:[100,90,370],para:[130,75,580],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670]}, ehz:[{p:'Head',fire:0,water:20,thunder:5,ice:10,dragon:5},{p:'Tail',fire:0,water:25,thunder:5,ice:10,dragon:5},{p:'Torso',fire:0,water:15,thunder:5,ice:5,dragon:5},{p:'Legs',fire:0,water:15,thunder:5,ice:5,dragon:5}] },
-  { verified:true, name: 'Rathalos',                type: 'Flying Wyvern',  weak: ['dragon'],        coating: 'close',  hz: [{p:'Head',    s:80,c:85,b:75},{p:'Neck',   s:65,c:68,b:60},{p:'Wings',  s:55,c:60,b:50},{p:'Tail',   s:45,c:55,b:40}], st:{poison:[250,150,700],para:[180,130,960],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670]}, ehz:[{p:'Head',fire:0,water:15,thunder:20,ice:15,dragon:30}] },
-  { verified:true, name: 'Rathian',                type: 'Flying Wyvern',  weak: ['dragon'],        coating: 'close',  hz: [{p:'Head',s:65,c:70,b:75},{p:'Wings',s:45,c:55,b:50},{p:'Tail',s:35,c:45,b:40},{p:'Torso',s:25,c:35,b:30}], st:{poison:[250,150,700],para:[180,130,960],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670]}, ehz:[{p:'Head',fire:0,water:15,thunder:20,ice:15,dragon:30},{p:'Wings',fire:0,water:10,thunder:15,ice:10,dragon:25},{p:'Tail',fire:0,water:5,thunder:10,ice:5,dragon:20},{p:'Torso',fire:0,water:5,thunder:10,ice:5,dragon:20}] },
-  { verified:true, name: 'Rey Dau',                 type: 'Flying Wyvern',  weak: ['ice'],           coating: 'pierce', hz: [{p:'Head',s:50,c:60,b:65},{p:'Wings',s:45,c:45,b:50},{p:'Tail',s:45,c:45,b:40},{p:'Torso',s:25,c:30,b:30}], st:{poison:[150,100,550],para:[300,200,1500],sleep:[150,100,750],stun:[150,120,870],blast:[70,30,670]}, ehz:[{p:'Head',fire:5,water:15,thunder:0,ice:20,dragon:5},{p:'Wings',fire:5,water:10,thunder:0,ice:15,dragon:5},{p:'Tail',fire:5,water:5,thunder:0,ice:10,dragon:5},{p:'Torso',fire:5,water:5,thunder:0,ice:5,dragon:5}] },
-  { verified:true, name: 'Rompopolo',               type: 'Brute Wyvern',   weak: ['water'],         coating: 'both',   hz: [{p:'Head',s:60,c:60,b:65},{p:'Tail',s:60,c:60,b:60},{p:'Back',s:45,c:55,b:55},{p:'Forelegs',s:40,c:40,b:40}], st:{poison:[250,150,700],para:[180,130,960],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670]}, ehz:[{p:'Head',fire:10,water:25,thunder:10,ice:10,dragon:5},{p:'Tail',fire:10,water:25,thunder:10,ice:10,dragon:5},{p:'Back',fire:10,water:20,thunder:10,ice:10,dragon:5},{p:'Forelegs',fire:5,water:15,thunder:5,ice:5,dragon:5}] },
-  { verified:true, name: 'Seregios',                type: 'Flying Wyvern',  weak: ['thunder'],       coating: 'pierce', hz: [{p:'Head',s:40,c:45,b:55},{p:'Legs',s:45,c:50,b:45},{p:'Tail',s:45,c:40,b:35},{p:'Wings',s:15,c:30,b:30}], st:{poison:[150,100,550],para:[300,200,1500],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670]}, ehz:[{p:'Head',fire:0,water:5,thunder:15,ice:10,dragon:5},{p:'Legs',fire:0,water:10,thunder:20,ice:15,dragon:5},{p:'Tail',fire:0,water:5,thunder:15,ice:10,dragon:5},{p:'Wings',fire:0,water:5,thunder:10,ice:5,dragon:5}] },
-  { verified:true, name: 'Uth Duna',                type: 'Leviathan',      weak: ['thunder'],       coating: 'close',  hz: [{p:'Head',s:50,c:40,b:60},{p:'Forelegs',s:55,c:65,b:65},{p:'Hind Legs',s:45,c:55,b:55},{p:'Tail',s:40,c:45,b:45}], st:{poison:[150,100,550],para:[180,130,960],sleep:[150,100,750],stun:[150,120,870],blast:[70,30,670]}, ehz:[{p:'Head',fire:10,water:0,thunder:20,ice:5,dragon:5},{p:'Forelegs',fire:10,water:0,thunder:15,ice:5,dragon:5},{p:'Hind Legs',fire:10,water:0,thunder:15,ice:5,dragon:5},{p:'Tail',fire:5,water:0,thunder:5,ice:5,dragon:5}] },
-  { verified:true, name: 'Xu Wu',                   type: 'Cephalopod',     weak: ['ice'],           coating: 'pierce', hz: [{p:'Head',s:50,c:70,b:65},{p:'Arms',s:30,c:50,b:45},{p:'Tentacle',s:20,c:30,b:50},{p:'Torso',s:20,c:30,b:50}], st:{poison:[150,100,550],para:[300,200,1500],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670]}, ehz:[{p:'Head',fire:5,water:3,thunder:5,ice:25,dragon:0},{p:'Arms',fire:5,water:3,thunder:5,ice:25,dragon:0},{p:'Tentacle',fire:10,water:5,thunder:10,ice:30,dragon:0},{p:'Torso',fire:10,water:5,thunder:10,ice:30,dragon:0}] },
-  { verified:true, name: 'Yian Kut-Ku',             type: 'Bird Wyvern',    weak: ['ice'],           coating: 'both',   hz: [{p:'Head',s:80,c:56,b:75},{p:'Wings',s:80,c:80,b:42},{p:'Torso',s:60,c:66,b:63},{p:'Neck',s:45,c:42,b:42}], st:{poison:[150,100,550],para:[180,130,960],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670]}, ehz:[{p:'Head',fire:10,water:15,thunder:20,ice:30,dragon:0},{p:'Neck',fire:10,water:25,thunder:30,ice:40,dragon:20},{p:'Wings',fire:5,water:10,thunder:25,ice:15,dragon:0},{p:'Torso',fire:5,water:15,thunder:15,ice:20,dragon:0}] },
-  { verified:true, name: 'Zoh Shia',                type: 'Construct',      weak: ['dragon'],        coating: 'pierce', hz: [{p:'Wingarms',s:60,c:85,b:85},{p:'Head',s:65,c:65,b:70},{p:'Forelegs',s:45,c:45,b:45},{p:'Tail',s:45,c:45,b:45}], st:{poison:[200,150,700],para:[180,130,960],sleep:[160,100,650],stun:[120,100,720],blast:[70,30,670]}, ehz:[{p:'Head',fire:15,water:5,thunder:5,ice:10,dragon:30},{p:'Wingarms',fire:20,water:5,thunder:5,ice:15,dragon:30},{p:'Head (P2)',fire:10,water:5,thunder:5,ice:5,dragon:20},{p:'Wingarms (P2)',fire:10,water:5,thunder:5,ice:5,dragon:20}] },
+  { verified:true, name: 'Ajarakan',                type: 'Fanged Beast',   weak: ['water'],         coating: 'close',  hz: [{p:'Forelegs',s:45,c:50,b:50},{p:'Head',s:40,c:45,b:45},{p:'Tail Tip',s:45,c:45,b:45},{p:'Back',s:25,c:30,b:30}], st:{poison:[150,100,550],para:[180,130,960],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670],exhaust:[225, 75, 900]}, ehz:[{p:'Head',fire:0,water:20,thunder:5,ice:15,dragon:10},{p:'Forelegs',fire:0,water:25,thunder:5,ice:15,dragon:10},{p:'Tail Tip',fire:0,water:20,thunder:5,ice:15,dragon:10},{p:'Back',fire:0,water:20,thunder:5,ice:15,dragon:10}] },
+  { verified:true, name: 'Arkveld',                 type: 'Elder Dragon',   weak: ['dragon'],        coating: 'pierce', hz: [{p:'Head',s:45,c:45,b:48},{p:'Tail',s:42,c:45,b:40},{p:'Wings',s:38,c:42,b:40},{p:'Chainblade',s:45,c:50,b:50}], st:{poison:[150,100,550],para:[180,130,960],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670],exhaust:[225, 75, 900]}, ehz:[{p:'Head',fire:5,water:5,thunder:5,ice:5,dragon:5},{p:'Wings',fire:2,water:2,thunder:2,ice:2,dragon:4},{p:'Tail',fire:5,water:5,thunder:5,ice:5,dragon:5},{p:'Chainblade*',fire:20,water:20,thunder:20,ice:20,dragon:25}] },
+  { verified:true, name: 'Balahara',                type: 'Leviathan',      weak: ['thunder'],       coating: 'pierce', hz: [{p:'Head',s:45,c:50,b:60},{p:'Neck',s:45,c:50,b:60},{p:'Tail',s:45,c:55,b:45},{p:'Torso',s:30,c:38,b:40}], st:{poison:[150,100,550],para:[130,75,580],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670],exhaust:[225, 75, 900]}, ehz:[{p:'Head',fire:10,water:0,thunder:20,ice:5,dragon:5},{p:'Neck',fire:10,water:0,thunder:20,ice:5,dragon:5},{p:'Tail',fire:10,water:0,thunder:15,ice:5,dragon:5},{p:'Torso',fire:5,water:0,thunder:15,ice:5,dragon:5}] },
+  { verified:true, name: 'Blangonga',               type: 'Fanged Beast',   weak: ['fire'],          coating: 'close',  hz: [{p:'Head',s:60,c:70,b:70},{p:'Torso',s:40,c:45,b:50},{p:'Legs',s:30,c:45,b:40},{p:'Tail',s:25,c:50,b:40}], st:{poison:[150,100,550],para:[180,130,960],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670],exhaust:[225, 75, 900]}, ehz:[{p:'Head',fire:30,water:5,thunder:15,ice:0,dragon:0},{p:'Torso',fire:20,water:5,thunder:15,ice:0,dragon:0},{p:'Legs',fire:15,water:5,thunder:15,ice:0,dragon:0},{p:'Tail',fire:15,water:5,thunder:15,ice:0,dragon:0}] },
+  { verified:true, name: 'Chatacabra',              type: 'Amphibian',      weak: ['thunder'],       coating: 'both',   hz: [{p:'Tongue',s:90,c:85,b:85},{p:'Head',s:60,c:60,b:65},{p:'Forelegs',s:65,c:60,b:60},{p:'Torso',s:45,c:45,b:45}], st:{poison:[100,90,370],para:[130,75,580],sleep:[150,100,750],stun:[100,75,550],blast:[70,30,670],exhaust:[225, 75, 900]}, ehz:[{p:'Head',fire:10,water:5,thunder:25,ice:10,dragon:0},{p:'Tongue',fire:10,water:5,thunder:25,ice:15,dragon:0},{p:'Forelegs',fire:5,water:5,thunder:15,ice:10,dragon:0},{p:'Torso',fire:10,water:5,thunder:20,ice:15,dragon:0}] },
+  { verified:true, name: 'Congalala',               type: 'Fanged Beast',   weak: ['fire'],          coating: 'close',  hz: [{p:'Head',s:60,c:65,b:70},{p:'Forelegs',s:45,c:45,b:45},{p:'Tail',s:45,c:45,b:45},{p:'Torso',s:35,c:35,b:35}], st:{poison:[150,100,550],para:[180,130,960],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670],exhaust:[225, 75, 900]}, ehz:[{p:'Head',fire:25,water:10,thunder:10,ice:15,dragon:5},{p:'Torso',fire:10,water:5,thunder:5,ice:10,dragon:5},{p:'Forelegs',fire:15,water:10,thunder:10,ice:15,dragon:5},{p:'Tail',fire:15,water:10,thunder:10,ice:15,dragon:5}] },
+  { verified:true, name: 'Doshaguma',               type: 'Fanged Beast',   weak: ['fire'],          coating: 'close',  hz: [{p:'Head',s:45,c:48,b:54},{p:'Forelegs',s:40,c:47,b:45},{p:'Hind Legs',s:35,c:40,b:30},{p:'Torso',s:25,c:38,b:40}], st:{poison:[150,100,550],para:[180,130,960],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670],exhaust:[225, 75, 900]}, ehz:[{p:'Head',fire:20,water:10,thunder:20,ice:10,dragon:5},{p:'Torso',fire:20,water:5,thunder:15,ice:5,dragon:5},{p:'Forelegs',fire:15,water:5,thunder:5,ice:5,dragon:5},{p:'Hind Legs',fire:15,water:5,thunder:10,ice:5,dragon:5}] },
+  { verified:true, name: 'Gogmazios',               type: 'Elder Dragon',   weak: ['fire','dragon'], coating: 'pierce', hz: [{p:'Head',s:32,c:40,b:40},{p:'Wingarms',s:32,c:40,b:40},{p:'Back',s:30,c:38,b:38},{p:'Tail',s:5,c:25,b:25}], st:{poison:[0,0,0],para:[0,0,0],sleep:[0,0,0],stun:[2250,500,3750],blast:[70,30,670],exhaust:[0, 0, 0]}, ehz:[{p:'Head',fire:15,water:0,thunder:0,ice:0,dragon:5},{p:'Wingarms',fire:15,water:0,thunder:0,ice:0,dragon:5},{p:'Back',fire:10,water:0,thunder:0,ice:0,dragon:5},{p:'Head*',fire:5,water:0,thunder:5,ice:0,dragon:50}] },
+  { verified:true, name: 'Gore Magala',             type: 'Elder Dragon',   weak: ['fire'],          coating: 'close',  hz: [{p:'Antenna',s:50,c:75,b:70},{p:'Head',s:45,c:65,b:55},{p:'Wingarms',s:20,c:27,b:27},{p:'Tail',s:25,c:38,b:38}], st:{poison:[250,150,700],para:[300,200,1500],sleep:[250,150,1150],stun:[150,120,870],blast:[70,30,670],exhaust:[225, 75, 900]}, ehz:[{p:'Head',fire:15,water:0,thunder:15,ice:5,dragon:15},{p:'Antenna',fire:20,water:0,thunder:10,ice:5,dragon:25},{p:'Wingarms',fire:20,water:0,thunder:15,ice:5,dragon:10},{p:'Tail',fire:10,water:0,thunder:10,ice:5,dragon:5}] },
+  { verified:true, name: 'Gravios',                 type: 'Flying Wyvern',  weak: ['water'],         coating: 'pierce', hz: [{p:'Belly',s:30,c:25,b:30},{p:'Head',s:20,c:20,b:28},{p:'Neck',s:20,c:25,b:30},{p:'Tail',s:20,c:25,b:30}], st:{poison:[150,100,550],para:[180,130,960],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670],exhaust:[225, 75, 900]}, ehz:[{p:'Head',fire:0,water:15,thunder:5,ice:5,dragon:25},{p:'Belly',fire:0,water:35,thunder:5,ice:15,dragon:30},{p:'Neck',fire:0,water:30,thunder:5,ice:10,dragon:20},{p:'Tail',fire:0,water:30,thunder:5,ice:10,dragon:20}] },
+  { verified:true, name: 'Guardian Arkveld',        type: 'Elder Dragon',   weak: ['dragon'],        coating: 'pierce', hz: [{p:'Head',s:45,c:45,b:48},{p:'Tail',s:42,c:45,b:40},{p:'Wings',s:38,c:42,b:40},{p:'Chainblade',s:45,c:50,b:50}], st:{poison:[150,100,550],para:[180,130,960],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670],exhaust:[0, 0, 0]}, ehz:[{p:'Head',fire:5,water:5,thunder:5,ice:5,dragon:5},{p:'Wings',fire:2,water:2,thunder:2,ice:2,dragon:4},{p:'Tail',fire:5,water:5,thunder:5,ice:5,dragon:5},{p:'Chainblade*',fire:20,water:20,thunder:20,ice:20,dragon:25}] },
+  { verified:true, name: 'Guardian Doshaguma',      type: 'Fanged Beast',   weak: ['fire'],          coating: 'close',  hz: [{p:'Forelegs',s:65,c:60,b:60},{p:'Head',s:45,c:55,b:60},{p:'Hind Legs',s:35,c:40,b:35},{p:'Torso',s:25,c:38,b:38}], st:{poison:[150,100,550],para:[180,130,960],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670],exhaust:[0, 0, 0]}, ehz:[{p:'Head',fire:25,water:5,thunder:20,ice:15,dragon:5},{p:'Forelegs',fire:20,water:5,thunder:5,ice:20,dragon:30},{p:'Hind Legs',fire:10,water:5,thunder:15,ice:20,dragon:5},{p:'Torso',fire:25,water:5,thunder:15,ice:10,dragon:5}] },
+  { verified:true, name: 'Guardian Ebony Odogaron', type: 'Fanged Wyvern',  weak: ['water'],         coating: 'close',  hz: [{p:'Head',s:45,c:45,b:45},{p:'Tail Tip',s:40,c:45,b:30},{p:'Forelegs',s:30,c:35,b:40},{p:'Tail',s:20,c:30,b:25}], st:{poison:[150,100,550],para:[130,75,580],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670],exhaust:[0, 0, 0]}, ehz:[{p:'Head',fire:25,water:40,thunder:25,ice:25,dragon:5},{p:'Forelegs',fire:20,water:35,thunder:20,ice:20,dragon:30},{p:'Tail',fire:20,water:35,thunder:20,ice:20,dragon:30},{p:'Hind Legs',fire:20,water:35,thunder:20,ice:20,dragon:5}] },
+  { verified:true, name: 'Guardian Fulgur Anjanath',type: 'Brute Wyvern',   weak: ['ice'],           coating: 'both',   hz: [{p:'Tail',s:75,c:60,b:60},{p:'Nose',s:55,c:65,b:60},{p:'Wings',s:55,c:65,b:45},{p:'Head',s:45,c:60,b:60}], st:{poison:[250,150,700],para:[180,130,960],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670],exhaust:[0, 0, 0]}, ehz:[{p:'Head',fire:10,water:20,thunder:0,ice:30,dragon:30},{p:'Nose',fire:15,water:25,thunder:0,ice:35,dragon:30},{p:'Wings',fire:15,water:25,thunder:0,ice:35,dragon:10},{p:'Tail',fire:10,water:20,thunder:0,ice:25,dragon:5}] },
+  { verified:true, name: 'Guardian Rathalos',       type: 'Flying Wyvern',  weak: ['dragon'],        coating: 'both',   hz: [{p:'Head',s:55,c:65,b:70},{p:'Legs',s:50,c:60,b:50},{p:'Wings',s:30,c:40,b:40},{p:'Tail',s:30,c:35,b:35}], st:{poison:[250,150,700],para:[180,130,960],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670],exhaust:[0, 0, 0]}, ehz:[{p:'Head',fire:0,water:10,thunder:15,ice:10,dragon:25},{p:'Legs',fire:0,water:15,thunder:20,ice:15,dragon:30},{p:'Wings',fire:0,water:10,thunder:15,ice:10,dragon:25},{p:'Tail',fire:0,water:0,thunder:5,ice:0,dragon:15}] },
+  { verified:true, name: 'Gypceros',                type: 'Bird Wyvern',    weak: ['fire'],          coating: 'close',  hz: [{p:'Tail',s:80,c:70,b:40},{p:'Head',s:45,c:45,b:55},{p:'Neck',s:40,c:50,b:25},{p:'Wings',s:30,c:42,b:30}], st:{poison:[250,150,700],para:[180,130,960],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670],exhaust:[225, 75, 900]}, ehz:[{p:'Head',fire:30,water:10,thunder:0,ice:20,dragon:10},{p:'Tail',fire:20,water:5,thunder:0,ice:10,dragon:10},{p:'Wings',fire:20,water:10,thunder:0,ice:20,dragon:10},{p:'Torso',fire:20,water:5,thunder:0,ice:10,dragon:10}] },
+  { verified:true, name: 'Hirabami',                type: 'Leviathan',      weak: ['fire'],          coating: 'pierce', hz: [{p:'Head',s:45,c:55,b:70},{p:'Neck',s:45,c:55,b:70},{p:'Tail',s:45,c:50,b:45},{p:'Forelegs',s:40,c:45,b:45}], st:{poison:[100,90,370],para:[180,130,960],sleep:[100,90,640],stun:[120,100,720],blast:[70,30,670],exhaust:[225, 75, 900]}, ehz:[{p:'Head',fire:20,water:10,thunder:20,ice:0,dragon:10},{p:'Neck',fire:20,water:10,thunder:20,ice:0,dragon:10},{p:'Tail',fire:20,water:5,thunder:10,ice:0,dragon:5},{p:'Forelegs',fire:10,water:5,thunder:10,ice:0,dragon:5}] },
+  { verified:true, name: 'Jin Dahaad',              type: 'Brute Wyvern',   weak: ['fire'],          coating: 'pierce', hz: [{p:'Abd. Iceplate',s:45,c:75,b:75},{p:'Head',s:45,c:65,b:65},{p:'Tail',s:45,c:55,b:55},{p:'Legs',s:30,c:45,b:45}], st:{poison:[250,150,700],para:[300,200,1500],sleep:[250,150,1150],stun:[200,150,1100],blast:[70,30,670],exhaust:[225, 75, 900]}, ehz:[{p:'Head',fire:20,water:5,thunder:5,ice:0,dragon:5},{p:'Neck',fire:10,water:5,thunder:5,ice:0,dragon:5},{p:'Tail',fire:10,water:5,thunder:5,ice:0,dragon:5},{p:'Iceplate',fire:10,water:5,thunder:5,ice:0,dragon:5}] },
+  { verified:true, name: 'Lagiacrus',               type: 'Leviathan',      weak: ['fire'],          coating: 'pierce', hz: [{p:'Head',s:45,c:45,b:45},{p:'Chest',s:35,c:55,b:45},{p:'Back',s:15,c:45,b:45},{p:'Tail',s:20,c:30,b:35}], st:{poison:[150,100,550],para:[300,200,1500],sleep:[150,100,750],stun:[150,120,870],blast:[70,30,670],exhaust:[225, 75, 900]}, ehz:[{p:'Head',fire:15,water:0,thunder:0,ice:10,dragon:10},{p:'Back',fire:25,water:0,thunder:0,ice:15,dragon:15},{p:'Chest',fire:10,water:0,thunder:0,ice:10,dragon:10},{p:'Tail',fire:20,water:0,thunder:0,ice:10,dragon:10}] },
+  { verified:true, name: 'Lala Barina',             type: 'Temnoceran',     weak: ['fire'],          coating: 'close',  hz: [{p:'Tail',s:50,c:60,b:60},{p:'Head',s:50,c:55,b:60},{p:'Claws',s:40,c:45,b:45},{p:'Torso',s:30,c:40,b:40}], st:{poison:[100,90,370],para:[100,75,475],sleep:[100,90,640],stun:[100,75,550],blast:[70,30,670],exhaust:[225, 75, 900]}, ehz:[{p:'Head',fire:20,water:0,thunder:10,ice:5,dragon:0},{p:'Tail',fire:25,water:0,thunder:10,ice:5,dragon:0},{p:'Claws',fire:15,water:0,thunder:10,ice:5,dragon:0},{p:'Torso',fire:15,water:0,thunder:10,ice:5,dragon:0}] },
+  { verified:true, name: 'Mizutsune',               type: 'Leviathan',      weak: ['thunder'],       coating: 'both',   hz: [{p:'Head',s:45,c:63,b:63},{p:'Dorsal Fin',s:45,c:43,b:43},{p:'Tail',s:40,c:43,b:33},{p:'Hind Legs',s:25,c:38,b:38}], st:{poison:[150,100,550],para:[180,130,960],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670],exhaust:[225, 75, 900]}, ehz:[{p:'Head',fire:5,water:0,thunder:10,ice:5,dragon:8},{p:'Claws',fire:5,water:0,thunder:30,ice:15,dragon:30},{p:'Legs',fire:5,water:0,thunder:25,ice:15,dragon:30},{p:'Dorsal Fin',fire:8,water:0,thunder:15,ice:5,dragon:10}] },
+  { verified:true, name: 'Nerscylla',               type: 'Temnoceran',     weak: ['fire'],          coating: 'close',  hz: [{p:'Stinger',s:65,c:28,b:35},{p:'Belly',s:45,c:65,b:50},{p:'Head',s:50,c:50,b:65},{p:'Torso',s:40,c:36,b:36}], st:{poison:[150,100,550],para:[130,75,580],sleep:[250,150,1150],stun:[120,100,720],blast:[70,30,670],exhaust:[225, 75, 900]}, ehz:[{p:'Head',fire:15,water:0,thunder:0,ice:5,dragon:0},{p:'Torso',fire:25,water:0,thunder:0,ice:5,dragon:0},{p:'Belly',fire:15,water:0,thunder:20,ice:5,dragon:0},{p:'Stinger',fire:25,water:0,thunder:0,ice:5,dragon:0}] },
+  { verified:true, name: 'Nu Udra',                 type: 'Cephalopod',     weak: ['water'],         coating: 'pierce', hz: [{p:'Mouth',s:80,c:80,b:80},{p:'Head',s:50,c:70,b:75},{p:'Arms',s:48,c:55,b:48},{p:'Torso',s:43,c:50,b:65}], st:{poison:[150,100,550],para:[300,200,1500],sleep:[150,100,750],stun:[120,100,720],blast:[120,90,1920],exhaust:[225, 75, 900]}, ehz:[{p:'Head',fire:0,water:15,thunder:10,ice:5,dragon:10},{p:'Arms',fire:0,water:15,thunder:10,ice:5,dragon:10},{p:'Mouth',fire:0,water:20,thunder:5,ice:5,dragon:10},{p:'Torso',fire:0,water:15,thunder:10,ice:5,dragon:10}] },
+  { verified:true, name: 'Omega Planetes',          type: 'Elder Dragon',   weak: ['thunder'],       coating: 'pierce', hz: [{p:'Rear Power',s:10,c:75,b:100},{p:'Forelegs',s:40,c:40,b:65},{p:'Hind Legs',s:60,c:60,b:40},{p:'Head',s:45,c:45,b:50}], st:{poison:[0,0,0],para:[300,1000,6300],sleep:[0,0,0],stun:[300,250,1800],blast:[70,30,670],exhaust:[0, 0, 0]}, ehz:[{p:'Head',fire:0,water:10,thunder:25,ice:5,dragon:20},{p:'Rear Power',fire:0,water:5,thunder:15,ice:5,dragon:30},{p:'Forelegs',fire:0,water:5,thunder:20,ice:5,dragon:15},{p:'Hind Legs',fire:0,water:5,thunder:20,ice:5,dragon:15}] },
+  { verified:true, name: 'Quematrice',              type: 'Brute Wyvern',   weak: ['water'],         coating: 'both',   hz: [{p:'Tail',s:60,c:65,b:60},{p:'Head',s:60,c:60,b:65},{p:'Torso',s:30,c:40,b:40},{p:'Legs',s:35,c:40,b:35}], st:{poison:[100,90,370],para:[130,75,580],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670],exhaust:[225, 75, 900]}, ehz:[{p:'Head',fire:0,water:20,thunder:5,ice:10,dragon:5},{p:'Tail',fire:0,water:25,thunder:5,ice:10,dragon:5},{p:'Torso',fire:0,water:15,thunder:5,ice:5,dragon:5},{p:'Legs',fire:0,water:15,thunder:5,ice:5,dragon:5}] },
+  { verified:true, name: 'Rathalos',                type: 'Flying Wyvern',  weak: ['dragon'],        coating: 'close',  hz: [{p:'Head',    s:80,c:85,b:75},{p:'Neck',   s:65,c:68,b:60},{p:'Wings',  s:55,c:60,b:50},{p:'Tail',   s:45,c:55,b:40}], st:{poison:[250,150,700],para:[180,130,960],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670],exhaust:[225, 75, 900]}, ehz:[{p:'Head',fire:0,water:15,thunder:20,ice:15,dragon:30}] },
+  { verified:true, name: 'Rathian',                type: 'Flying Wyvern',  weak: ['dragon'],        coating: 'close',  hz: [{p:'Head',s:65,c:70,b:75},{p:'Wings',s:45,c:55,b:50},{p:'Tail',s:35,c:45,b:40},{p:'Torso',s:25,c:35,b:30}], st:{poison:[250,150,700],para:[180,130,960],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670],exhaust:[225, 75, 900]}, ehz:[{p:'Head',fire:0,water:15,thunder:20,ice:15,dragon:30},{p:'Wings',fire:0,water:10,thunder:15,ice:10,dragon:25},{p:'Tail',fire:0,water:5,thunder:10,ice:5,dragon:20},{p:'Torso',fire:0,water:5,thunder:10,ice:5,dragon:20}] },
+  { verified:true, name: 'Rey Dau',                 type: 'Flying Wyvern',  weak: ['ice'],           coating: 'pierce', hz: [{p:'Head',s:50,c:60,b:65},{p:'Wings',s:45,c:45,b:50},{p:'Tail',s:45,c:45,b:40},{p:'Torso',s:25,c:30,b:30}], st:{poison:[150,100,550],para:[300,200,1500],sleep:[150,100,750],stun:[150,120,870],blast:[70,30,670],exhaust:[225, 75, 900]}, ehz:[{p:'Head',fire:5,water:15,thunder:0,ice:20,dragon:5},{p:'Wings',fire:5,water:10,thunder:0,ice:15,dragon:5},{p:'Tail',fire:5,water:5,thunder:0,ice:10,dragon:5},{p:'Torso',fire:5,water:5,thunder:0,ice:5,dragon:5}] },
+  { verified:true, name: 'Rompopolo',               type: 'Brute Wyvern',   weak: ['water'],         coating: 'both',   hz: [{p:'Head',s:60,c:60,b:65},{p:'Tail',s:60,c:60,b:60},{p:'Back',s:45,c:55,b:55},{p:'Forelegs',s:40,c:40,b:40}], st:{poison:[250,150,700],para:[180,130,960],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670],exhaust:[225, 75, 900]}, ehz:[{p:'Head',fire:10,water:25,thunder:10,ice:10,dragon:5},{p:'Tail',fire:10,water:25,thunder:10,ice:10,dragon:5},{p:'Back',fire:10,water:20,thunder:10,ice:10,dragon:5},{p:'Forelegs',fire:5,water:15,thunder:5,ice:5,dragon:5}] },
+  { verified:true, name: 'Seregios',                type: 'Flying Wyvern',  weak: ['thunder'],       coating: 'pierce', hz: [{p:'Head',s:40,c:45,b:55},{p:'Legs',s:45,c:50,b:45},{p:'Tail',s:45,c:40,b:35},{p:'Wings',s:15,c:30,b:30}], st:{poison:[150,100,550],para:[300,200,1500],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670],exhaust:[225, 75, 900]}, ehz:[{p:'Head',fire:0,water:5,thunder:15,ice:10,dragon:5},{p:'Legs',fire:0,water:10,thunder:20,ice:15,dragon:5},{p:'Tail',fire:0,water:5,thunder:15,ice:10,dragon:5},{p:'Wings',fire:0,water:5,thunder:10,ice:5,dragon:5}] },
+  { verified:true, name: 'Uth Duna',                type: 'Leviathan',      weak: ['thunder'],       coating: 'close',  hz: [{p:'Head',s:50,c:40,b:60},{p:'Forelegs',s:55,c:65,b:65},{p:'Hind Legs',s:45,c:55,b:55},{p:'Tail',s:40,c:45,b:45}], st:{poison:[150,100,550],para:[180,130,960],sleep:[150,100,750],stun:[150,120,870],blast:[70,30,670],exhaust:[225, 75, 900]}, ehz:[{p:'Head',fire:10,water:0,thunder:20,ice:5,dragon:5},{p:'Forelegs',fire:10,water:0,thunder:15,ice:5,dragon:5},{p:'Hind Legs',fire:10,water:0,thunder:15,ice:5,dragon:5},{p:'Tail',fire:5,water:0,thunder:5,ice:5,dragon:5}] },
+  { verified:true, name: 'Xu Wu',                   type: 'Cephalopod',     weak: ['ice'],           coating: 'pierce', hz: [{p:'Head',s:50,c:70,b:65},{p:'Arms',s:30,c:50,b:45},{p:'Tentacle',s:20,c:30,b:50},{p:'Torso',s:20,c:30,b:50}], st:{poison:[150,100,550],para:[300,200,1500],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670],exhaust:[225, 75, 900]}, ehz:[{p:'Head',fire:5,water:3,thunder:5,ice:25,dragon:0},{p:'Arms',fire:5,water:3,thunder:5,ice:25,dragon:0},{p:'Tentacle',fire:10,water:5,thunder:10,ice:30,dragon:0},{p:'Torso',fire:10,water:5,thunder:10,ice:30,dragon:0}] },
+  { verified:true, name: 'Yian Kut-Ku',             type: 'Bird Wyvern',    weak: ['ice'],           coating: 'both',   hz: [{p:'Head',s:80,c:56,b:75},{p:'Wings',s:80,c:80,b:42},{p:'Torso',s:60,c:66,b:63},{p:'Neck',s:45,c:42,b:42}], st:{poison:[150,100,550],para:[180,130,960],sleep:[150,100,750],stun:[120,100,720],blast:[70,30,670],exhaust:[225, 75, 900]}, ehz:[{p:'Head',fire:10,water:15,thunder:20,ice:30,dragon:0},{p:'Neck',fire:10,water:25,thunder:30,ice:40,dragon:20},{p:'Wings',fire:5,water:10,thunder:25,ice:15,dragon:0},{p:'Torso',fire:5,water:15,thunder:15,ice:20,dragon:0}] },
+  { verified:true, name: 'Zoh Shia',                type: 'Construct',      weak: ['dragon'],        coating: 'pierce', hz: [{p:'Wingarms',s:60,c:85,b:85},{p:'Head',s:65,c:65,b:70},{p:'Forelegs',s:45,c:45,b:45},{p:'Tail',s:45,c:45,b:45}], st:{poison:[200,150,700],para:[180,130,960],sleep:[160,100,650],stun:[120,100,720],blast:[70,30,670],exhaust:[0, 0, 0]}, ehz:[{p:'Head',fire:15,water:5,thunder:5,ice:10,dragon:30},{p:'Wingarms',fire:20,water:5,thunder:5,ice:15,dragon:30},{p:'Head (P2)',fire:10,water:5,thunder:5,ice:5,dragon:20},{p:'Wingarms (P2)',fire:10,water:5,thunder:5,ice:5,dragon:20}] },
 ];
 
 function hzClass(v) {
@@ -885,11 +1294,12 @@ function makeHitzonePanel(hz, st, ehz) {
   }).join('');
 
   var items = [
-    { key: 'poison', label: 'Poison', icon: '\u2620\uFE0F', cls: 'status-poison' },
-    { key: 'para',   label: 'Para',   icon: '\u26A1',        cls: 'status-para'   },
-    { key: 'sleep',  label: 'Sleep',  icon: '\uD83D\uDCA4',  cls: 'status-sleep'  },
-    { key: 'stun',   label: 'Stun',   icon: '\uD83D\uDCAB',  cls: 'status-stun'   },
-    { key: 'blast',  label: 'Blast',  icon: '\uD83D\uDCA5',  cls: 'status-blast'  },
+    { key: 'poison',  label: 'Poison',  icon: '\u2620\uFE0F', cls: 'status-poison' },
+    { key: 'para',    label: 'Para',    icon: '\u26A1',        cls: 'status-para'   },
+    { key: 'sleep',   label: 'Sleep',   icon: '\uD83D\uDCA4',  cls: 'status-sleep'  },
+    { key: 'stun',    label: 'Stun',    icon: '\uD83D\uDCAB',  cls: 'status-stun'   },
+    { key: 'blast',   label: 'Blast',   icon: '\uD83D\uDCA5',  cls: 'status-blast'  },
+    { key: 'exhaust', label: 'Exhaust', icon: '\uD83D\uDE2B',  cls: 'status-stun'   },
   ];
   var stRows = items.map(function(item) {
     var val = st[item.key];
@@ -1018,6 +1428,321 @@ document.getElementById('sort-select').addEventListener('change', function(e) {
 });
 
 render();
+
+// ── GATHERING ──────────────────────────────────────────────────────
+const G_MAPS = ['Windward Plains','Scarlet Forest','Iceshard Cliffs','Oilwell Basin','Ruins of Wyveria'];
+const G_MAP_SHORT = {'Windward Plains':'Plains','Scarlet Forest':'Forest','Iceshard Cliffs':'Cliffs','Oilwell Basin':'Basin','Ruins of Wyveria':'Wyveria'};
+const G_LOOT = {
+  'Windward Plains': {
+    LR: {
+      mining: [
+        {name:'Iron Ore',r:'common'},
+        {name:'Machalite Ore',l:1,r:'uncommon'},
+        {name:'Earth Crystal',r:'rare'},
+      ],
+      bone: [{name:'Mystery Bone',l:1,r:'common'},{name:'Sturdy Bone',r:'uncommon'}],
+    },
+    HR: {
+      mining: [
+        {name:'Iron Ore',r:'common'},
+        {name:'Earth Crystal',r:'uncommon'},
+        {name:'Lightcrystal',h:1,r:'rare'},
+        {name:'Carbalite Ore',h:1,r:'rare'},
+        {name:'Novacrystal',h:1,r:'vyrare'},
+      ],
+      bone: [{name:'Sturdy Bone',r:'common'},{name:'Quality Bone',h:1,r:'uncommon'},{name:'Dragonbone Relic',h:1,r:'vyrare'}],
+    },
+  },
+  'Scarlet Forest': {
+    LR: {
+      mining: [
+        {name:'Iron Ore',r:'common'},
+        {name:'Machalite Ore',r:'common'},
+        {name:'Earth Crystal',r:'uncommon'},
+      ],
+      bone: [{name:'Mystery Bone',l:1,r:'common'},{name:'Sturdy Bone',r:'uncommon'}],
+    },
+    HR: {
+      mining: [
+        {name:'Iron Ore',r:'common'},
+        {name:'Machalite Ore',r:'common'},
+        {name:'Earth Crystal',r:'uncommon'},
+        {name:'Carbalite Ore',h:1,r:'rare'},
+        {name:'Novacrystal',h:1,r:'vyrare'},
+      ],
+      bone: [{name:'Sturdy Bone',r:'common'},{name:'Quality Bone',h:1,r:'uncommon'},{name:'Dragonbone Relic',h:1,r:'vyrare'}],
+    },
+  },
+  'Iceshard Cliffs': {
+    LR: {
+      mining: [
+        {name:'Iron Ore',l:1,r:'common'},
+        {name:'Machalite Ore',r:'common'},
+        {name:'Dragonite Ore',r:'uncommon'},
+        {name:'Icium',r:'rare'},
+      ],
+      bone: [{name:'Mystery Bone',l:1,r:'common'},{name:'Sturdy Bone',l:1,r:'uncommon'},{name:'Frozen Icebone',r:'rare'}],
+    },
+    HR: {
+      mining: [
+        {name:'Machalite Ore',r:'common'},
+        {name:'Dragonite Ore',r:'uncommon'},
+        {name:'Lightcrystal',h:1,r:'rare'},
+        {name:'Carbalite Ore',h:1,r:'rare'},
+        {name:'Icium',r:'rare'},
+        {name:'Gracium',h:1,r:'vyrare'},
+        {name:'Novacrystal',h:1,r:'vyrare'},
+      ],
+      bone: [{name:'Quality Bone',h:1,r:'uncommon'},{name:'Frozen Icebone',r:'rare'},{name:'Dragonbone Relic',h:1,r:'vyrare'}],
+    },
+  },
+  'Oilwell Basin': {
+    LR: {
+      mining: [
+        {name:'Iron Ore',l:1,r:'common'},
+        {name:'Machalite Ore',r:'uncommon'},
+        {name:'Firestone',r:'uncommon'},
+        {name:'Dragonite Ore',r:'rare'},
+      ],
+      bone: [{name:'Mystery Bone',l:1,r:'common'},{name:'Sturdy Bone',l:1,r:'uncommon'},{name:'Charred Oilbone',r:'rare'}],
+    },
+    HR: {
+      mining: [
+        {name:'Machalite Ore',r:'common'},
+        {name:'Firestone',r:'common'},
+        {name:'Dragonite Ore',r:'uncommon'},
+        {name:'Lightcrystal',h:1,r:'rare'},
+        {name:'Firecell Stone',h:1,r:'rare'},
+        {name:'Novacrystal',h:1,r:'vyrare'},
+      ],
+      bone: [{name:'Quality Bone',h:1,r:'uncommon'},{name:'Charred Oilbone',r:'rare'},{name:'Dragonbone Relic',h:1,r:'vyrare'}],
+    },
+  },
+  'Ruins of Wyveria': {
+    LR: {
+      mining: [
+        {name:'Iron Ore',l:1,r:'common'},
+        {name:'Machalite Ore',l:1,r:'uncommon'},
+        {name:'Dragonite Ore',r:'uncommon'},
+        {name:'Lightcrystal',r:'rare'},
+      ],
+      bone: [{name:'Mystery Bone',l:1,r:'common'},{name:'Sturdy Bone',l:1,r:'uncommon'},{name:'Tough Guardian Bone',r:'rare'}],
+    },
+    HR: {
+      mining: [
+        {name:'Dragonite Ore',r:'uncommon'},
+        {name:'Lightcrystal',r:'rare'},
+        {name:'Carbalite Ore',h:1,r:'rare'},
+        {name:'Fucium Ore',h:1,r:'rare'},
+        {name:'Novacrystal',h:1,r:'vyrare'},
+      ],
+      bone: [{name:'Quality Bone',h:1,r:'uncommon'},{name:'Tough Guardian Bone',r:'rare'},{name:'Dragonbone Relic',h:1,r:'vyrare'}],
+    },
+  },
+};
+const G_ICON   = { mining:'⛏', bone:'🦴', plant:'🌿', insect:'🦟' };
+const G_RLABEL = { common:'●', uncommon:'◆', rare:'★', vyrare:'✦' };
+const G_TYPES  = ['mining','bone'];
+
+const G_EXCLUSIVE = {
+  'Firestone':     'Oilwell Basin',
+  'Firecell Stone':'Oilwell Basin',
+  'Icium':         'Iceshard Cliffs',
+  'Gracium':       'Iceshard Cliffs',
+  'Fucium Ore':       'Ruins of Wyveria',
+  'Charred Oilbone':     'Oilwell Basin',
+  'Frozen Icebone':      'Iceshard Cliffs',
+  'Tough Guardian Bone': 'Ruins of Wyveria',
+};
+
+let gActiveMap   = 'Windward Plains';
+let gActiveRank  = 'LR';
+let gActiveTypes = new Set(['mining','bone']);
+
+function switchTab(tab) {
+  document.querySelectorAll('.main-tab').forEach(function(t){ t.classList.remove('active'); });
+  document.querySelectorAll('.section').forEach(function(s){ s.classList.remove('active'); });
+  document.getElementById('tab-' + tab).classList.add('active');
+  document.getElementById('section-' + tab).classList.add('active');
+  if (tab === 'gathering') { gBuildMapTabs(); gRender(); }
+}
+
+function gBuildMapTabs() {
+  var tabs = '';
+  for (var i=0; i<G_MAPS.length; i++) {
+    var m = G_MAPS[i];
+    var cls = m===gActiveMap ? 'map-tab active' : 'map-tab';
+    var short = G_MAP_SHORT[m] || m;
+    tabs += '<div class="' + cls + '" data-map="' + m + '" onclick="gSwitchMap(this)">' + m + ' (' + short + ')' + '</div>';
+  }
+  document.getElementById('g-map-tabs').innerHTML = tabs;
+}
+
+function gSwitchMap(el) {
+  gActiveMap = el.dataset.map || el.textContent.trim();
+  gBuildMapTabs();
+  gRender();
+}
+
+function gSwitchRank(rank) {
+  gActiveRank = rank;
+  document.querySelectorAll('.rank-tab').forEach(function(t) {
+    t.className = t.dataset.rank === rank ? 'rank-tab active-' + rank : 'rank-tab';
+  });
+  var divider = document.getElementById('g-rank-divider');
+  if (divider) divider.className = 'rank-divider divider-' + rank;
+  gRender();
+}
+
+function gToggleType(type, btn) {
+  if (gActiveTypes.has(type)) { if (gActiveTypes.size > 1) gActiveTypes.delete(type); }
+  else gActiveTypes.add(type);
+  document.querySelectorAll('.g-type-btn').forEach(function(b) {
+    b.className = 'g-type-btn' + (gActiveTypes.has(b.dataset.gtype) ? ' on-' + b.dataset.gtype : '');
+  });
+  gRender();
+}
+
+function gSearch(query) {
+  var q = query.trim().toLowerCase();
+  var normalView = document.getElementById('g-normal-view');
+  var searchView = document.getElementById('g-search-view');
+
+  if (!q) {
+    normalView.style.display = 'block';
+    searchView.style.display = 'none';
+    return;
+  }
+
+  normalView.style.display = 'none';
+  searchView.style.display = 'block';
+
+  // Search across all maps, both ranks, all types
+  var results = {}; // ore name -> [{map, rank, rarity}]
+
+  G_MAPS.forEach(function(map) {
+    var mapData = G_LOOT[map];
+    if (!mapData) return;
+    ['LR','HR'].forEach(function(rank) {
+      var rankData = mapData[rank];
+      if (!rankData) return;
+      G_TYPES.forEach(function(type) {
+        var loot = rankData[type];
+        if (!loot) return;
+        loot.forEach(function(item) {
+          if (item.name.toLowerCase().indexOf(q) !== -1) {
+            if (!results[item.name]) results[item.name] = [];
+            results[item.name].push({map: map, rank: rank, rarity: item.r, type: type});
+          }
+        });
+      });
+    });
+  });
+
+  var keys = Object.keys(results);
+  if (keys.length === 0) {
+    searchView.innerHTML = '<div class="g-empty">No results for "' + query + '"</div>';
+    return;
+  }
+
+  var html = '';
+  keys.sort().forEach(function(oreName) {
+    var entries = results[oreName];
+    var isExcl = !!G_EXCLUSIVE[oreName];
+    html += '<div class="g-result-ore' + (isExcl ? ' exclusive' : '') + '">';
+    html += '<div class="g-result-ore-name' + (isExcl ? ' exclusive' : '') + '">'
+      + G_RLABEL[entries[0].rarity] + ' ' + oreName
+      + (isExcl ? '<span class="excl-badge">★ Exclusive</span>' : '')
+      + '</div>';
+
+    // Group by map
+    var byMap = {};
+    entries.forEach(function(e) {
+      if (!byMap[e.map]) byMap[e.map] = [];
+      byMap[e.map].push(e.rank);
+    });
+
+    Object.keys(byMap).forEach(function(map) {
+      var ranks = byMap[map];
+      var short = G_MAP_SHORT[map] || map;
+      html += '<div class="g-result-map-row">';
+      html += '<span class="g-result-map-name">📍 ' + map + ' (' + short + ')</span>';
+      html += '<span class="g-result-ranks">';
+      ranks.forEach(function(r) {
+        html += '<span class="rank-badge rb-' + r + '">' + r + '</span>';
+      });
+      html += '</span>';
+      html += '</div>';
+    });
+    html += '</div>';
+  });
+  searchView.innerHTML = html;
+}
+
+function gRender() {
+  var mapData = G_LOOT[gActiveMap];
+  var rankData = mapData ? mapData[gActiveRank] : null;
+  var contentEl = document.getElementById('g-content');
+  var statsEl   = document.getElementById('g-stats');
+
+  if (!rankData) {
+    contentEl.innerHTML = '<div class="g-empty">⛏<br>No data yet</div>';
+    statsEl.innerHTML = '';
+    return;
+  }
+
+  // Stats
+  var totalItems = 0;
+  G_TYPES.forEach(function(t) {
+    if (gActiveTypes.has(t) && rankData[t]) totalItems += rankData[t].length;
+  });
+  statsEl.innerHTML = '<div class="g-stat"><b>' + totalItems + '</b> items</div>';
+
+  // Check if any data exists for active types
+  var hasData = G_TYPES.some(function(t) {
+    return gActiveTypes.has(t) && rankData[t] && rankData[t].length > 0;
+  });
+
+  if (!hasData) {
+    contentEl.innerHTML = '<div class="g-empty">⛏<br>No data yet<br><span style="font-size:0.5rem">Coming soon</span></div>';
+    return;
+  }
+
+  var html = '';
+  G_TYPES.forEach(function(type) {
+    if (!gActiveTypes.has(type)) return;
+    var loot = rankData[type];
+    if (!loot || loot.length === 0) return;
+
+    html += '<div class="g-loot-card">';
+    html += '<div class="g-loot-card-header">';
+    html += '<span class="g-pill gp-' + type + '">' + G_ICON[type] + ' ' + type.charAt(0).toUpperCase() + type.slice(1) + '</span>';
+    html += '</div>';
+    html += '<div class="g-loot-list">';
+    loot.forEach(function(item) {
+      var isExcl = !!G_EXCLUSIVE[item.name];
+      var isHR   = !!item.h;
+      var isLR   = !!item.l;
+      var rowCls = isExcl ? ' excl-row' : (isHR ? ' hr-only' : (isLR ? ' lr-only' : ''));
+      html += '<div class="g-loot-row' + rowCls + '">';
+      html += '<span class="g-rarity gr-' + item.r + '">' + G_RLABEL[item.r] + '</span>';
+      html += item.name;
+      if (isExcl) html += '<span class="excl-badge">★ Only</span>';
+      if (isHR)   html += '<span class="hr-only-badge">HR</span>';
+      if (isLR)   html += '<span class="lr-only-badge">LR</span>';
+      html += '</div>';
+    });
+    html += '</div>';
+    html += '</div>';
+  });
+
+  contentEl.innerHTML = html;
+}
+
+
+// Init gathering tabs on load
+gBuildMapTabs();
+gRender();
 </script>
 </body>
 </html>
