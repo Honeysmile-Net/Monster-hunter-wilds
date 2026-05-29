@@ -661,13 +661,9 @@
   }
 
   /* star ratings per effectiveness */
-  .eff-3 { background: #f0e8fc; border-color: #c8a0e8; }
   .eff-3 .status-stars { color: #a070d0; }
-  .eff-2 { background: #e4f0fc; border-color: #a8cef0; }
   .eff-2 .status-stars { color: #3878b8; }
-  .eff-1 { background: #f4f0f8; border-color: #d8d0ec; }
   .eff-1 .status-stars { color: #b4a8cc; }
-  .eff-0 { background: #f5f5f5; border-color: #e0e0e0; }
   .eff-0 .status-stars { color: #c0c0c0; }
 
   /* ── NAV TABS ───────────────────────────────────────── */
@@ -705,7 +701,7 @@
   .section { display: none; }
   .section.active { display: block; }
 
-  /* ── GATHERING UI ───────────────────────────────────── */
+  
   .map-tabs {
     display: flex;
     overflow-x: auto;
@@ -768,10 +764,10 @@
   }
   .g-type-btn.on-mining { background:#fff0e8; border-color:#c87040; color:#c87040; }
   .g-type-btn.on-bone   { background:#f8f0e0; border-color:#b09060; color:#b09060; }
-  .g-type-btn.on-plant  { background:#eef8ee; border-color:#60a860; color:#60a860; }
-  .g-type-btn.on-insect { background:#f8f8e0; border-color:#a0a030; color:#a0a030; }
+  .g-type-btn
+  .g-type-btn
   .g-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
-  .gd-mining{background:#c87040;} .gd-bone{background:#b09060;} .gd-plant{background:#60a860;} .gd-insect{background:#a0a030;}
+  .gd-mining{background:#c87040;} .gd-bone{background:#b09060;}
 
   .g-stats {
     display: flex;
@@ -785,31 +781,6 @@
   .g-stat b { font-size:0.6rem; color:var(--text); }
 
   .g-content { padding: 0.6rem 0.8rem 3rem; }
-  .g-area-label {
-    font-family: 'Cinzel', serif;
-    font-size: 0.46rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    padding: 0.35rem 0 0.25rem;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 0.4rem;
-    margin-top: 0.4rem;
-  }
-  .g-node-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    margin-bottom: 0.4rem;
-    overflow: hidden;
-  }
-  .g-node-header {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.4rem 0.6rem;
-    cursor: pointer;
-  }
   .g-pill {
     display: flex; align-items: center; gap: 0.2rem;
     padding: 0.12rem 0.4rem; border-radius: 999px;
@@ -818,18 +789,6 @@
   }
   .gp-mining{background:#fff0e8;color:#c87040;border:1px solid #e8b090;}
   .gp-bone  {background:#f8f0e0;color:#b09060;border:1px solid #d0b888;}
-  .gp-plant {background:#eef8ee;color:#60a860;border:1px solid #90c890;}
-  .gp-insect{background:#f8f8e0;color:#a0a030;border:1px solid #b8b860;}
-
-  .g-node-info { flex:1; min-width:0; }
-  .g-node-id { font-family:'Cinzel',serif; font-size:0.48rem; font-weight:600; color:var(--text); }
-  .g-node-landmark { font-size:0.52rem; color:var(--text-muted); font-style:italic; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .g-node-count { font-family:'Cinzel',serif; font-size:0.42rem; color:var(--text-dim); flex-shrink:0; }
-  .g-chevron { font-size:0.5rem; color:var(--text-dim); transition:transform 0.2s; flex-shrink:0; }
-  .g-node-card.open .g-chevron { transform:rotate(180deg); }
-
-  .g-loot-panel { display:none; border-top:1px solid var(--border); padding:0.35rem 0.6rem 0.45rem; background:#faf8ff; }
-  .g-node-card.open .g-loot-panel { display:block; }
   .g-loot-row { display:flex; align-items:center; gap:0.4rem; padding:0.18rem 0; font-size:0.58rem; color:var(--text); border-bottom:1px solid #f0ecf8; }
   .g-loot-row:last-child { border-bottom:none; }
   .g-rarity { font-family:'Cinzel',serif; font-size:0.36rem; padding:0.08rem 0.28rem; border-radius:3px; flex-shrink:0; font-weight:700; }
@@ -854,18 +813,7 @@
     border-bottom: 1px solid var(--border);
   }
   .g-loot-list { padding: 0.2rem 0.6rem 0.3rem; }
-  .g-loot-row {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.22rem 0;
-    font-size: 0.6rem;
-    color: var(--text);
-    border-bottom: 1px solid #f0ecf8;
-  }
-  .g-loot-row:last-child { border-bottom: none; }
   .g-loot-row.excl-row { background: #fffbee; }
-
 
   /* ── RANK TABS ──────────────────────────────────────── */
   .rank-tabs {
@@ -909,7 +857,6 @@
   }
   .rb-LR { background: #fff8e8; color: #b07820; border: 1px solid #d4a843; }
   .rb-HR { background: #fff0f0; color: #b03030; border: 1px solid #d06060; }
-
 
   /* ── GATHERING SEARCH ───────────────────────────────── */
   .g-search-wrap {
@@ -968,7 +915,6 @@
   .g-result-map-name { flex: 1; }
   .g-result-ranks { display: flex; gap: 0.25rem; }
 
-
   /* exclusive ore highlight */
   .g-result-ore.exclusive { border-color: #c8a030; }
   .g-result-ore-name.exclusive {
@@ -989,7 +935,6 @@
     vertical-align: middle;
   }
 
-
   /* Per-map tab colors */
   .map-tab[data-map="Windward Plains"]  { color: #b08030; }  /* sandy gold */
   .map-tab[data-map="Scarlet Forest"]   { color: #507840; }  /* forest green */
@@ -1002,7 +947,6 @@
   .map-tab.active[data-map="Iceshard Cliffs"]  { color: #1a5080; border-bottom-color: #3878a8; }
   .map-tab.active[data-map="Oilwell Basin"]    { color: #6a2010; border-bottom-color: #904030; }
   .map-tab.active[data-map="Ruins of Wyveria"] { color: #4a1890; border-bottom-color: #7040b0; }
-
 
   .hr-only-badge {
     font-family: 'Cinzel', serif;
@@ -1023,7 +967,6 @@
     color: #5030a0;
   }
   .g-loot-row.hr-only .g-rarity { color: #7050c0; }
-
 
   .g-loot-row.lr-only {
     background: #eef6ff;
@@ -1738,7 +1681,6 @@ function gRender() {
 
   contentEl.innerHTML = html;
 }
-
 
 // Init gathering tabs on load
 gBuildMapTabs();
