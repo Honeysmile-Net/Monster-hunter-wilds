@@ -988,6 +988,94 @@
     flex-shrink: 0;
   }
 
+
+  /* ── SMALL MONSTERS ─────────────────────────────────── */
+  .sm-filter-bar {
+    display: flex;
+    gap: 0.4rem;
+    padding: 0.5rem 0.8rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .sm-map-btn {
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    font-family: 'Cinzel', serif;
+    font-size: 0.42rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    background: var(--surface);
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+  .sm-map-btn.active { background: var(--card); color: var(--text); border-color: var(--gold); }
+  .sm-map-btn[data-map="all"]            { color: var(--text-muted); }
+  .sm-map-btn.active[data-map="Windward Plains"]  { color: #7a5810; border-color: #b08030; }
+  .sm-map-btn.active[data-map="Scarlet Forest"]   { color: #2d5020; border-color: #507840; }
+  .sm-map-btn.active[data-map="Iceshard Cliffs"]  { color: #1a5080; border-color: #3878a8; }
+  .sm-map-btn.active[data-map="Oilwell Basin"]    { color: #6a2010; border-color: #904030; }
+  .sm-map-btn.active[data-map="Ruins of Wyveria"] { color: #4a1890; border-color: #7040b0; }
+
+  .sm-content { padding: 0.6rem 0.8rem 3rem; }
+  .sm-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+  }
+  .sm-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.45rem 0.6rem;
+  }
+  .sm-card-clickable { cursor: pointer; }
+  .sm-card-clickable:hover { border-color: var(--gold-light); background: var(--surface); }
+  .sm-chevron { font-size: 0.45rem; color: var(--text-muted); margin-left: auto; flex-shrink: 0; }
+  .sm-drop-panel { border-top: 1px solid var(--border); padding: 0.5rem 0.6rem; }
+  .sd-table { width: 100%; border-collapse: collapse; margin-bottom: 0.4rem; font-family: "Crimson Pro", serif; font-size: 0.52rem; }
+  .sd-rank-head { text-align: left; padding: 0.15rem 0.2rem; font-family: "Cinzel", serif; font-size: 0.42rem; font-weight: 700; color: #7a5810; background: #fff8e8; border-radius: 3px; }
+  .sd-rank-head.sd-hr { color: #6a2010; background: #fff0ee; }
+  .sd-table td { padding: 0.1rem 0.2rem; color: var(--text); }
+  .sd-pct { text-align: right; color: var(--text-muted); width: 2.5rem; }
+  .sm-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    font-weight: 600;
+    color: var(--text);
+    flex: 1;
+  }
+  .sm-type {
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.52rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+  .sm-maps {
+    display: flex;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .sm-map-pill {
+    font-family: 'Cinzel', serif;
+    font-size: 0.35rem;
+    font-weight: 700;
+    padding: 0.08rem 0.35rem;
+    border-radius: 3px;
+    letter-spacing: 0.03em;
+  }
+  .smp-Plains  { background: #fff8e8; color: #7a5810; border: 1px solid #b08030; }
+  .smp-Forest  { background: #eef8ee; color: #2d5020; border: 1px solid #507840; }
+  .smp-Cliffs  { background: #e8f0ff; color: #1a5080; border: 1px solid #3878a8; }
+  .smp-Basin   { background: #fff0ee; color: #6a2010; border: 1px solid #904030; }
+  .smp-Wyveria { background: #f4eeff; color: #4a1890; border: 1px solid #7040b0; }
+
 </style>
 </head>
 <body>
@@ -1008,6 +1096,9 @@
   </div>
   <div class="main-tab" id="tab-gathering" onclick="switchTab('gathering')">
     <span class="tab-icon">⛏</span>Gathering
+  </div>
+  <div class="main-tab" id="tab-small" onclick="switchTab('small')">
+    <span class="tab-icon">🐾</span>Small
   </div>
 </div>
 
@@ -1508,6 +1599,7 @@ function switchTab(tab) {
   document.getElementById('tab-' + tab).classList.add('active');
   document.getElementById('section-' + tab).classList.add('active');
   if (tab === 'gathering') { gBuildMapTabs(); gRender(); }
+  if (tab === 'small') { smInit(); }
 }
 
 function gBuildMapTabs() {
@@ -1682,9 +1774,195 @@ function gRender() {
   contentEl.innerHTML = html;
 }
 
+// ── SMALL MONSTERS ──────────────────────────────────────────────
+const SMALL_MONSTERS = [
+  {name:'Ceratonoth',     type:'Herbivore',    maps:['Windward Plains'],    drops:{LR:[{name:'Herbivore Shell',pct:70},{name:'Raw Meat',pct:30}],HR:[{name:'Herbivore Carapace',pct:70},{name:'Raw Meat',pct:30}]}},
+  {name:'Dalthydon',      type:'Herbivore',    maps:['Windward Plains','Scarlet Forest'],    drops:{LR:[{name:'Raw Meat',pct:100}],HR:[{name:'Raw Meat',pct:100}]}},
+  {name:'Bulaqchi',       type:'Neopteron',    maps:['Windward Plains'],                     drops:{LR:[{name:'Bulaqchi Shell',pct:100}],HR:[{name:'Bulaqchi Carapace',pct:100}]}},
+  {name:'Baunos',         type:'Wingdrake',    maps:['Windward Plains'],                     drops:{LR:[{name:'Wingdrake Hide',pct:100}],HR:[{name:'Wingdrake Hide+',pct:100}]}},
+  {name:'Talioth',        type:'Bird Wyvern',  maps:['Windward Plains'],                     drops:{LR:[{name:'Talioth Scale',pct:100}],HR:[{name:'Talioth Scale+',pct:100}]}},
+  {name:'Gajios',         type:'Leviathan',    maps:['Windward Plains','Scarlet Forest'],     drops:{LR:[{name:'Sharp Fang',pct:100}],HR:[{name:'Acute Fang',pct:100}]}},
+  {name:'Conga',          type:'Fanged Beast', maps:['Scarlet Forest'],                      drops:{LR:[{name:'Conga Pelt',pct:100}],HR:[{name:'Conga Pelt+',pct:100}]}},
+  {name:'Harpios',        type:'Wingdrake',    maps:['Scarlet Forest','Oilwell Basin'],       drops:{LR:[{name:'Wingdrake Hide',pct:100}],HR:[{name:'Wingdrake Hide+',pct:100}]}},
+  {name:'Vespoid',        type:'Neopteron',    maps:['Scarlet Forest','Oilwell Basin'],       drops:{LR:[{name:'Vespoid Shell',pct:100}],HR:[{name:'Vespoid Carapace',pct:100}]}},
+  {name:'Piragill',       type:'Leviathan',    maps:['Scarlet Forest'],                      drops:{LR:[{name:'Piragill Fin',pct:100}],HR:[{name:'Piragill Fin+',pct:100}]}},
+  {name:'Gelidron',       type:'Amphibian',    maps:['Oilwell Basin'],                       drops:{LR:[{name:'Raw Meat',pct:100}],HR:[{name:'Raw Meat',pct:100}]}},
+  {name:'Kranodath',      type:'Bird Wyvern',  maps:['Oilwell Basin'],                       drops:{LR:[{name:'Kranodath Skull',pct:100}],HR:[{name:'Kranodath Skull+',pct:100}]}},
+  {name:'Nerscylla Hatchling', type:'Temnoceran', maps:['Iceshard Cliffs'],                  drops:{LR:[{name:'Monster Fluid',pct:100}],HR:[{name:'Monster Broth',pct:100}]}},
+  {name:'Comaqchi',       type:'Neopteron',    maps:['Iceshard Cliffs'],                     drops:{LR:[{name:'Comaqchi Shell',pct:100}],HR:[{name:'Comaqchi Shell+',pct:100}]}},
+  {name:'Rafma',          type:'Herbivore',    maps:['Iceshard Cliffs','Ruins of Wyveria'],   drops:{LR:[{name:'Mystery Bone',pct:70},{name:'Raw Meat',pct:30}],HR:[{name:'Sturdy Bone',pct:70},{name:'Raw Meat',pct:30}]}},
+  {name:'Blango',         type:'Fanged Beast', maps:['Iceshard Cliffs'],                     drops:{LR:[],HR:[{name:'Blango Pelt+',pct:100}]}},
+  {name:'Porkeplume',     type:'Bird Wyvern',  maps:['Iceshard Cliffs','Ruins of Wyveria'],   drops:{LR:[{name:'Sharp Fang',pct:70},{name:'Mystery Bone',pct:30}],HR:[{name:'Acute Fang',pct:70},{name:'Sturdy Bone',pct:30}]}},
+  {name:'Guardian Seikret',type:'Construct',   maps:['Ruins of Wyveria'],                    drops:{LR:[{name:'Guardian Seikret Feather',pct:70},{name:'Sharp Fang',pct:30}],HR:[{name:'Guardian Seikret Feather+',pct:70},{name:'Sharp Fang',pct:30}]}},
+];
+
+const SM_MAP_SHORT2 = {
+  'Windward Plains':'Plains','Scarlet Forest':'Forest',
+  'Iceshard Cliffs':'Cliffs','Oilwell Basin':'Basin','Ruins of Wyveria':'Wyveria'
+};
+
+let smActiveMap = 'all';
+
+function smInit() {
+  var bar = document.getElementById('sm-map-filter');
+  var mapList = ['all','Windward Plains','Scarlet Forest','Iceshard Cliffs','Oilwell Basin','Ruins of Wyveria'];
+  bar.innerHTML = mapList.map(function(m) {
+    var label = m === 'all' ? 'All Maps' : m + ' (' + SM_MAP_SHORT2[m] + ')';
+    var cls = m === smActiveMap ? 'sm-map-btn active' : 'sm-map-btn';
+    return '<button class="' + cls + '" data-map="' + m + '" onclick="smFilter(this.dataset.map)">' + label + '</button>';
+  }).join('');
+  smRender();
+}
+
+function smFilter(map) {
+  smActiveMap = map;
+  document.querySelectorAll('.sm-map-btn').forEach(function(b) {
+    b.className = b.dataset.map === map ? 'sm-map-btn active' : 'sm-map-btn';
+  });
+  smRender();
+}
+
+function smToggle(el) {
+  var card = el.closest ? el.closest('.sm-card') : el.parentElement;
+  var panel = card.querySelector('.sm-drop-panel');
+  if (!panel) return;
+  var open = panel.style.display === 'block';
+  panel.style.display = open ? 'none' : 'block';
+  card.querySelector('.sm-chevron').textContent = open ? '▶' : '▼';
+}
+
+function smDropPanel(drops) {
+  if (!drops) return '';
+  function rows(arr) {
+    return arr.map(function(d) {
+      return '<tr><td class="sd-name">' + d.name + '</td><td class="sd-pct">' + d.pct + '%</td></tr>';
+    }).join('');
+  }
+  return '<div class="sm-drop-panel" style="display:none">'
+    + '<table class="sd-table"><thead><tr><th colspan="2" class="sd-rank-head">Low Rank</th></tr></thead><tbody>' + rows(drops.LR) + '</tbody></table>'
+    + '<table class="sd-table"><thead><tr><th colspan="2" class="sd-rank-head sd-hr">High Rank</th></tr></thead><tbody>' + rows(drops.HR) + '</tbody></table>'
+    + '</div>';
+}
+
+function smRender() {
+  var list = SMALL_MONSTERS.filter(function(m) {
+    return smActiveMap === 'all' || m.maps.indexOf(smActiveMap) !== -1;
+  });
+
+  list.sort(function(a,b) { return a.name.localeCompare(b.name); });
+
+  document.getElementById('sm-content').innerHTML = list.map(function(m) {
+    var pills = m.maps.map(function(mp) {
+      var s = SM_MAP_SHORT2[mp];
+      return '<span class="sm-map-pill smp-' + s + '">' + s + '</span>';
+    }).join('');
+    var hasDrops = !!m.drops;
+    var cardClass = 'sm-card' + (hasDrops ? ' sm-card-clickable' : '');
+    var clickAttr = hasDrops ? ' onclick="smToggle(this)"' : '';
+    var chevron = hasDrops ? '<span class="sm-chevron">▶</span>' : '';
+    return '<div class="' + cardClass + '"' + clickAttr + '>'
+      + '<div class="sm-card-header">'
+      + '<div class="sm-name">' + m.name + '</div>'
+      + '<div class="sm-type">' + m.type + '</div>'
+      + '<div class="sm-maps">' + pills + '</div>'
+      + chevron
+      + '</div>'
+      + smDropPanel(m.drops)
+      + '</div>';
+  }).join('');
+}
+
+
+function smSearch(query) {
+  var q = query.trim().toLowerCase();
+  var normalView = document.getElementById('sm-normal-view');
+  var searchView = document.getElementById('sm-search-view');
+
+  if (!q) {
+    normalView.style.display = 'block';
+    searchView.style.display = 'none';
+    return;
+  }
+
+  normalView.style.display = 'none';
+  searchView.style.display = 'block';
+
+  // results: item name -> [{monster, rank, pct}]
+  var results = {};
+
+  SMALL_MONSTERS.forEach(function(m) {
+    // match drop items only
+    if (!m.drops) return;
+    ['LR','HR'].forEach(function(rank) {
+      var arr = m.drops[rank];
+      if (!arr) return;
+      arr.forEach(function(d) {
+        if (d.name.toLowerCase().indexOf(q) !== -1) {
+          if (!results[d.name]) results[d.name] = [];
+          results[d.name].push({monster: m.name, rank: rank, pct: d.pct, maps: m.maps});
+        }
+      });
+    });
+  });
+
+  var keys = Object.keys(results);
+  if (keys.length === 0) {
+    searchView.innerHTML = '<div class="g-empty">No results for "' + query + '"</div>';
+    return;
+  }
+
+  var html = '';
+  keys.sort().forEach(function(key) {
+    var entries = results[key];
+    html += '<div class="g-result-ore">';
+    html += '<div class="g-result-ore-name">' + key + '</div>';
+
+    // Group by monster
+    var byMonster = {};
+    entries.forEach(function(e) {
+      if (!byMonster[e.monster]) byMonster[e.monster] = {ranks: [], pct: e.pct, maps: e.maps};
+      if (e.rank === 'both') {
+        byMonster[e.monster].ranks = ['LR','HR'];
+      } else {
+        byMonster[e.monster].ranks.push(e.rank);
+      }
+    });
+
+    Object.keys(byMonster).forEach(function(mon) {
+      var info = byMonster[mon];
+      var pills = info.maps.map(function(mp) {
+        var s = SM_MAP_SHORT2[mp];
+        return '<span class="sm-map-pill smp-' + s + '">' + mp + '</span>';
+      }).join('');
+      html += '<div class="g-result-map-row">';
+      html += '<span class="g-result-map-name">🐾 ' + mon + '</span>';
+      html += '<span class="g-result-ranks">';
+      info.ranks.forEach(function(r) {
+        html += '<span class="rank-badge rb-' + r + '">' + r + '</span>';
+      });
+      if (info.pct) html += '<span style="font-size:0.45rem;color:var(--text-muted);margin-left:0.2rem">' + info.pct + '%</span>';
+      html += '</span>';
+      html += '<span style="margin-left:auto">' + pills + '</span>';
+      html += '</div>';
+    });
+    html += '</div>';
+  });
+  searchView.innerHTML = html;
+}
+
 // Init gathering tabs on load
 gBuildMapTabs();
 gRender();
 </script>
+
+<div class="section" id="section-small">
+  <div class="g-search-wrap"><input class="g-search-input" id="sm-search" placeholder="Search monster or drop item…" oninput="smSearch(this.value)" autocomplete="off"></div>
+  <div id="sm-normal-view">
+    <div class="sm-filter-bar" id="sm-map-filter"></div>
+    <div class="sm-content" id="sm-content"></div>
+  </div>
+  <div id="sm-search-view" style="display:none" class="g-search-results"></div>
+</div>
+
 </body>
 </html>
