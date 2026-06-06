@@ -1789,7 +1789,7 @@ const SMALL_MONSTERS = [
   {name:'Gelidron',       type:'Amphibian',    maps:['Oilwell Basin'],                       drops:{LR:[{name:'Raw Meat',pct:100}],HR:[{name:'Raw Meat',pct:100}]}},
   {name:'Kranodath',      type:'Bird Wyvern',  maps:['Oilwell Basin'],                       drops:{LR:[{name:'Kranodath Skull',pct:100}],HR:[{name:'Kranodath Skull+',pct:100}]}},
   {name:'Nerscylla Hatchling', type:'Temnoceran', maps:['Iceshard Cliffs'],                  drops:{LR:[{name:'Monster Fluid',pct:100}],HR:[{name:'Monster Broth',pct:100}]}},
-  {name:'Comaqchi',       type:'Neopteron',    maps:['Iceshard Cliffs'],                     drops:{LR:[{name:'Comaqchi Shell',pct:100}],HR:[{name:'Comaqchi Shell+',pct:100}]}},
+  {name:'Comaqchi',       type:'Neopteron',    maps:['Iceshard Cliffs'],                     drops:{LR:[{name:'Comaqchi Shell',pct:100}],HR:[{name:'Comaqchi Carapace',pct:100}]}},
   {name:'Rafma',          type:'Herbivore',    maps:['Iceshard Cliffs','Ruins of Wyveria'],   drops:{LR:[{name:'Mystery Bone',pct:70},{name:'Raw Meat',pct:30}],HR:[{name:'Sturdy Bone',pct:70},{name:'Raw Meat',pct:30}]}},
   {name:'Blango',         type:'Fanged Beast', maps:['Iceshard Cliffs'],                     drops:{LR:[],HR:[{name:'Blango Pelt+',pct:100}]}},
   {name:'Porkeplume',     type:'Bird Wyvern',  maps:['Iceshard Cliffs','Ruins of Wyveria'],   drops:{LR:[{name:'Sharp Fang',pct:70},{name:'Mystery Bone',pct:30}],HR:[{name:'Acute Fang',pct:70},{name:'Sturdy Bone',pct:30}]}},
@@ -1932,7 +1932,7 @@ function smSearch(query) {
       var info = byMonster[mon];
       var pills = info.maps.map(function(mp) {
         var s = SM_MAP_SHORT2[mp];
-        return '<span class="sm-map-pill smp-' + s + '">' + mp + '</span>';
+        return '<span class="sm-map-pill smp-' + s + '">' + mp + ' (' + s + ')</span>';
       }).join('');
       html += '<div class="g-result-map-row">';
       html += '<span class="g-result-map-name">🐾 ' + mon + '</span>';
