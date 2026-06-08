@@ -513,6 +513,9 @@
   }
 
   .tag-icon { font-size: 0.6rem; }
+  /* Custom element/status icon images */
+  .cc-ico { height: 1.15em; width: auto; vertical-align: -0.22em; display: inline-block; }
+  .el-icon .cc-ico, .el-icon.cc-ico { height: 0.8rem; vertical-align: middle; }
 
   /* Element tag colors — pastel */
   .tag-fire     { background: #fce8e8; border-color: #f0b8b8; color: #c05050; }
@@ -628,6 +631,56 @@
     letter-spacing: .04em; text-transform: uppercase;
   }
   .card-tab-btn.active { color: var(--gold-light); border-bottom-color: var(--gold-light); }
+
+  /* ── Tips panel ──────────────────────────────── */
+  .card-tabs { flex-wrap: wrap; }
+  .card-tab-btn { white-space: nowrap; }
+  .tips-list {
+    list-style: none; margin: 0; padding: 0.5rem 0 0.2rem;
+    display: flex; flex-direction: column; gap: 0.4rem;
+  }
+  .tips-list li {
+    position: relative; padding-left: 0.8rem;
+    font-family: 'Crimson Pro', serif; font-size: 0.52rem; line-height: 1.4;
+    color: var(--text); text-wrap: pretty;
+  }
+  .tips-list li::before {
+    content: '\25B8'; position: absolute; left: 0; top: 0.02rem;
+    color: var(--gold-light); font-size: 0.5rem;
+  }
+  .tips-list li b { color: var(--gold-light); font-weight: 700; }
+  .tips-section-h {
+    font-family: 'Cinzel', serif; font-size: 0.42rem; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold-light);
+    margin: 0.55rem 0 0.1rem; padding-bottom: 0.15rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .tips-section-h:first-child { margin-top: 0.35rem; }
+  .moveset-list {
+    list-style: none; margin: 0 0 0.15rem; padding: 0.35rem 0 0.1rem;
+    display: flex; flex-direction: column; gap: 0.4rem;
+  }
+  .moveset-list li {
+    display: flex; flex-direction: column; gap: 0.05rem;
+    font-family: 'Crimson Pro', serif;
+  }
+  .mv-name {
+    font-family: 'Cinzel', serif; font-weight: 700; font-size: 0.5rem;
+    color: var(--text); letter-spacing: 0.01em;
+  }
+  .mv-desc {
+    font-size: 0.5rem; line-height: 1.38; color: var(--text-muted); text-wrap: pretty;
+  }
+  .tips-src-note {
+    margin-top: 0.5rem; padding-top: 0.4rem;
+    border-top: 1px dashed var(--border);
+    font-family: 'Crimson Pro', serif; font-size: 0.42rem;
+    font-style: italic; color: var(--text-muted);
+  }
+  .tips-empty {
+    padding: 0.6rem 0; font-family: 'Crimson Pro', serif;
+    font-size: 0.5rem; color: var(--text-muted); font-style: italic;
+  }
 
   .hitzone-divider { height: 1px; background: var(--border); margin: 0 -0.6rem; display: block; }
 
@@ -1555,11 +1608,11 @@
   <div class="controls-row">
     <div class="filter-group" id="element-filters">
       <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn filter-fire"    data-filter="fire"   ><span class="el-icon">🔥</span><span class="el-label">Fire</span></button>
-      <button class="filter-btn filter-water"   data-filter="water"  ><span class="el-icon">💧</span><span class="el-label">Water</span></button>
-      <button class="filter-btn filter-thunder" data-filter="thunder"><span class="el-icon">⚡</span><span class="el-label">Thunder</span></button>
-      <button class="filter-btn filter-ice"     data-filter="ice"    ><span class="el-icon">❄️</span><span class="el-label">Ice</span></button>
-      <button class="filter-btn filter-dragon"  data-filter="dragon" ><span class="el-icon">🐉</span><span class="el-label">Dragon</span></button>
+      <button class="filter-btn filter-fire"    data-filter="fire"   ><span class="el-icon"><img class="cc-ico" src="images/icons/fire.png" alt=""></span><span class="el-label">Fire</span></button>
+      <button class="filter-btn filter-water"   data-filter="water"  ><span class="el-icon"><img class="cc-ico" src="images/icons/water.png" alt=""></span><span class="el-label">Water</span></button>
+      <button class="filter-btn filter-thunder" data-filter="thunder"><span class="el-icon"><img class="cc-ico" src="images/icons/thunder.png" alt=""></span><span class="el-label">Thunder</span></button>
+      <button class="filter-btn filter-ice"     data-filter="ice"    ><span class="el-icon"><img class="cc-ico" src="images/icons/ice.png" alt=""></span><span class="el-label">Ice</span></button>
+      <button class="filter-btn filter-dragon"  data-filter="dragon" ><span class="el-icon"><img class="cc-ico" src="images/icons/dragon.png" alt=""></span><span class="el-label">Dragon</span></button>
     </div>
     <select id="sort-select">
       <option value="name">A-Z</option>
@@ -1658,12 +1711,12 @@ var MONSTER_ICONS = {
 };
 
 const ELEMENTS = {
-  fire:    { label: 'Fire',    icon: '\uD83D\uDD25', cls: 'tag-fire'    },
-  water:   { label: 'Water',   icon: '\uD83D\uDCA7', cls: 'tag-water'   },
-  thunder: { label: 'Thunder', icon: '\u26A1',        cls: 'tag-thunder' },
-  ice:     { label: 'Ice',     icon: '\u2744\uFE0F',  cls: 'tag-ice'     },
-  dragon:  { label: 'Dragon',  icon: '\uD83D\uDC09',  cls: 'tag-dragon'  },
-  poison:  { label: 'Poison',  icon: '\u2620\uFE0F',  cls: 'tag-poison'  },
+  fire:    { label: 'Fire',    icon: '<img class="cc-ico" src="images/icons/fire.png" alt="">',    cls: 'tag-fire'    },
+  water:   { label: 'Water',   icon: '<img class="cc-ico" src="images/icons/water.png" alt="">',   cls: 'tag-water'   },
+  thunder: { label: 'Thunder', icon: '<img class="cc-ico" src="images/icons/thunder.png" alt="">', cls: 'tag-thunder' },
+  ice:     { label: 'Ice',     icon: '<img class="cc-ico" src="images/icons/ice.png" alt="">',     cls: 'tag-ice'     },
+  dragon:  { label: 'Dragon',  icon: '<img class="cc-ico" src="images/icons/dragon.png" alt="">',  cls: 'tag-dragon'  },
+  poison:  { label: 'Poison',  icon: '<img class="cc-ico" src="images/icons/poison.png" alt="">',  cls: 'tag-poison'  },
 };
 
 const TYPE_ICONS = {
@@ -1792,11 +1845,11 @@ function statusClass(arr) {
 
 function makeStatusPanel(st) {
   var items = [
-    { key: 'poison', label: 'Poison', icon: '\u2620\uFE0F', cls: 'status-poison' },
-    { key: 'para',   label: 'Para',   icon: '\u26A1',        cls: 'status-para'   },
-    { key: 'sleep',  label: 'Sleep',  icon: '\uD83D\uDCA4', cls: 'status-sleep'  },
-    { key: 'stun',   label: 'Stun',   icon: '\uD83D\uDCAB', cls: 'status-stun'   },
-    { key: 'blast',  label: 'Blast',  icon: '\uD83D\uDCA5', cls: 'status-blast'  },
+    { key: 'poison', label: 'Poison', icon: '<img class="cc-ico" src="images/icons/poison.png" alt="">', cls: 'status-poison' },
+    { key: 'para',   label: 'Para',   icon: '<img class="cc-ico" src="images/icons/para.png" alt="">',   cls: 'status-para'   },
+    { key: 'sleep',  label: 'Sleep',  icon: '<img class="cc-ico" src="images/icons/sleep.png" alt="">',  cls: 'status-sleep'  },
+    { key: 'stun',   label: 'Stun',   icon: '<img class="cc-ico" src="images/icons/stun.png" alt="">', cls: 'status-stun'   },
+    { key: 'blast',  label: 'Blast',  icon: '<img class="cc-ico" src="images/icons/blast.png" alt="">', cls: 'status-blast'  },
   ];
   var rows = items.map(function(item) {
     var val = st[item.key];
@@ -1827,7 +1880,13 @@ function partToggle(evt, el) {
 function makeWeakPanel(m) {
   // Element weaknesses from ehz - find best part per element
   var elemKeys = ['fire','water','thunder','ice','dragon'];
-  var elemLabels = {'fire':'🔥 Fire','water':'💧 Water','thunder':'⚡ Thunder','ice':'❄ Ice','dragon':'🐉 Dragon'};
+  var elemLabels = {
+    'fire':    '<img class="cc-ico" src="images/icons/fire.png" alt=""> Fire',
+    'water':   '<img class="cc-ico" src="images/icons/water.png" alt=""> Water',
+    'thunder': '<img class="cc-ico" src="images/icons/thunder.png" alt=""> Thunder',
+    'ice':     '<img class="cc-ico" src="images/icons/ice.png" alt=""> Ice',
+    'dragon':  '<img class="cc-ico" src="images/icons/dragon.png" alt=""> Dragon'
+  };
   var elemColors = {'fire':'fire','water':'water','thunder':'thunder','ice':'ice','dragon':'dragon'};
   var elemBest = {};
   if (m.ehz) {
@@ -1840,7 +1899,14 @@ function makeWeakPanel(m) {
 
   // Status from st
   var stKeys = ['poison','para','sleep','stun','blast','exhaust'];
-  var stLabels = {'poison':'☠ Poison','para':'⚡ Para','sleep':'💤 Sleep','stun':'💫 Stun','blast':'💥 Blast','exhaust':'😫 Exhaust'};
+  var stLabels = {
+    'poison':  '<img class="cc-ico" src="images/icons/poison.png" alt=""> Poison',
+    'para':    '<img class="cc-ico" src="images/icons/para.png" alt=""> Para',
+    'sleep':   '<img class="cc-ico" src="images/icons/sleep.png" alt=""> Sleep',
+    'stun':    '<img class="cc-ico" src="images/icons/stun.png" alt=""> Stun',
+    'blast':   '<img class="cc-ico" src="images/icons/blast.png" alt=""> Blast',
+    'exhaust': '\uD83D\uDE2B Exhaust'
+  };
 
   // Best hitzone parts (top 2 by average of s+c+b)
   var partScores = (m.hz || []).map(function(h) {
@@ -1902,7 +1968,13 @@ function makeWeakPanel(m) {
     }
     var elems = '';
     var elKeys = ['fire','water','thunder','ice','dragon'];
-    var elLbls = ['🔥','💧','⚡','❄','🐉'];
+    var elLbls = [
+      '<img class="cc-ico" src="images/icons/fire.png" alt="">',
+      '<img class="cc-ico" src="images/icons/water.png" alt="">',
+      '<img class="cc-ico" src="images/icons/thunder.png" alt="">',
+      '<img class="cc-ico" src="images/icons/ice.png" alt="">',
+      '<img class="cc-ico" src="images/icons/dragon.png" alt="">'
+    ];
     var hasEl = elKeys.some(function(k) { return d[k] !== undefined; });
     if (hasEl) {
       elems = '<div class="part-detail-label">Element</div>'
@@ -2019,11 +2091,11 @@ function makeHitzonePanel(hz, st, ehz) {
   }).join('');
 
   var items = [
-    { key: 'poison',  label: 'Poison',  icon: '\u2620\uFE0F', cls: 'status-poison' },
-    { key: 'para',    label: 'Para',    icon: '\u26A1',        cls: 'status-para'   },
-    { key: 'sleep',   label: 'Sleep',   icon: '\uD83D\uDCA4',  cls: 'status-sleep'  },
-    { key: 'stun',    label: 'Stun',    icon: '\uD83D\uDCAB',  cls: 'status-stun'   },
-    { key: 'blast',   label: 'Blast',   icon: '\uD83D\uDCA5',  cls: 'status-blast'  },
+    { key: 'poison',  label: 'Poison',  icon: '<img class="cc-ico" src="images/icons/poison.png" alt="">', cls: 'status-poison' },
+    { key: 'para',    label: 'Para',    icon: '<img class="cc-ico" src="images/icons/para.png" alt="">',   cls: 'status-para'   },
+    { key: 'sleep',   label: 'Sleep',   icon: '<img class="cc-ico" src="images/icons/sleep.png" alt="">',  cls: 'status-sleep'  },
+    { key: 'stun',    label: 'Stun',    icon: '<img class="cc-ico" src="images/icons/stun.png" alt="">',  cls: 'status-stun'   },
+    { key: 'blast',   label: 'Blast',   icon: '<img class="cc-ico" src="images/icons/blast.png" alt="">',  cls: 'status-blast'  },
     { key: 'exhaust', label: 'Exhaust', icon: '\uD83D\uDE2B',  cls: 'status-stun'   },
   ];
   var stRows = items.map(function(item) {
@@ -2079,6 +2151,417 @@ function makeHitzonePanel(hz, st, ehz) {
     + '</div>';
 }
 
+// ── MOVESETS (signature attacks + how to react) ─────────────────
+var MONSTER_MOVESET = {
+  'Ajarakan': [
+    { m: 'Fireball Roll', d: 'Curls into a flaming ball and rolls across the arena — dodge perpendicular, never straight back.' },
+    { m: 'Magma Slam', d: 'Rears up and slams both arms down, heating the ground in front.' },
+    { m: 'Body Ignite (enrage)', d: 'Superheats its body; melee contact chips you — bait an attack, then strike.' },
+    { m: 'Lunging Clap', d: 'Closes distance with a double-arm clap; sidestep and punish the recovery.' }
+  ],
+  'Arkveld': [
+    { m: 'Chainblade Strikes', d: 'Single or double tendril slams from range; pull-back wind-up is your cue — punish after.' },
+    { m: 'Crossed Wingblade', d: 'Both blades slam down in the frontal arc; tell is its head tilting up. Get to the side.' },
+    { m: 'Nuclear Wyvern Strike', d: 'Roars and glows, then a chain of 3 growing explosions in front — circle behind for a free window.' },
+    { m: 'Chain Grab', d: 'Latches on with the chains — break free with any Slinger ammo.' },
+    { m: 'Aerial Chain Sweep', d: 'Flies up and sweeps the chains — a Flash Pod knocks it down.' }
+  ],
+  'Balahara': [
+    { m: 'Sand Burrow', d: 'Dives underground to reposition, then surfaces with a lunge — punish as it breaches.' },
+    { m: 'Quicksand Pit', d: 'Forms a sinking sand funnel that traps you — keep moving, never stand in the center.' },
+    { m: 'Tail Sweep', d: 'Wide low tail swipe; hop or roll through it.' },
+    { m: 'Sand Spit', d: 'Ranged sand projectile to interrupt you at distance.' }
+  ],
+  'Blangonga': [
+    { m: 'Leaping Pounce', d: 'Bounds across the arena onto you; bait the leap and punish the landing recovery.' },
+    { m: 'Fang Bite', d: 'Lunging bite — much weaker once you break its fangs.' },
+    { m: 'Snowball Spit', d: 'Ranged snow projectile; strafe to avoid.' },
+    { m: 'Pack Call', d: 'Rallies Blango minions — thin them out so they stop chipping you.' }
+  ],
+  'Chatacabra': [
+    { m: 'Tongue Grab', d: 'Long sticky-tongue lunge; dodge to the side.' },
+    { m: 'Rock-Arm Slam', d: 'Cements rocks onto its arms for a heavy slam — break the arms to strip the armor and topple it.' },
+    { m: 'Hop Body Slam', d: 'Short hop into a body press; roll out from under it.' }
+  ],
+  'Congalala': [
+    { m: 'Gas Breath', d: 'Exhales a foul cloud that inflicts Stench (blocks item use) — stay out of the cloud.' },
+    { m: 'Backside Gas', d: 'Rear emission causing Defense Down — never sit behind it.' },
+    { m: 'Roll / Belly Flop', d: 'Throws its bulk forward; sidestep and punish.' }
+  ],
+  'Doshaguma': [
+    { m: 'Lunging Bite', d: 'Charges in and bites; sidestep toward its flank.' },
+    { m: 'Pin Maul', d: 'Pins you and mauls — mash to break free, or dodge the grab.' },
+    { m: 'Shoulder Charge', d: 'Rushes across the arena; roll laterally.' },
+    { m: 'Pack Call (alpha)', d: 'Summons its pack — pull it away or clear the minions first.' }
+  ],
+  'Gogmazios': [
+    { m: 'Tar Spread', d: 'Leaks flammable tar that slows your movement — don\u2019t get coated near its fire.' },
+    { m: 'Fire Cannon', d: 'Charged fire blast; watch the wind-up and clear the line.' },
+    { m: 'Body Slam', d: 'Heavy stomp/slam with a big AoE; keep to its sides.' },
+    { m: 'Tail Sweep', d: 'Long tail swing — roll inward toward its body.' }
+  ],
+  'Gore Magala': [
+    { m: 'Feeler Spread', d: 'Extends sensory feelers; attacks gain wider AoE and apply the Frenzy Virus.' },
+    { m: 'Wing-Arm Sweep', d: 'Claw swipes and drags with the wing-arms; break them to reduce pressure.' },
+    { m: 'Charging Pounce', d: 'Leaps forward; dodge to the side and punish.' },
+    { m: 'Scale Burst', d: 'Scatters frenzy scales around itself — back off briefly.' }
+  ],
+  'Gravios': [
+    { m: 'Fire Beam', d: 'Sweeping mouth beam across a wide frontal arc; circle to its flank.' },
+    { m: 'Heat Gas', d: 'Vents gas from its back causing Fireblight/chip — don\u2019t linger beside it.' },
+    { m: 'Body Slam / Hip Check', d: 'Drops its armored bulk; roll away from the impact.' },
+    { m: 'Tail Spin', d: 'Full rotation tail swing; get clear or hug a hard part.' }
+  ],
+  'Guardian Arkveld': [
+    { m: 'Chainblade Combos', d: 'Rapid arm/blade strikes — blades are immune to elements, so use raw damage.' },
+    { m: 'Crossed Blade Slam', d: 'Frontal double-blade slam; step to the side.' },
+    { m: 'Charged Energy Blast', d: 'Limbs glow and store energy — hit both to detonate them and topple it.' },
+    { m: 'Grab', d: 'Chain grab — Slinger ammo breaks you free.' }
+  ],
+  'Guardian Doshaguma': [
+    { m: 'Aggressive Lunges', d: 'Faster, tankier bite-and-charge combos; bait and punish recovery.' },
+    { m: 'Pin Maul', d: 'Grab-and-maul — dodge the lunge that sets it up.' },
+    { m: 'Enrage Combo', d: 'Chains multiple attacks when red — wait it out rather than greeding.' }
+  ],
+  'Guardian Ebony Odogaron': [
+    { m: 'Rapid Bite Chains', d: 'Relentless bite combos that can inflict Bleeding — crouch still to recover.' },
+    { m: 'Lunging Pounce', d: 'Long leap onto you; punish only after it whiffs.' },
+    { m: 'Dash Bites', d: 'Repositioning dashes into more bites — never overcommit.' },
+    { m: 'Tail Whip', d: 'Quick rear swipe; stay off its tail side.' }
+  ],
+  'Guardian Fulgur Anjanath': [
+    { m: 'Electric Charge', d: 'Charges forward electrified; roll laterally.' },
+    { m: 'Thunder Breath', d: 'Electric breath cone from the mouth — stay out of the frontal cone.' },
+    { m: 'Bite & Body Slam', d: 'Standard T-rex bite into slam; dodge to its flank.' },
+    { m: 'Sparking Tail', d: 'Tail sweep with sparks when enraged; keep to its side.' }
+  ],
+  'Guardian Rathalos': [
+    { m: 'Fireball', d: 'Ranged fire spit causing Fireblight; bring Nulberry.' },
+    { m: 'Talon Dive', d: 'Aerial dive with Poisonous claws — reposition under it after.' },
+    { m: 'Charge & Bite', d: 'Grounded rush into a bite; sidestep.' },
+    { m: 'Tail Flip', d: 'Poison backflip — avoid the rear.' }
+  ],
+  'Gypceros': [
+    { m: 'Flash Crest', d: 'Rears up and its crest flashes a blinding light — look away or break the crest.' },
+    { m: 'Poison Spit', d: 'Ranged poison glob; strafe and bring Antidote.' },
+    { m: 'Play Dead', d: 'Feigns death to bait a rush, then springs up with a tail attack — don\u2019t pounce.' },
+    { m: 'Tail Whip', d: 'Spinning tail swipe; back off.' }
+  ],
+  'Hirabami': [
+    { m: 'Aerial Glide Dive', d: 'Glides through the air and dives — knock it down while airborne, punish the landing.' },
+    { m: 'Ice Breath', d: 'Cone of frost that can Iceblight; avoid the frontal spray.' },
+    { m: 'Ground Ice Spikes', d: 'Freezes patches of ground; watch your footing.' },
+    { m: 'Tail Sweep', d: 'Long leviathan tail swing; roll inward.' }
+  ],
+  'Jin Dahaad': [
+    { m: 'Frost Shockwave', d: 'Arena-wide sweeping wave of frost — use terrain/cover or it will catch you.' },
+    { m: 'Ice Breath Spray', d: 'Wide frost breath; stay out of the cone.' },
+    { m: 'Tail Slam', d: 'Massive tail crash with a big hitbox; clear the area.' },
+    { m: 'Body Charge', d: 'Drags its bulk forward; dodge to the flank. Break the back ice, target the face.' }
+  ],
+  'Lagiacrus': [
+    { m: 'Electric Discharge', d: 'Charges up (body glows) then bursts electricity around itself — back off when it glows.' },
+    { m: 'Charge & Bite', d: 'Lunges forward to bite; sidestep.' },
+    { m: 'Tail Whip', d: 'Sweeping tail; stay off its rear.' },
+    { m: 'Body Slam', d: 'Rears and drops — slower on land, so bait it onto dry ground.' }
+  ],
+  'Lala Barina': [
+    { m: 'Rose Bloom', d: 'Rears and spreads its red flower — a Paralysis bind AoE; get out of range immediately.' },
+    { m: 'Web Shot', d: 'Ranged web that can bind you; strafe.' },
+    { m: 'Leg Sweep / Stab', d: 'Spider-leg jabs at close range; roll through.' },
+    { m: 'Pounce', d: 'Short leap onto you; dodge sideways.' }
+  ],
+  'Mizutsune': [
+    { m: 'Bubble Spit/Beam', d: 'Lays bubbles that cause Bubbleblight (slippery) — pop them or evade through, don\u2019t panic-roll.' },
+    { m: 'Flowing Spin', d: 'Graceful body-spin combos; learn the rhythm and punish after the final spin.' },
+    { m: 'Lunging Slide', d: 'Slides across the floor to reposition; sidestep.' },
+    { m: 'Tail Sweep', d: 'Fluid tail swing; roll inward toward its body.' }
+  ],
+  'Nerscylla': [
+    { m: 'Ceiling Ambush', d: 'Hangs from above and drops down — watch the ceiling when it disappears.' },
+    { m: 'Web Shot', d: 'Binds you in place; bring a cleanser and keep moving.' },
+    { m: 'Poison Sting', d: 'Tail/fang stab that inflicts Poison — bring Antidote.' },
+    { m: 'Hide Charge', d: 'Rushes wearing its hide armor — break the hide off, then hit the body.' }
+  ],
+  'Nu Udra': [
+    { m: 'Tentacle Slam/Sweep/Swing', d: 'Physical tentacle attacks, mostly frontal — dodge sideways; the head shows where it aims.' },
+    { m: 'Charge Dash', d: 'Slides across the area to reach you (slower in base form).' },
+    { m: 'Fiery Flame (enrage)', d: 'Head glows blue, then flames surge over its body — attacks now cause Fireblight.' },
+    { m: 'Flame Breath', d: 'Breathes fire onto the ground that lingers; don\u2019t stand in it.' },
+    { m: 'Fiery Barrage', d: 'Gathers flaming rocks and rains them around it — watch the sky.' },
+    { m: 'Tentacle Grab', d: 'Snatches you with a tentacle — knife free immediately.' }
+  ],
+  'Omega Planetes': [
+    { m: 'Wave Cannon', d: 'Fires laser semicircles from the left or right — move to the safe side.' },
+    { m: 'Fist Rockets', d: 'Launches a tracking rocket-punch; a blocking weapon can parry it.' },
+    { m: 'Raining Bombs', d: 'Lobs bombs that mark the ground then crash down — leave the marked zones.' },
+    { m: 'Delta Attack', d: 'Summons a Nerscylla Clone then charges a wipe beam — kill the clone fast for a protective shield.' },
+    { m: 'Omega Micros', d: 'Spews small drones that chase and self-destruct; pop or outrun them.' },
+    { m: 'MRV Missiles (late)', d: 'A 5-missile volley that punishes panic-rolls — run, then dodge a single missile.' }
+  ],
+  'Quematrice': [
+    { m: 'Flammable Trail', d: 'Lays a trail of ignitable fluid then sets it alight — never stand in the trail.' },
+    { m: 'Tail Slam', d: 'Heavy tail-slam combos; punish right after.' },
+    { m: 'Peck / Lunge', d: 'Forward beak jab; sidestep.' },
+    { m: 'Tail Sweep', d: 'Wide low swing; hop or roll.' }
+  ],
+  'Rathalos': [
+    { m: 'Fireball', d: 'Aerial or ground fire spit (Fireblight); bring Nulberry.' },
+    { m: 'Talon Dive', d: 'Aerial dive with Poison claws — Flash Pod to ground him.' },
+    { m: 'Charge & Bite', d: 'Grounded rush into a bite; sidestep to the flank.' },
+    { m: 'Tail Flip', d: 'Poison backflip — stay off his rear.' }
+  ],
+  'Rathian': [
+    { m: 'Tail Flip', d: 'Poison backflip — her signature; never stand behind her.' },
+    { m: 'Charge & Bite', d: 'Rushes forward to bite; circle to her flank.' },
+    { m: 'Fireball', d: 'Ranged fire spit; strafe.' },
+    { m: 'Tail Sweep', d: 'Low spinning swipe; roll inward.' }
+  ],
+  'Rey Dau': [
+    { m: 'Wing Slash', d: 'Scrapes its bladed wings left or right across the ground; block, counter, or dodge — great punish window.' },
+    { m: 'Backflip Wing Slam', d: 'Flies up, backflips, then slams a wing down (often its opener); it pauses after — heavy damage opening.' },
+    { m: 'Charged Smash', d: 'Rears on hind legs and brings a foreleg overhead, bursting electricity on impact in front.' },
+    { m: 'Lightning Beam', d: 'Railgun from its horns — quickfire (low) or a supercharged lethal beam. Horns glow red after = Focus Strike to topple it.' },
+    { m: 'Dive Slide', d: 'Leaps back then slides forward wings-out for big damage — roll sideways out of the path.' }
+  ],
+  'Rompopolo': [
+    { m: 'Gas Bombs', d: 'Plants explosive gas pockets — Poison/Defense Down; don\u2019t linger in the clouds.' },
+    { m: 'Proboscis Jab', d: 'Stabs forward with its snout; dodge to the side.' },
+    { m: 'Inflate & Slam', d: 'Puffs up then drops its body; roll out.' },
+    { m: 'Gas Spray', d: 'Cone of gas; back away and bring Antidote.' }
+  ],
+  'Seregios': [
+    { m: 'Scale Scatter', d: 'Flings bladescales that cause Bleeding — crouch still to stop the bleed.' },
+    { m: 'Charging Dive', d: 'Aerial dive across the arena; punish after it lands.' },
+    { m: 'Tail Flick', d: 'Whips scale-covered tail; stay off its rear.' },
+    { m: 'Leaping Slam', d: 'Jumps and slams down; dodge sideways.' }
+  ],
+  'Uth Duna': [
+    { m: 'Belly Flop', d: 'Rears up then slams its belly down over a wide frontal area — dodge sideways; mouth is exposed for a Focus Strike after.' },
+    { m: 'Twisted Body Slam (Twist Dive)', d: 'Twists like a tornado then slams, sending a water wave; can repeat. Focus Strike the mouth after to topple.' },
+    { m: 'Charge', d: 'Rears on hind legs then rushes straight forward — roll to either side.' },
+    { m: 'Arm Sweep', d: 'Sweeps a foreleg to the side, often into a follow-up arm slam; back away after it passes.' },
+    { m: 'Underwater Dive', d: 'Dives and sends a wave, regrowing its water veil; pull down Area 15/17 rubble to knock it out of the water.' },
+    { m: 'Water Veil', d: 'Starts cloaked in a damage-reducing veil — break it to expose her (she gets faster but takes more damage).' }
+  ],
+  'Xu Wu': [
+    { m: 'Gas Cloud', d: 'Emits an ailment cloud around itself — don\u2019t linger inside it.' },
+    { m: 'Lunge / Tackle', d: 'Throws its body forward; dodge to the side and punish recovery.' },
+    { m: 'Ranged Spit', d: 'Projectile to harass you at distance; strafe.' },
+    { m: 'Settle Burst', d: 'Big move that leaves it settled afterward — your main damage window. See the Weak tab for its soft spots.' }
+  ],
+  'Yian Kut-Ku': [
+    { m: 'Fireball', d: 'Ranged fire spit; strafe to avoid.' },
+    { m: 'Peck Combo', d: 'Rapid beak pecks at close range; roll back.' },
+    { m: 'Charge / Hop', d: 'Hops forward or charges; sidestep.' },
+    { m: 'Sonic Weakness', d: 'A Sonic Bomb staggers it for a free opening; it flinches easily overall.' }
+  ],
+  'Zoh Shia': [
+    { m: 'Blast Crystal Seed', d: 'Plants Wylk/blast crystals that detonate — avoid standing near them.' },
+    { m: 'Beam Blast', d: 'Charges a large dragon/blast beam; clear the line and bring Blight res.' },
+    { m: 'Claw Combos', d: 'Close-range claw and body-slam strings; dodge to the flank.' },
+    { m: 'Glowing Weak Point', d: 'Chest/head glow when charged — focus them for big damage.' },
+    { m: 'Phase Ultimate (late)', d: 'Escalating arena-wide AoE in later phases — pace yourself and survive it.' }
+  ]
+};
+
+// ── COMBAT TIPS (synthesized from community fight guides) ────────
+var MONSTER_TIPS = {
+  'Ajarakan': [
+    '<b>Prep:</b> Stack Fire resistance and a Cool Drink — its body superheats and most attacks carry fire.',
+    '<b>Watch for:</b> The curl-into-a-ball rolling charge; dodge sideways (perpendicular), never backpedal in a straight line.',
+    '<b>Punish:</b> When it rears up and superheats for a big slam, back off, then pile on after the shockwave.',
+    '<b>Break:</b> Head and forelegs; exploit its elemental weakness shown in the Weak tab.'
+  ],
+  'Arkveld': [
+    '<b>Prep:</b> Bring Nulberry — its attacks inflict Dragonblight, which zeroes out your elemental damage.',
+    '<b>Key mechanic:</b> When the chainblades glow, focus them — popping both detonates them and topples Arkveld, removing its empowered damage.',
+    '<b>Watch for:</b> The charged 3-stage "nuclear" strike in its frontal arc — get behind it for a huge free window.',
+    '<b>Escape:</b> Use any Slinger ammo to break out of its grab; Flash Pods knock it out of aerial chain sweeps.'
+  ],
+  'Balahara': [
+    '<b>Watch for:</b> It burrows and forms sinking quicksand pits that trap you — keep moving, never stand in the funnel.',
+    '<b>Punish:</b> Big opening right as it bursts out of the sand; hit the head before it re-burrows.',
+    '<b>Break:</b> Head and tail. A solid early-game monster to practice dodge timing on.'
+  ],
+  'Blangonga': [
+    '<b>Prep:</b> Clear or avoid its Blango pack first — the minions chip you while it repositions.',
+    '<b>Break:</b> The fangs — this weakens its leaping bite and overall damage noticeably.',
+    '<b>Watch for:</b> Long leaps across the arena and snowball spit; bait the pounce, then punish the landing recovery.'
+  ],
+  'Chatacabra': [
+    '<b>Key mechanic:</b> It cements rocks onto its arms for heavier slams — break the arms to strip the armor and topple it.',
+    '<b>Watch for:</b> The long sticky-tongue grab; dodge to the side.',
+    '<b>Beginner-friendly:</b> Great for learning Focus Strikes on wounds and basic combos.'
+  ],
+  'Congalala': [
+    '<b>Prep:</b> Bring Deodorant/Cleanser — its gas and rear emissions cause Stench (blocks item use) and Defense Down.',
+    '<b>Positioning:</b> Stay off its backside and out of the gas cloud; strike from the flanks.',
+    '<b>Break:</b> The head. It roars and flinches easily once pressured.'
+  ],
+  'Doshaguma': [
+    '<b>Prep:</b> A lone Doshaguma is manageable; an alpha summons its pack — thin the minions or pull it away first.',
+    '<b>Watch for:</b> The lunging bite and pin; when it turns red (enraged) it hits faster and chains attacks.',
+    '<b>Punish:</b> Bait the charge, sidestep, and wail on the head during recovery.'
+  ],
+  'Gogmazios': [
+    '<b>Watch for:</b> The flammable tar it spreads slows your movement and ignites near its fire — don\u2019t get coated.',
+    '<b>Positioning:</b> Stay to its sides and target the head/chest; its frontal AoEs are massive.',
+    '<b>Endurance fight:</b> Manage stamina and item stock — this is a long elder-dragon slog.'
+  ],
+  'Gore Magala': [
+    '<b>Key mechanic:</b> Its scales inflict the Frenzy Virus — play aggressively to overcome it (overcoming grants an affinity boost; succumbing weakens you).',
+    '<b>Watch for:</b> When it spreads its wing-feelers it "sees" you better and its attacks gain wider AoE.',
+    '<b>Break:</b> The wing-arms and head to cut its pressure.'
+  ],
+  'Gravios': [
+    '<b>Prep:</b> Fire resistance and Cool Drink — it spews a wide fire beam and heat gas.',
+    '<b>Weak spot:</b> The underbelly is soft; the back and legs are rock-hard and may bounce your weapon.',
+    '<b>Watch for:</b> The sweeping belly/head fire beam — circle to its flank and punish after it fires.'
+  ],
+  'Guardian Arkveld': [
+    '<b>Prep:</b> Use raw Physical weapons — its chainblades are immune to elements. Bring high Defense and Dragon res.',
+    '<b>Break:</b> The chainblades to weaken it; head and tail are also soft.',
+    '<b>Tactic:</b> Very aggressive arm/blade combos — never overcommit. Lure it into a Rey Dau turf war for free damage.'
+  ],
+  'Guardian Doshaguma': [
+    '<b>Prep:</b> Maximize Defense — this Guardian variant is extremely aggressive and tanky.',
+    '<b>Punish:</b> Bait its big lunges and punish the long recovery; target the head.',
+    '<b>Tactic:</b> Open wounds and pop them with Focus Strikes to create knockdowns.'
+  ],
+  'Guardian Ebony Odogaron': [
+    '<b>Prep:</b> Watch for Bleeding (Bloodblight) — crouch still to recover, and never heal mid-combo.',
+    '<b>Tactic:</b> Relentless, fast bite chains — patience over greed; punish only after its lunge whiffs.',
+    '<b>Break:</b> Head and forelegs.'
+  ],
+  'Guardian Fulgur Anjanath': [
+    '<b>Prep:</b> Thunder resistance — it electrifies its charges and breath when sparked up.',
+    '<b>Watch for:</b> The electric charge and breath cone; when it sparks it\u2019s enraged and faster.',
+    '<b>Break:</b> The head/nose; stick to its flank to avoid the frontal cone.'
+  ],
+  'Guardian Rathalos': [
+    '<b>Prep:</b> Bring Flash Pods to ground it from the air, plus Nulberry for Fireblight/Poison.',
+    '<b>Break:</b> Head for KOs; wings/legs to keep it grounded.',
+    '<b>Watch for:</b> The fireball-into-aerial-dive combo; reposition under it after a dive.'
+  ],
+  'Gypceros': [
+    '<b>Watch for:</b> Its crest flashes a blinding light when it rears up — look away or break the crest to stop it.',
+    '<b>Trick:</b> It plays dead to bait a rush — don\u2019t pounce; it springs up with a tail whip.',
+    '<b>Prep:</b> It spits Poison — bring Antidotes. Break the crest.'
+  ],
+  'Hirabami': [
+    '<b>Prep:</b> Ice resistance — this leviathan glides through the air and freezes the ground.',
+    '<b>Watch for:</b> Ice-breath cones and dive freezes; knock it down while airborne and punish landings.',
+    '<b>Note:</b> Often appears in pairs in the Iceshard Cliffs — manage aggro from both.'
+  ],
+  'Jin Dahaad': [
+    '<b>Watch for:</b> The arena-wide frost shockwave sweep — use terrain/cover or it will catch you.',
+    '<b>Break:</b> The back ice, then target the face during its grounded phases.',
+    '<b>Tactic:</b> Huge telegraphed AoEs — patience and positioning beat greed in this multi-phase fight.'
+  ],
+  'Lagiacrus': [
+    '<b>Prep:</b> Thunder resistance — it discharges electricity around its body when charged.',
+    '<b>Tactic:</b> It\u2019s slower on land — bait it onto dry ground and punish; back off when it glows to charge.',
+    '<b>Break:</b> Head and chest.'
+  ],
+  'Lala Barina': [
+    '<b>Key mechanic:</b> When it rears and spreads its red "rose" bloom, get out of range — that\u2019s its Paralysis web trap.',
+    '<b>Break:</b> The abdomen/flower to cut its bind attacks.',
+    '<b>Beginner-friendly:</b> Good practice for reading wind-up tells.'
+  ],
+  'Mizutsune': [
+    '<b>Key mechanic:</b> Its bubbles cause Bubbleblight, making you slip — pop them or evade through, don\u2019t panic-roll.',
+    '<b>Tactic:</b> Flowing, graceful combos — learn the rhythm and punish after its long spins.',
+    '<b>Break:</b> Head and dorsal fins; exploit its elemental weakness in the Weak tab.'
+  ],
+  'Nerscylla': [
+    '<b>Prep:</b> Bring Antidote and a cleanser — it inflicts Poison and can web you in place.',
+    '<b>Watch for:</b> It hangs from ceilings and drops down for ambushes, plus a ranged web-shot.',
+    '<b>Break:</b> Strip the hide/armor it wears, then target the head and abdomen.'
+  ],
+  'Nu Udra': [
+    '<b>Prep:</b> Fire res + Cool Drink; weak to Water. It\u2019s eyeless and senses by motion — flank it using its head as a facing cue.',
+    '<b>Key item:</b> Use the Watermoss slinger to douse its flames and force it back to its weaker base form.',
+    '<b>Watch for:</b> The flamethrower and falling flaming-rock barrage; if a tentacle grabs you, knife free immediately.',
+    '<b>Break:</b> The head is the prime target; a Pitfall Trap lowers it and exposes the head for ages.'
+  ],
+  'Omega Planetes': [
+    '<b>Prep:</b> FFXIV raid boss — weak to Thunder (then Dragon). Traps, Flash and Ghillie do NOT work; bring a Farcaster and max Fire res.',
+    '<b>Key mechanic:</b> It summons a Nerscylla Clone before its Delta Attack — kill the clone fast so its shield blocks the beam, or the team wipes.',
+    '<b>Watch for:</b> Yellow on-screen callouts name its big moves (FFXIV-style); against the MRV missile volley, run \u2014 don\u2019t panic-roll.',
+    '<b>Target:</b> Head and legs; destroy leg wounds to cancel its empowered "Pantokrator" mode. Use Rimechain Peak boulders to knock it down.'
+  ],
+  'Quematrice': [
+    '<b>Key mechanic:</b> It lays a trail of flammable fluid then ignites it — never stand in the trail.',
+    '<b>Watch for:</b> Tail-slam combos; punish right after.',
+    '<b>Beginner-friendly:</b> An early bird-wyvern, ideal for learning Focus Strikes.'
+  ],
+  'Rathalos': [
+    '<b>Prep:</b> Flash Pods to ground the King from flight; Nulberry for Fireblight and Poison (claws/tail).',
+    '<b>Break:</b> Head for KOs; wings and legs to keep him on the ground.',
+    '<b>Watch for:</b> The fireball-then-dive aerial combo; stay mobile and reposition under him.'
+  ],
+  'Rathian': [
+    '<b>Watch for:</b> The poison tail-flip — stay away from her rear; bring Antidotes.',
+    '<b>Tactic:</b> Attack the head and break the back; circle to her flank to dodge charges and tail sweeps.',
+    '<b>Note:</b> Ground counterpart to Rathalos — same prep, fewer aerials.'
+  ],
+  'Rey Dau': [
+    '<b>Prep:</b> Thunder resistance — the Plains apex fires a powerful lightning rail beam.',
+    '<b>Watch for:</b> The beam charge tell — dodge laterally or hide behind a rock pillar, then punish after it fires.',
+    '<b>Break:</b> Wings and horns; target the head.'
+  ],
+  'Rompopolo': [
+    '<b>Prep:</b> Bring Antidote — its gas bombs explode and cause Poison/Defense Down.',
+    '<b>Positioning:</b> Don\u2019t linger in the gas clouds; it feigns and jabs with its proboscis.',
+    '<b>Break:</b> The body/gas sac.'
+  ],
+  'Seregios': [
+    '<b>Prep:</b> Watch for Bleeding from its flying bladescales — crouch to stop the bleed.',
+    '<b>Watch for:</b> Scale-scattering charges and dives; punish after the dive.',
+    '<b>Break:</b> Head, legs and tail.'
+  ],
+  'Uth Duna': [
+    '<b>Key mechanic:</b> It cloaks in a water veil that softens damage — break the veil to expose it.',
+    '<b>Prep:</b> Watch for Waterblight (slows stamina recovery); weak to Thunder.',
+    '<b>Watch for:</b> The big water-expulsion AoE; target the head once the veil is gone.'
+  ],
+  'Xu Wu': [
+    '<b>Positioning:</b> Stay out of its gas/AoE clouds — lingering inflicts an ailment and chip damage.',
+    '<b>Punish:</b> Strike when it lowers or settles after a big move; keep mobile and avoid getting cornered.',
+    '<b>Break:</b> Target the highlighted weak parts and exploit the elemental weakness shown in the Weak tab.'
+  ],
+  'Yian Kut-Ku': [
+    '<b>Trick:</b> Sensitive hearing — a Sonic Bomb staggers it for a free opening.',
+    '<b>Tactic:</b> Flinches very easily; pressure the head/beak and break the big ears.',
+    '<b>Beginner-friendly:</b> Classic starter wyvern — watch the fireballs and peck combos.'
+  ],
+  'Zoh Shia': [
+    '<b>Prep:</b> Bring Dragon res and Blight res — the post-update final boss hits with dragon/blast AoEs.',
+    '<b>Key mechanic:</b> It seeds Wylk/blast crystals that detonate — avoid the explosions and the big beam.',
+    '<b>Break:</b> The chest/head when they glow; pace yourself through its escalating multi-phase ultimate.'
+  ]
+};
+
+function makeTipsPanel(name) {
+  var tips = MONSTER_TIPS[name] || [];
+  var moves = MONSTER_MOVESET[name] || [];
+  if (!tips.length && !moves.length) return '<div class="tips-empty">No combat tips yet for this monster.</div>';
+  var html = '';
+  if (moves.length) {
+    html += '<div class="tips-section-h">Moveset</div>';
+    html += '<ul class="moveset-list">' + moves.map(function(mv) {
+      return '<li><span class="mv-name">' + mv.m + '</span><span class="mv-desc">' + mv.d + '</span></li>';
+    }).join('') + '</ul>';
+  }
+  if (tips.length) {
+    html += '<div class="tips-section-h">Strategy</div>';
+    html += '<ul class="tips-list">' + tips.map(function(t) { return '<li>' + t + '</li>'; }).join('') + '</ul>';
+  }
+  html += '<div class="tips-src-note">Moveset &amp; tips synthesized from community fight guides — specifics vary by weapon &amp; build.</div>';
+  return html;
+}
+
 function makeCard(m, delay) {
   var weakTags = m.weak.map(makeTag).join('');
   var iconData = MONSTER_ICONS[m.name];
@@ -2087,14 +2570,19 @@ function makeCard(m, delay) {
     : TYPE_ICONS[m.type] || '\uD83D\uDC32';
   var verifiedBadge = '';
   var hasDrops = !!m.drops;
-  var tabsHtml = '<div class="card-tabs">'
-    + '<button class="card-tab-btn active" onclick="cardTab(event,this,0)">📋 Weak</button>'
-    + '<button class="card-tab-btn" onclick="cardTab(event,this,1)">⚔ Stats</button>'
-    + (hasDrops ? '<button class="card-tab-btn" onclick="cardTab(event,this,2)">🎁 Drops</button>' : '')
-    + '</div>';
-  var weakPane = '<div class="card-tab-pane active">' + makeWeakPanel(m) + '</div>';
-  var hzPane = '<div class="card-tab-pane">' + makeHitzonePanel(m.hz, m.st, m.ehz || null) + '</div>';
-  var dropPane = hasDrops ? '<div class="card-tab-pane">' + makeDropPanel(m.drops, _renderQuery) + '</div>' : '';
+  var hasTips = MONSTER_TIPS[m.name] && MONSTER_TIPS[m.name].length;
+  var tabDefs = [
+    { label: '📋 Weak', pane: makeWeakPanel(m) },
+    { label: '⚔ Stats', pane: makeHitzonePanel(m.hz, m.st, m.ehz || null) }
+  ];
+  if (hasDrops) tabDefs.push({ label: '🎁 Drops', pane: makeDropPanel(m.drops, _renderQuery) });
+  if (hasTips) tabDefs.push({ label: '💡 Tips', pane: makeTipsPanel(m.name) });
+  var tabsHtml = '<div class="card-tabs">' + tabDefs.map(function(t, i) {
+    return '<button class="card-tab-btn' + (i === 0 ? ' active' : '') + '" onclick="cardTab(event,this,' + i + ')">' + t.label + '</button>';
+  }).join('') + '</div>';
+  var panesHtml = tabDefs.map(function(t, i) {
+    return '<div class="card-tab-pane' + (i === 0 ? ' active' : '') + '">' + t.pane + '</div>';
+  }).join('');
 
   return '<div class="card" style="animation-delay:' + delay + 's" onclick="toggleCard(this)">'
     + '<div class="card-row">'
@@ -2114,9 +2602,7 @@ function makeCard(m, delay) {
     + '<div class="card-expand"><div class="card-expand-inner">'
     + '<div class="hitzone-divider"></div>'
     + tabsHtml
-    + weakPane
-    + hzPane
-    + dropPane
+    + panesHtml
     + '</div></div>'
     + '</div>';
 }
@@ -2195,7 +2681,8 @@ function render() {
         // switch to Drops tab (index 1)
         var panes = card.querySelectorAll('.card-tab-pane');
         var btns = card.querySelectorAll('.card-tab-btn');
-        var dropIdx = btns.length - 1; // Drops is last tab
+        var dropIdx = 0;
+        btns.forEach(function(b, i) { if (b.textContent.indexOf('Drops') !== -1) dropIdx = i; });
         panes.forEach(function(p, i) { p.classList.toggle('active', i === dropIdx); });
         btns.forEach(function(b, i) { b.classList.toggle('active', i === dropIdx); });
       }
