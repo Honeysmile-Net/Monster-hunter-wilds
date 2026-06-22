@@ -633,6 +633,15 @@
   .card-tab-btn.active { color: var(--gold-light); border-bottom-color: var(--gold-light); }
 
   /* ── Tips panel ──────────────────────────────── */
+  .moveset-row {
+    display: flex; align-items: flex-start; gap: 0.6rem;
+  }
+  .moveset-row .moveset-list { flex: 1; min-width: 0; }
+  .tips-shot {
+    display: block; width: 38%; flex-shrink: 0; aspect-ratio: 3 / 4;
+    margin: 0.35rem 0 0.1rem; align-self: flex-start;
+    border: 1px solid var(--border);
+  }
   .card-tabs { flex-wrap: wrap; }
   .card-tab-btn { white-space: nowrap; }
   .tips-list {
@@ -717,6 +726,7 @@
     text-align: center;
     flex-shrink: 0;
   }
+  .ehz-ico { height: 13px; width: auto; display: inline-block; vertical-align: middle; }
   .ehz-fire    { color: #c05050; }
   .ehz-water   { color: #3878b8; }
   .ehz-thunder { color: #9a7020; }
@@ -1445,6 +1455,71 @@
   .pool-6 { background:#c050a0; }
   .pool-7 { background:#808080; }
 
+  /* ── EVENTS TAB ──────────────────────────────── */
+  .ev-content { padding: 0.5rem 0.8rem 3rem; }
+  .ev-intro {
+    padding: 0.5rem 0.8rem 0.2rem; font-family: 'Crimson Pro', serif;
+    font-size: 0.56rem; line-height: 1.45; color: var(--text-muted); text-wrap: pretty;
+  }
+  .ev-intro b { color: var(--gold-light); font-weight: 700; }
+  .ev-tier-h {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-family: 'Cinzel', serif; font-size: 0.6rem; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-light);
+    margin: 1rem 0 0.5rem; padding-bottom: 0.25rem;
+    border-bottom: 1.5px solid var(--gold-dim);
+  }
+  .ev-tier-h:first-child { margin-top: 0.2rem; }
+  .ev-tier-h .ev-tier-count {
+    font-family: 'Lato', sans-serif; font-size: 0.5rem; font-weight: 400;
+    letter-spacing: 0.02em; text-transform: none; color: var(--text-dim);
+  }
+  .ev-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(255px, 1fr)); gap: 0.55rem; }
+  .ev-card {
+    background: linear-gradient(180deg, var(--card-grad-top) 0%, var(--card-grad-bot) 100%);
+    border: 1px solid var(--border); border-radius: 8px;
+    padding: 0.5rem 0.6rem; display: flex; flex-direction: column; gap: 0.35rem;
+    transition: border-color 0.18s, box-shadow 0.18s, transform 0.18s;
+  }
+  .ev-card:hover {
+    border-color: var(--border-glow);
+    box-shadow: 0 5px 18px rgba(150,120,210,0.14);
+    transform: translateY(-1px);
+  }
+  .ev-card-top { display: flex; align-items: flex-start; gap: 0.4rem; }
+  .ev-hr {
+    flex-shrink: 0; font-family: 'Cinzel', serif; font-size: 0.42rem; font-weight: 700;
+    letter-spacing: 0.03em; color: #fff; background: var(--gold);
+    padding: 0.12rem 0.34rem; border-radius: 4px; line-height: 1.3; white-space: nowrap;
+    margin-top: 0.05rem;
+  }
+  .ev-name {
+    font-family: 'Cinzel', serif; font-size: 0.6rem; font-weight: 700;
+    color: var(--text); line-height: 1.18; flex: 1; text-wrap: pretty;
+  }
+  .ev-tag {
+    flex-shrink: 0; font-family: 'Lato', sans-serif; font-size: 0.4rem; font-weight: 700;
+    letter-spacing: 0.04em; text-transform: uppercase; padding: 0.1rem 0.32rem;
+    border-radius: 999px; line-height: 1.4; margin-top: 0.05rem; white-space: nowrap;
+  }
+  .ev-tag-gear     { color: #5a3aa0; background: #ece2fa; border: 1px solid #c9b3ee; }
+  .ev-tag-material { color: #1a5a78; background: #dcf0f6; border: 1px solid #a6d6e6; }
+  .ev-tag-cosmetic { color: #983a72; background: #fbe2f0; border: 1px solid #eeb3d6; }
+  .ev-tag-misc     { color: #5a5468; background: #e8e4f0; border: 1px solid #cdc6dd; }
+  .ev-row { display: flex; gap: 0.35rem; font-family: 'Crimson Pro', serif; font-size: 0.54rem; line-height: 1.38; }
+  .ev-row-label {
+    flex-shrink: 0; font-family: 'Cinzel', serif; font-size: 0.42rem; font-weight: 700;
+    letter-spacing: 0.03em; text-transform: uppercase; color: var(--text-dim);
+    width: 48px; padding-top: 0.05rem;
+  }
+  .ev-target { color: var(--text); text-wrap: pretty; }
+  .ev-target .ev-tempered { color: #b0603a; font-weight: 600; }
+  .ev-target .ev-at { color: #a03060; font-weight: 700; }
+  .ev-rewards { color: var(--text-muted); text-wrap: pretty; }
+  .ev-rewards .ev-rw-gear { color: #5a3aa0; font-weight: 600; }
+  .ev-card mark { background: #f5d76e; border-radius: 2px; padding: 0 0.1rem; }
+  .ev-empty { padding: 1.5rem; text-align: center; color: var(--text-muted); font-family: 'Crimson Pro', serif; font-style: italic; }
+
   /* ── Global search ───────────────────────────── */
   .gsearch-wrap {
     position: relative; max-width: 560px; margin: 0 auto 0.4rem; padding: 0 0.8rem;
@@ -1552,6 +1627,195 @@
     font-family: 'Crimson Pro', serif; font-size: 0.48rem; color: var(--text-muted);
     margin-top: 0.12rem;
   }
+  .weather-item { cursor: pointer; transition: background 0.15s; }
+  .weather-item:hover { background: var(--surface); }
+  .weather-item-head { display: flex; align-items: baseline; gap: 0.3rem; }
+  .weather-item-caret {
+    font-size: 0.5rem; color: var(--text-muted); transition: transform 0.2s;
+    flex-shrink: 0; transform: rotate(0deg);
+  }
+  .weather-item.open .weather-item-caret { transform: rotate(90deg); }
+  .weather-item-name { flex: 1; }
+  .weather-item-body { display: none; margin-top: 0.4rem; }
+  .weather-item.open .weather-item-body { display: block; }
+  .weather-trade-h {
+    font-family: 'Cinzel', serif; font-weight: 700; font-size: 0.46rem;
+    color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em;
+    margin: 0.45rem 0 0.2rem;
+  }
+  .weather-trade-row {
+    display: flex; align-items: center; gap: 0.35rem; flex-wrap: wrap;
+    padding: 0.22rem 0.45rem; border-radius: 6px; background: var(--surface);
+    margin-bottom: 0.2rem; font-family: 'Crimson Pro', serif; font-size: 0.48rem;
+  }
+  .weather-trade-npc { color: var(--text-muted); flex-shrink: 0; }
+  .weather-trade-give { color: var(--text); font-weight: 700; }
+  .weather-trade-arrow { color: var(--gold-light); flex-shrink: 0; }
+  .weather-trade-get { color: #7a5010; font-weight: 700; }
+  .weather-trade-none {
+    font-family: 'Crimson Pro', serif; font-size: 0.46rem; color: var(--text-muted);
+    font-style: italic; padding: 0.2rem 0;
+  }
+
+  /* ── Crafting tab ────────────────────────────── */
+  #section-crafting { padding-bottom: 5rem; }
+  .craft-group {
+    background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+    overflow: hidden; margin: 0 0.8rem 0.7rem;
+  }
+  .craft-group-head {
+    display: flex; gap: 0.55rem; align-items: flex-start;
+    padding: 0.6rem 0.7rem; background: var(--surface); border-bottom: 1px solid var(--border);
+  }
+  .craft-ic { font-size: 1.05rem; line-height: 1; flex-shrink: 0; }
+  .craft-gt {
+    font-family: 'Cinzel', serif; font-weight: 700; font-size: 0.58rem; color: var(--text);
+  }
+  .craft-gd {
+    font-family: 'Crimson Pro', serif; font-size: 0.48rem; line-height: 1.4;
+    color: var(--text-muted); margin-top: 0.15rem; text-wrap: pretty;
+  }
+  .craft-gc {
+    margin-left: auto; flex-shrink: 0; align-self: center;
+    font-family: 'Cinzel', serif; font-size: 0.46rem; font-weight: 700;
+    color: var(--text-muted); background: var(--card); border: 1px solid var(--border);
+    border-radius: 999px; padding: 0.1rem 0.4rem;
+  }
+  .craft-tbl { width: 100%; border-collapse: collapse; }
+  .craft-tbl th {
+    font-family: 'Cinzel', serif; font-weight: 700; font-size: 0.4rem;
+    text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);
+    text-align: left; padding: 0.3rem 0.5rem; border-bottom: 1px solid var(--border);
+    background: var(--card);
+  }
+  .craft-tbl th.ct-chk, .craft-tbl td.ct-chk { width: 1.4rem; text-align: center; padding-left: 0.4rem; padding-right: 0; }
+  .craft-tbl th.ct-r,   .craft-tbl td.ct-r   { width: 1.6rem; text-align: center; }
+  .craft-sub td {
+    font-family: 'Cinzel', serif; font-weight: 700; font-size: 0.44rem;
+    text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted);
+    background: var(--surface); padding: 0.3rem 0.5rem;
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  }
+  .craft-item td {
+    padding: 0.4rem 0.5rem; border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .craft-item:last-child td { border-bottom: none; }
+  .craft-item.checked { background: rgba(122,80,16,0.08); }
+  .craft-chk {
+    width: 0.85rem; height: 0.85rem; cursor: pointer; accent-color: var(--gold-light);
+    margin: 0;
+  }
+  .craft-iname {
+    font-family: 'Cinzel', serif; font-weight: 700; font-size: 0.5rem; color: var(--gold-light);
+    line-height: 1.2;
+  }
+  .craft-ieff {
+    font-family: 'Crimson Pro', serif; font-size: 0.44rem; line-height: 1.35;
+    color: var(--text-muted); margin-top: 0.1rem; text-wrap: pretty;
+  }
+  .craft-rar {
+    display: inline-block; font-family: 'Cinzel', serif; font-weight: 700;
+    font-size: 0.42rem; border-radius: 999px; padding: 0.05rem 0.32rem; line-height: 1.3;
+    border: 1px solid;
+  }
+  .craft-rar.r1 { color:#5a6a5a; border-color:#9aa89a; background:#eef2ee; }
+  .craft-rar.r2 { color:#3a6a8a; border-color:#7aa8c8; background:#eaf2f8; }
+  .craft-rar.r3 { color:#7a5810; border-color:#c8a040; background:#faf2e0; }
+  .craft-rar.r4 { color:#7a3010; border-color:#c87040; background:#f8ece4; }
+  .craft-rar.r5 { color:#5a2090; border-color:#9a60c8; background:#f0e8fa; }
+  .craft-mats { display: flex; flex-direction: column; gap: 0.22rem; }
+  .craft-mat {
+    display: inline-flex; align-items: center; gap: 0.25rem;
+    font-family: 'Crimson Pro', serif; font-size: 0.46rem; color: var(--text);
+  }
+  .craft-mat-dot {
+    width: 0.3rem; height: 0.3rem; border-radius: 999px; flex-shrink: 0;
+    background: var(--gold-light);
+  }
+  .craft-mat.craftable .craft-mat-dot { background: #c87040; }
+  .craft-mat-sub { color: var(--text-muted); font-size: 0.4rem; }
+  .craft-empty {
+    text-align: center; color: var(--text-muted); font-family: 'Crimson Pro', serif;
+    font-size: 0.55rem; padding: 2rem 1rem;
+  }
+
+  /* ── Shopping-list cart (fixed bottom sheet) ──── */
+  .craft-cart {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+    margin: 0 auto; max-width: 480px;
+    background: var(--card); border: 1px solid var(--border); border-bottom: none;
+    border-radius: 14px 14px 0 0; box-shadow: 0 -6px 24px rgba(0,0,0,0.18);
+    overflow: hidden;
+  }
+  .craft-cart-bar {
+    display: flex; align-items: center; gap: 0.5rem; cursor: pointer;
+    padding: 0.6rem 0.9rem; background: var(--surface);
+    border-bottom: 1px solid var(--border);
+  }
+  .craft-cart-ic { font-size: 0.85rem; }
+  .craft-cart-title {
+    font-family: 'Cinzel', serif; font-weight: 700; font-size: 0.56rem; color: var(--text);
+  }
+  .craft-cart-n {
+    font-family: 'Cinzel', serif; font-weight: 700; font-size: 0.46rem; color: #fff;
+    background: var(--gold-light); border-radius: 999px; padding: 0.05rem 0.4rem; min-width: 1rem;
+    text-align: center;
+  }
+  .craft-cart-caret { margin-left: auto; color: var(--text-muted); font-size: 0.5rem; transition: transform 0.2s; }
+  .craft-cart.open .craft-cart-caret { transform: rotate(180deg); }
+  .craft-cart-body { display: none; max-height: 48vh; overflow-y: auto; padding: 0.6rem 0.9rem 0.9rem; }
+  .craft-cart.open .craft-cart-body { display: block; }
+  .craft-cart-h {
+    font-family: 'Cinzel', serif; font-weight: 700; font-size: 0.44rem;
+    text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);
+    margin: 0.6rem 0 0.35rem;
+  }
+  .craft-cart-h:first-child { margin-top: 0; }
+  .craft-chips { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+  .craft-chip {
+    display: inline-flex; align-items: center; gap: 0.25rem;
+    font-family: 'Crimson Pro', serif; font-size: 0.46rem; color: var(--text);
+    background: var(--surface); border: 1px solid var(--border); border-radius: 999px;
+    padding: 0.12rem 0.2rem 0.12rem 0.45rem;
+  }
+  .craft-chip-x {
+    cursor: pointer; color: var(--text-muted); font-weight: 700; line-height: 1;
+    width: 0.85rem; height: 0.85rem; display: inline-flex; align-items: center; justify-content: center;
+    border-radius: 999px;
+  }
+  .craft-chip-x:hover { background: var(--border); color: var(--text); }
+  .craft-need { display: flex; flex-direction: column; gap: 0.05rem; }
+  .craft-need-row {
+    display: flex; align-items: center; gap: 0.45rem;
+    padding: 0.28rem 0.1rem; border-bottom: 1px solid var(--border);
+    font-family: 'Crimson Pro', serif; font-size: 0.5rem;
+  }
+  .craft-need-row:last-child { border-bottom: none; }
+  .craft-need-qty {
+    font-family: 'Cinzel', serif; font-weight: 700; font-size: 0.46rem; color: #7a5010;
+    background: rgba(122,80,16,0.1); border-radius: 6px; padding: 0.05rem 0.4rem;
+    min-width: 1.4rem; text-align: center; flex-shrink: 0;
+  }
+  .craft-need-name { color: var(--text); flex: 1; }
+  .craft-need-tag {
+    font-family: 'Cinzel', serif; font-size: 0.38rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-muted);
+    border: 1px solid var(--border); border-radius: 999px; padding: 0.02rem 0.32rem;
+    flex-shrink: 0;
+  }
+  .craft-need-tag.buy { color: #3a6a8a; border-color: #7aa8c8; }
+  .craft-cart-actions { display: flex; gap: 0.5rem; margin-top: 0.7rem; }
+  .craft-cart-clear {
+    flex: 1; font-family: 'Cinzel', serif; font-weight: 700; font-size: 0.46rem;
+    color: var(--text-muted); background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 0.4rem; cursor: pointer;
+  }
+  .craft-cart-clear:hover { color: var(--text); border-color: var(--gold); }
+  .craft-cart-empty {
+    font-family: 'Crimson Pro', serif; font-size: 0.48rem; color: var(--text-muted);
+    font-style: italic; padding: 0.3rem 0;
+  }
 
 </style>
 </head>
@@ -1590,9 +1854,16 @@
   <div class="main-tab" id="tab-trade" onclick="switchTab('trade')">
     <span class="tab-icon">🤝</span>Trade
   </div>
-  <!-- Weather/Emergence tab hidden for now — feature complete, kept for later. Re-enable by removing display:none. -->
-  <div class="main-tab" id="tab-weather" onclick="switchTab('weather')" style="display:none">
+  <!-- Events tab hidden for now — feature complete, kept for later. Re-enable by removing display:none. -->
+  <div class="main-tab" id="tab-events" onclick="switchTab('events')" style="display:none">
+    <span class="tab-icon">📜</span>Events
+  </div>
+  <!-- Weather/Emergence tab -->
+  <div class="main-tab" id="tab-weather" onclick="switchTab('weather')">
     <span class="tab-icon">🌦️</span>Weather
+  </div>
+  <div class="main-tab" id="tab-crafting" onclick="switchTab('crafting')">
+    <span class="tab-icon">⚗️</span>Crafting
   </div>
 </div>
 
@@ -1664,14 +1935,38 @@
   <div id="trade-acq-pop" class="trade-acq-pop" style="display:none"></div>
 </div><!-- end section-trade -->
 
+<div class="section" id="section-events">
+  <div class="g-search-wrap"><input class="g-search-input" id="ev-search" placeholder="Search quests, monsters, or rewards…" oninput="evSearch(this.value)" autocomplete="off"></div>
+  <div class="sm-filter-bar" id="ev-tier-filter"></div>
+  <div class="ev-intro" id="ev-intro"></div>
+  <div id="ev-content" class="ev-content"></div>
+</div><!-- end section-events -->
+
 <div class="section" id="section-weather">
   <div class="weather-intro" id="weather-intro"></div>
   <div id="weather-content"></div>
 </div><!-- end section-weather -->
 
+<div class="section" id="section-crafting">
+  <div class="weather-intro" id="craft-intro"></div>
+  <div class="sm-filter-bar" id="craft-filter"></div>
+  <div class="g-search-wrap"><input class="g-search-input" id="craft-search" placeholder="Search recipes or ingredients…" oninput="craftSearch(this.value)" autocomplete="off"></div>
+  <div id="craft-content"></div>
+  <div class="craft-cart" id="craft-cart" style="display:none">
+    <div class="craft-cart-bar" onclick="craftCartToggle()">
+      <span class="craft-cart-ic">🧺</span>
+      <span class="craft-cart-title">Shopping List</span>
+      <span class="craft-cart-n" id="craft-cart-n">0</span>
+      <span class="craft-cart-caret" id="craft-cart-caret">▲</span>
+    </div>
+    <div class="craft-cart-body" id="craft-cart-body"></div>
+  </div>
+</div><!-- end section-crafting -->
+
 </div><!-- end main-app -->
 
 
+<script src="image-slot.js"></script>
 <script>
 var MONSTER_ICONS = {
   "Congalala": "images/monsters/congalala.jpg",
@@ -1936,7 +2231,6 @@ function makeWeakPanel(m) {
     var pct = Math.min(100, Math.round(300 / init * 100)); // 150 init = ~100%
     return '<div class="weak-row">'
       + '<span class="weak-label">' + stLabels[k] + '</span>'
-      + '<div class="weak-bar-wrap"><div class="weak-bar weak-bar-' + k + '" style="width:' + pct + '%"></div></div>'
       + '<span class="weak-val">' + init + '</span>'
       + '</div>';
   }).join('');
@@ -2112,11 +2406,11 @@ function makeHitzonePanel(hz, st, ehz) {
   if (ehz && ehz.length) {
     var ehzHeader = '<div class="ehz-header">'
       + '<div class="ehz-part" style="flex:1"></div>'
-      + '<div class="ehz-lbl ehz-fire">\uD83D\uDD25</div>'
-      + '<div class="ehz-lbl ehz-water">\uD83D\uDCA7</div>'
-      + '<div class="ehz-lbl ehz-thunder">\u26A1</div>'
-      + '<div class="ehz-lbl ehz-ice">\u2744</div>'
-      + '<div class="ehz-lbl ehz-dragon">\uD83D\uDC09</div>'
+      + '<div class="ehz-lbl ehz-fire"><img class="ehz-ico" src="images/icons/fire.png" alt="Fire"></div>'
+      + '<div class="ehz-lbl ehz-water"><img class="ehz-ico" src="images/icons/water.png" alt="Water"></div>'
+      + '<div class="ehz-lbl ehz-thunder"><img class="ehz-ico" src="images/icons/thunder.png" alt="Thunder"></div>'
+      + '<div class="ehz-lbl ehz-ice"><img class="ehz-ico" src="images/icons/ice.png" alt="Ice"></div>'
+      + '<div class="ehz-lbl ehz-dragon"><img class="ehz-ico" src="images/icons/dragon.png" alt="Dragon"></div>'
       + '</div>';
     var ehzRows = ehz.map(function(e) {
       return '<div class="ehz-row">'
@@ -2547,12 +2841,16 @@ function makeTipsPanel(name) {
   var tips = MONSTER_TIPS[name] || [];
   var moves = MONSTER_MOVESET[name] || [];
   if (!tips.length && !moves.length) return '<div class="tips-empty">No combat tips yet for this monster.</div>';
+  var slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+  var shot = '<image-slot class="tips-shot" id="tips-shot-' + slug + '" shape="rounded" radius="6" placeholder="Drop an image of ' + name + '"></image-slot>';
   var html = '';
   if (moves.length) {
     html += '<div class="tips-section-h">Moveset</div>';
-    html += '<ul class="moveset-list">' + moves.map(function(mv) {
+    html += '<div class="moveset-row"><ul class="moveset-list">' + moves.map(function(mv) {
       return '<li><span class="mv-name">' + mv.m + '</span><span class="mv-desc">' + mv.d + '</span></li>';
-    }).join('') + '</ul>';
+    }).join('') + '</ul>' + shot + '</div>';
+  } else {
+    html += shot;
   }
   if (tips.length) {
     html += '<div class="tips-section-h">Strategy</div>';
@@ -2847,7 +3145,9 @@ function switchTab(tab) {
   if (tab === 'gathering') { gBuildMapTabs(); gRender(); }
   if (tab === 'small') { smInit(); }
   if (tab === 'trade') { tradeInit(); }
+  if (tab === 'events') { evInit(); }
   if (tab === 'weather') { weatherRender(); }
+  if (tab === 'crafting') { craftInit(); }
 }
 
 function gBuildMapTabs() {
@@ -4072,6 +4372,169 @@ function renderGlobalItem(it) {
   return '<div class="gres-card"><div class="gres-name">' + it.name + '</div>' + blocks + '</div>';
 }
 
+// ── EVENT QUESTS (permanent, post-TU3) ──────────────────────────
+// type: gear | material | cosmetic | misc.  hr: required Hunter Rank.
+var EVENT_QUESTS = [
+  // ── Endgame (HR 100) ──
+  { name:'Freedom from Solitude', hr:100, type:'gear', target:'Arch-Tempered Arkveld', reward:'Arkveld γ armor set' },
+  { name:'Heart of Judecca', hr:100, type:'gear', target:'Arch-Tempered Jin Dahaad', reward:'Dahaad γ armor set, Felyne Dahaad γ set' },
+  { name:'Be Cursed, Ye Shadowy Flame', hr:100, type:'gear', target:'Arch-Tempered Nu Udra', reward:'Nu Udra γ armor set, Felyne Udra γ set' },
+  { name:'Planetes Protocol (Savage)', hr:100, type:'gear', target:'Omega Planetes', reward:"Omega Attire α, Omega's Sword, Omega's Rod, OMG Kinsect" },
+  { name:'Ruler of the Desert Kingdom', hr:100, type:'material', target:'Arch-Tempered Rey Dau', reward:'Battle-tempered Emblems, Timeworn Charm' },
+  { name:'Summons from the Land Beyond', hr:100, type:'material', target:'Arch-Tempered Uth Duna', reward:'Battle-tempered Emblems, Timeworn Charm' },
+  { name:'Scion of the Dark Cradle', hr:100, type:'material', target:'Arch-Tempered Nu Udra', reward:'Battle-tempered Emblems, Timeworn Charm' },
+  { name:'Frozen Knells of the East', hr:100, type:'material', target:'Arch-Tempered Jin Dahaad', reward:'Battle-tempered Emblems, Timeworn Charm' },
+  { name:'Special Assignment: Slay Gogmazios', hr:100, type:'material', target:'10★ Gogmazios', reward:'Timeworn Charm, Battle-tempered Emblem' },
+  { name:'Hope of the Ancients', hr:100, type:'material', target:'10★ Zoh Shia', reward:'Timeworn Charm, Battle-tempered Emblem' },
+  { name:'Specter of Their Sins', hr:100, type:'material', target:'Gogmazios', reward:'Mutated Armaments (Gogma Artian weapons)' },
+  { name:'Sovereign Brute', hr:100, type:'material', target:'Tempered Doshaguma', reward:'Glowing Stone' },
+  { name:'There Goes the Neighborhood', hr:100, type:'material', target:'9★ Yian Kut-Ku', reward:'Glowing Stones' },
+  { name:'The Monkey King', hr:100, type:'material', target:'Tempered Ajarakan', reward:'Glowing Stone' },
+  { name:'The White Wonder', hr:100, type:'material', target:'Tempered Blangonga', reward:'Glowing Stone' },
+  { name:'Ultimate Berserker', hr:100, type:'material', target:'Tempered Guardian Fulgur Anjanath', reward:'Glowing Stone' },
+  // ── Arch-Tempered intro (HR 50) ──
+  { name:'These Roots Run Deep', hr:50, type:'gear', target:'Arch-Tempered Uth Duna', reward:'Uth Duna γ set, Felyne Uth Duna γ set' },
+  { name:'A Silent Flash', hr:50, type:'gear', target:'Arch-Tempered Rey Dau', reward:'Rey Dau γ armor set, Felyne Rey Dau γ set' },
+  // ── High (HR 41) ──
+  { name:'A Flash of Brilliance', hr:41, type:'gear', target:'Hunt all target monsters', reward:'Azure Star Blade (LS), Azure Era Wyrmbow (Bow), Azure Age α set, Azure Era α Palico set' },
+  { name:'Razzle Dazzle Frazzle', hr:41, type:'gear', target:'Tempered Gypceros & Rey Dau', reward:'Gala Suit α set, Felyne Star α Palico set' },
+  { name:"It's Darker than You Think", hr:41, type:'gear', target:'Hunt all target monsters', reward:'Analytic E.Y.E. α, Mirror Visor α, Blessed Waistchain α' },
+  { name:'Lalas and Toads and Bears, Oh My!', hr:41, type:'gear', target:'Hunt all target monsters', reward:'Catspaw (Sword & Shield), Thief α Palico set' },
+  { name:'Playing the Long Game', hr:41, type:'gear', target:'Mizutsune & Balahara', reward:'Eager Wudwud α headgear' },
+  { name:'The Snow Has Teeth', hr:41, type:'gear', target:'3 Tempered Blangonga', reward:'Orion α set, Felyne Snowcat α Palico set' },
+  { name:'That Won\u2019t Faze Me!', hr:41, type:'gear', target:'Tempered Gypceros', reward:'Gelidron α armor, Aviator Shades α, Kitten Frames α' },
+  { name:'Frenzy or Be Frenzied Upon', hr:41, type:'gear', target:'Hunt all target monsters', reward:'Skull Mask α' },
+  { name:'Hungry for Ore?', hr:41, type:'gear', target:'2 Tempered Gravios', reward:'Scavenger Pickaxe (LS), Mining Pickaxe (Sword & Shield)' },
+  { name:'Meat at the Heart of Wyveria', hr:41, type:'gear', target:'Hunt all target monsters', reward:'Tasty Blades (Dual Blades), Well-done Steak Strap (pendant)' },
+  { name:'Masterless Claws', hr:41, type:'material', target:'Guardian Ebony Odogaron', reward:'Ancient Weapon Fragments' },
+  { name:'Endless Sky, Endless Sea', hr:41, type:'material', target:'Hunt all target monsters', reward:'Heavy Armor Sphere' },
+  { name:"Every Hunter's Dream", hr:41, type:'material', target:'Tempered Mizutsune & 4 Tempered Quematrice', reward:'Shatterseal, Meatmergency!' },
+  // ── High (HR 31) ──
+  { name:'An Inferno Laid Bare', hr:31, type:'gear', target:'Nu Udra', reward:'Pinion Necklace α (chest), Felyne Bell Collar α' },
+  { name:'That Won\u2019t Work on Me!', hr:31, type:'gear', target:'Tempered Xu Wu', reward:'Sealed Eyepatch α, Shadow Shades α, Round Glasses α, Shades for Alma' },
+  { name:'The Claws Are Out', hr:31, type:'gear', target:'Tempered Guardian Ebony Odogaron', reward:'Toe Bean Mittens α (arms)' },
+  { name:'King of a Faraway Sky', hr:31, type:'material', target:'Guardian Rathalos', reward:'Artian weapon materials' },
+  { name:'Wreaking Havoc in Wyveria', hr:31, type:'material', target:'Tempered Guardian Fulgur Anjanath', reward:'Hard Armor Sphere' },
+  { name:'No More Mister Ice Guy', hr:31, type:'material', target:'Tempered Blangonga', reward:'Armor Decorations' },
+  { name:'Shining Blades against the Dull Wasteland', hr:31, type:'material', target:'Seregios', reward:'Weapon Decorations' },
+  { name:'Eldritch Enigma', hr:31, type:'misc', target:'Tempered Xu Wu', reward:'Hunter Rank Points (>½ HR level)' },
+  // ── Mid (HR 16–21) ──
+  { name:'Congalala Courting Carols', hr:21, type:'gear', target:'Hunt all target monsters', reward:'Felyne Hymstrigian α set' },
+  { name:'Running Wild', hr:21, type:'gear', target:'Guardian Fulgur Anjanath', reward:'Sealed Dragon Cloth α' },
+  { name:'Kut-Ku the Forest Conqueror', hr:21, type:'gear', target:'Tempered Yian Kut-Ku', reward:'Wudwud Guise α, Wacky Wudwud α Palico set' },
+  { name:'Putting Up a Stink', hr:21, type:'gear', target:'Hunt all target monsters', reward:'Cornpopper (Gunlance), Half Rim Glasses α, Lovely Shades α' },
+  { name:'Tongue-Tied', hr:21, type:'material', target:'Chatacabra', reward:'Hard Armor Sphere, Advanced Armor Sphere' },
+  { name:'Ballet in the Rain', hr:21, type:'material', target:'Tempered Lala Barina', reward:'Weapon Decorations' },
+  { name:'Anguish and Atrocity', hr:21, type:'misc', target:'Guardian Doshaguma', reward:'Hunter Rank Points (~½ HR level)' },
+  { name:'Daughters of Carabosse', hr:16, type:'gear', target:'2 Lala Barina', reward:'Blossom α set, Felyne Butterfly α Palico set' },
+  { name:'Three Tails Better Than None', hr:16, type:'gear', target:'3 Quematrice', reward:'Faux Felyne α headgear' },
+  { name:'Neon Neopterons', hr:16, type:'cosmetic', target:'15 Neon Bulaqchi', reward:'Jigglysquirm Pendants' },
+  { name:'The Melodic Monarch', hr:16, type:'cosmetic', target:'Rathalos', reward:'Fender Collab Guitar Gesture' },
+  // ── Early (HR 1–9) ──
+  { name:'Pick Your Poison', hr:9, type:'gear', target:'Hunt all target monsters', reward:'Diver α set, Felyne Aloha α Palico set' },
+  { name:'Like a Fire Hidden by Sand', hr:9, type:'gear', target:'Rathian', reward:'Expedition Headgear α' },
+  { name:'Kut-Ku Gone Cuckoo', hr:9, type:'gear', target:'Yian Kut-Ku', reward:'Mimiphyta α headgear' },
+  { name:'A Vile Visage', hr:9, type:'gear', target:'Alpha Doshaguma', reward:'Doshagumask α headgear' },
+  { name:'When Do Quematrice Sing?', hr:9, type:'gear', target:'Quematrice', reward:'Amstrigian α headgear' },
+  { name:'Hirabami Harvest!', hr:9, type:'gear', target:'3 Hirabami', reward:'Harvest α armor, Felyne Ghost α' },
+  { name:'Sand-Scarred Soul', hr:9, type:'material', target:'Doshaguma', reward:'Armor Decorations' },
+  { name:'Chemicus Nocturnus', hr:3, type:'material', target:'Rompopolo', reward:'Firestone, Ore (Dragonite, etc.)' },
+  { name:'Careening Out of Control', hr:2, type:'material', target:'Balahara', reward:'Armor Sphere, Armor Sphere+' },
+];
+
+var EV_TIERS = [
+  { id:'end',  label:'Endgame',  sub:'HR 100', test:function(q){ return q.hr >= 100; } },
+  { id:'high', label:'High Rank', sub:'HR 31–50', test:function(q){ return q.hr >= 31 && q.hr < 100; } },
+  { id:'mid',  label:'Mid Rank',  sub:'HR 16–30', test:function(q){ return q.hr >= 16 && q.hr < 31; } },
+  { id:'low',  label:'Early',     sub:'HR 1–15', test:function(q){ return q.hr < 16; } },
+];
+
+var EV_TYPE_LABEL = { gear:'Gear', material:'Materials', cosmetic:'Cosmetic', misc:'Misc' };
+
+var evActiveTier = 'all';
+
+function evInit() {
+  document.getElementById('ev-intro').innerHTML =
+    'Since <b>Title Update 3</b>, these Event Quests are <b>permanently available</b> (or on weekly rotation) — farm them any time for exclusive gear, upgrade materials, and cosmetics. '
+    + EVENT_QUESTS.length + ' quests listed, newest tiers first.';
+  var bar = document.getElementById('ev-tier-filter');
+  var btns = '<button class="sm-map-btn' + (evActiveTier==='all'?' active':'') + '" onclick="evFilter(\'all\')">All</button>';
+  EV_TIERS.forEach(function(t) {
+    btns += '<button class="sm-map-btn' + (evActiveTier===t.id?' active':'') + '" onclick="evFilter(\'' + t.id + '\')">' + t.label + ' (' + t.sub + ')</button>';
+  });
+  bar.innerHTML = btns;
+  evRender();
+}
+
+function evFilter(id) {
+  evActiveTier = id;
+  document.getElementById('ev-search').value = '';
+  evInit();
+}
+
+function evHi(s, q) {
+  if (!q) return s;
+  var idx = s.toLowerCase().indexOf(q);
+  if (idx === -1) return s;
+  return s.slice(0,idx) + '<mark>' + s.slice(idx, idx+q.length) + '</mark>' + s.slice(idx+q.length);
+}
+
+function evTargetHtml(t, q) {
+  var s = evHi(t, q);
+  s = s.replace(/Arch-Tempered/g, '<span class="ev-at">Arch-Tempered</span>');
+  s = s.replace(/(^|[^-])\bTempered\b/g, function(m, p1){ return p1 + '<span class="ev-tempered">Tempered</span>'; });
+  return s;
+}
+
+function evCardHtml(q, query) {
+  return '<div class="ev-card">'
+    + '<div class="ev-card-top">'
+    + '<span class="ev-hr">HR ' + q.hr + '</span>'
+    + '<span class="ev-name">' + evHi(q.name, query) + '</span>'
+    + '<span class="ev-tag ev-tag-' + q.type + '">' + EV_TYPE_LABEL[q.type] + '</span>'
+    + '</div>'
+    + '<div class="ev-row"><span class="ev-row-label">Target</span><span class="ev-target">' + evTargetHtml(q.target, query) + '</span></div>'
+    + '<div class="ev-row"><span class="ev-row-label">Rewards</span><span class="ev-rewards">' + evHi(q.reward, query) + '</span></div>'
+    + '</div>';
+}
+
+function evRender(query) {
+  var q = (query || '').trim().toLowerCase();
+  var pool = EVENT_QUESTS.filter(function(x) {
+    if (evActiveTier !== 'all') {
+      var tier = EV_TIERS.find(function(t){ return t.id === evActiveTier; });
+      if (tier && !tier.test(x)) return false;
+    }
+    if (q) {
+      var hay = (x.name + ' ' + x.target + ' ' + x.reward).toLowerCase();
+      if (hay.indexOf(q) === -1) return false;
+    }
+    return true;
+  });
+  if (!pool.length) {
+    document.getElementById('ev-content').innerHTML = '<div class="ev-empty">No quests match your search.</div>';
+    return;
+  }
+  var html = '';
+  if (q || evActiveTier !== 'all') {
+    // flat grid when searching or single tier
+    html = '<div class="ev-grid">' + pool.map(function(x){ return evCardHtml(x, q); }).join('') + '</div>';
+  } else {
+    // grouped by tier
+    EV_TIERS.forEach(function(t) {
+      var inTier = pool.filter(t.test);
+      if (!inTier.length) return;
+      html += '<div class="ev-tier-h">' + t.label + ' <span class="ev-tier-count">' + t.sub + ' · ' + inTier.length + ' quests</span></div>';
+      html += '<div class="ev-grid">' + inTier.map(function(x){ return evCardHtml(x, q); }).join('') + '</div>';
+    });
+  }
+  document.getElementById('ev-content').innerHTML = html;
+}
+
+function evSearch(query) {
+  evRender(query);
+}
+
 // ── WEATHER / EMERGENCE SUMMARY ─────────────────────────────────
 var WEATHER_GROUPS = [
   { key:'emergence', icon:'\u2728', title:'Emergence Events', desc:'Giant one-time nodes that only appear when an Emergence is flagged. Check the Environment forecast, then sleep at a camp bed to advance time and re-roll until it shows.' },
@@ -4083,7 +4546,7 @@ var WEATHER_GROUPS = [
 function weatherRender() {
   document.getElementById('weather-intro').innerHTML =
     'Rarity 6 and event-locked materials only appear under the right sky or time of day. '
-    + 'Here is every gated trade-in, grouped by the condition you must wait for. '
+    + 'Tap any material to see where it spawns and exactly what you can trade it in for. '
     + '<span class="weather-tip">Pause \u2192 Environment shows the forecast; sleep in a camp bed to advance time and re-roll it.</span>';
   var html = '';
   WEATHER_GROUPS.forEach(function(g) {
@@ -4096,16 +4559,317 @@ function weatherRender() {
       + '<div><div class="weather-gt">' + g.title + '</div><div class="weather-gd">' + g.desc + '</div></div></div>';
     names.forEach(function(n) {
       var d = TRADE_ACQ[n];
-      html += '<div class="weather-item">'
-        + '<div class="weather-item-name">' + n
-        + (d.rarity ? ' <span class="trade-acq-r6">\u2605 Rarity ' + d.rarity + '</span>' : '') + '</div>'
+      // find every trade-in across all NPCs whose "give" matches this material
+      var trades = [];
+      TRADE_NPCS.forEach(function(npc) {
+        npc.trades.forEach(function(t) {
+          if (tradeStripQty(t.give) === n) trades.push({ npc: npc.name, give: t.give, get: t.get });
+        });
+      });
+      var body = '<div class="weather-item-body">'
         + '<div class="weather-item-loc"><b>' + (d.region || '') + '</b>' + (d.areas ? ' \u2014 ' + d.areas : '') + '</div>'
-        + (d.conditions ? '<div class="weather-item-when">\u23F1 ' + d.conditions + '</div>' : '')
+        + (d.method ? '<div class="weather-item-when">' + d.method + '</div>' : '')
+        + (d.conditions ? '<div class="weather-item-when">\u23F1 ' + d.conditions + '</div>' : '');
+      body += '<div class="weather-trade-h">Trade it in for</div>';
+      if (trades.length) {
+        body += trades.map(function(t) {
+          return '<div class="weather-trade-row">'
+            + '<span class="weather-trade-give">' + t.give + '</span>'
+            + '<span class="weather-trade-arrow">\u2192</span>'
+            + '<span class="weather-trade-get">' + t.get + '</span>'
+            + '<span class="weather-trade-npc">@ ' + t.npc + '</span>'
+            + '</div>';
+        }).join('');
+      } else {
+        body += '<div class="weather-trade-none">No direct trade-in \u2014 used as a crafting / upgrade material.</div>';
+      }
+      body += '</div>';
+      html += '<div class="weather-item" onclick="weatherToggle(this)">'
+        + '<div class="weather-item-head">'
+        + '<span class="weather-item-caret">\u25B6</span>'
+        + '<span class="weather-item-name">' + n
+        + (d.rarity ? ' <span class="trade-acq-r6">\u2605 Rarity ' + d.rarity + '</span>' : '') + '</span>'
+        + '</div>'
+        + body
         + '</div>';
     });
     html += '</div>';
   });
   document.getElementById('weather-content').innerHTML = html;
+}
+
+function weatherToggle(el) {
+  el.classList.toggle('open');
+}
+
+// ── CRAFTING (consumables, traps, tools) ─────────────────────────
+var CRAFT_CATS = [
+  { key:'support', icon:'\uD83E\uDDEA', title:'Healing & Support', desc:'Recovery, status cures, drinks and buffs \u2014 everything that keeps you alive and hitting harder.', groups:[
+    { sub:'Recovery', items:[
+      { n:'Potion', rar:1, r:['Herb'], e:'Restores a small amount of health.' },
+      { n:'Mega Potion', rar:2, r:['Potion','Honey'], e:'Restores a moderate amount of health. Worth auto-crafting.' },
+      { n:'First-aid Med+', rar:2, r:['First-aid Med','Honey'], e:'Restores a moderate amount of health. Returned after the quest ends.' },
+      { n:'Max Potion', rar:3, r:['Catalyst','Mandragora'], e:'Fully restores health and temporarily maxes out your Health gauge.' },
+      { n:'Ancient Potion', rar:5, r:['Immunizer','Nourishing Extract'], e:'Fully restores HP and temporarily maxes both Health and Stamina gauges.' },
+      { n:'Lifepowder', rar:4, r:['Godbug Essence','Blue Mushroom'], e:'Heal-cloud that restores HP for you and nearby allies.' },
+      { n:'Dust of Life', rar:4, r:['Godbug Essence','Gloamgrass Bud'], e:'Stronger heal-cloud \u2014 large HP restore for you and allies.' },
+    ]},
+    { sub:'Status Cures', items:[
+      { n:'Antidote', rar:1, r:['Antidote Herb'], e:'Cures poison.' },
+      { n:'Herbal Medicine', rar:2, r:['Antidote','Blue Mushroom'], e:'Removes all poison and restores a little health.' },
+      { n:'Herbal Powder', rar:4, r:['Godbug Essence','Herbal Medicine'], e:'Cloud that cures poison and heals a bit for the team.' },
+      { n:'Deodorant', rar:2, r:['Smokenut','Bitterbug Broth'], e:'Cleansing smoke that cures blastblight and stench.' },
+      { n:'Cleanser', rar:2, r:['Fire Herb','Godbug Essence'], e:'Instantly clears frost or webbing off your body.' },
+    ]},
+    { sub:'Drinks & Stamina', items:[
+      { n:'Energy Drink', rar:2, r:['Nitroshroom','Honey'], e:'Boosts stamina and shakes off sleep.' },
+      { n:'Cool Drink', rar:1, r:['Chillshroom'], e:'Temporary relief from extreme heat.' },
+      { n:'Hot Drink', rar:1, r:['Hot Pepper'], e:'Temporary relief from extreme cold.' },
+      { n:'Dash Juice', rar:4, r:['Catalyst','Dash Extract'], e:'Recovers stamina and reduces stamina drain from actions.' },
+    ]},
+    { sub:'Support Reagents', items:[
+      { n:'Catalyst', rar:2, r:['Bitterbug Broth','Honey'], e:'Enhances other materials. Cannot be used on its own \u2014 a feedstock for buffs.' },
+      { n:'Immunizer', rar:2, r:['Bitterbug Broth','Mandragora'], e:'Temporarily boosts your natural HP recovery; also a base for pills.' },
+    ]},
+    { sub:'Attack & Defense Buffs', items:[
+      { n:'Demondrug', rar:4, r:['Catalyst','Might Seed'], e:'Temporarily boosts attack power.' },
+      { n:'Mega Demondrug', rar:5, r:['Nourishing Extract','Demondrug'], e:'Boosts attack more than regular Demondrug.' },
+      { n:'Demon Powder', rar:4, r:['Godbug Essence','Might Seed'], e:'Cloud that temporarily strengthens attack for the team.' },
+      { n:'Might Pill', rar:4, r:['Immunizer','Might Seed'], e:'Potent temporary attack boost. Stronger than the drug.' },
+      { n:'Armorskin', rar:4, r:['Catalyst','Adamant Seed'], e:'Temporarily boosts defense.' },
+      { n:'Mega Armorskin', rar:5, r:['Nourishing Extract','Armorskin'], e:'Boosts defense more than regular Armorskin.' },
+      { n:'Hardshell Powder', rar:4, r:['Godbug Essence','Adamant Seed'], e:'Cloud that temporarily strengthens defense for the team.' },
+      { n:'Adamant Pill', rar:4, r:['Immunizer','Adamant Seed'], e:'Potent temporary defense boost.' },
+    ]},
+  ]},
+  { key:'offense', icon:'\uD83E\uDEA4', title:'Traps & Offense', desc:'Capture kit, bait and explosives \u2014 immobilize, lure and blow up your quarry.', groups:[
+    { sub:'Traps & Capture', items:[
+      { n:'Net', rar:2, r:['Ivy','Spider Web'], e:'Sturdy net \u2014 the core part for a Pitfall Trap.' },
+      { n:'Pitfall Trap', rar:3, r:['Trap Tool','Net'], e:'Drops a large monster into a pit when it walks over. Triggered by weight.' },
+      { n:'Shock Trap', rar:3, r:['Trap Tool','Thunderbug Capacitor'], e:'Immobilizes a target with electricity. Use it to set up a capture.' },
+      { n:'Tranq Bomb', rar:3, r:['Sleep Herb','Parashroom'], e:'Throw at a trapped monster to capture it.' },
+    ]},
+    { sub:'Bait Meat', items:[
+      { n:'Poisoned Meat', rar:2, r:['Raw Meat','Toadstool'], e:'Bait that poisons whatever eats it.' },
+      { n:'Tinged Meat', rar:2, r:['Raw Meat','Parashroom'], e:'Bait that paralyzes whatever eats it.' },
+      { n:'Drugged Meat', rar:2, r:['Raw Meat','Sleep Herb'], e:'Bait that puts whatever eats it to sleep.' },
+    ]},
+    { sub:'Bombs & Smoke', items:[
+      { n:'Gunpowder', rar:2, r:['Fire Herb','Nitroshroom'], e:'Explosive base used in Large Barrel Bombs.' },
+      { n:'Barrel Bomb', rar:2, r:['Fire Herb','Small Barrel'], e:'A small time bomb.' },
+      { n:'Large Barrel Bomb', rar:3, r:['Gunpowder','Large Barrel'], e:'Place, then strike to trigger a powerful blast. Can be rolled.' },
+      { n:'Mega Barrel Bomb', rar:4, r:['Devil\u2019s Blight','Large Barrel Bomb'], e:'Upgraded blast, very effective on large monsters.', alt:'Also: Gunpowderfish Scale + Large Barrel Bomb.' },
+      { n:'Smoke Bomb', rar:2, r:['Smokenut','Ivy'], e:'Smoke cloud that hides you from a monster\u2019s sight.' },
+      { n:'Poison Smoke Bomb', rar:2, r:['Smokenut','Toadstool'], e:'Releases a cloud of toxic mist on use.' },
+    ]},
+  ]},
+  { key:'tools', icon:'\uD83C\uDFAF', title:'Slinger & Special', desc:'Slinger pods and field utilities \u2014 flash flyers down, win turf wars, fast-travel home.', groups:[
+    { sub:'Slinger Pods', items:[
+      { n:'Flash Pod', rar:2, r:['Flashbug Phosphor'], e:'Bright flash that temporarily blinds monsters (grounds flyers).' },
+      { n:'Dung Pod', rar:2, r:['Dung'], e:'Strong odor that makes certain monsters flee.', alt:'Also craftable from Rolled-up Dung.' },
+      { n:'Large Dung Pod', rar:3, r:['Dung Pod','Nitroshroom'], e:'Wider odor blast \u2014 drives off any surrounding monsters.' },
+      { n:'Luring Pod', rar:3, r:['Exciteshroom','Bitterbug Broth'], e:'Lures monsters toward you.' },
+    ]},
+    { sub:'Field Tools', items:[
+      { n:'Farcaster', rar:3, r:['Smokenut','Exciteshroom'], e:'Summons a wingdrake to whisk you to the nearest camp. Usable mid-combat.' },
+    ]},
+  ]},
+];
+
+// name -> recipe ingredients, for resolving the shopping list
+var CRAFT_RECIPE = {};
+CRAFT_CATS.forEach(function(c){ c.groups.forEach(function(g){ g.items.forEach(function(it){ CRAFT_RECIPE[it.n] = it.r; }); }); });
+// Base materials bought from the Provisions Stockpile rather than gathered
+var CRAFT_BUY = { 'Trap Tool':1, 'Small Barrel':1, 'Large Barrel':1, 'First-aid Med':1 };
+
+var craftActiveCat = 'all';
+var craftQuery = '';
+var craftChecked = {};
+var craftCartOpen = false;
+try { craftChecked = JSON.parse(localStorage.getItem('mhw-craft-checked') || '{}') || {}; } catch (e) { craftChecked = {}; }
+
+function craftSaveChecked() {
+  try { localStorage.setItem('mhw-craft-checked', JSON.stringify(craftChecked)); } catch (e) {}
+}
+
+function craftInit() {
+  var bar = document.getElementById('craft-filter');
+  if (bar && !bar.dataset.built) {
+    var btns = '<div class="sm-map-btn' + (craftActiveCat==='all'?' active':'') + '" data-cat="all" onclick="craftSetCat(\'all\',this)">All</div>';
+    CRAFT_CATS.forEach(function(c) {
+      btns += '<div class="sm-map-btn" data-cat="' + c.key + '" onclick="craftSetCat(\'' + c.key + '\',this)">' + c.icon + ' ' + c.title + '</div>';
+    });
+    bar.innerHTML = btns;
+    bar.dataset.built = '1';
+  }
+  document.getElementById('craft-intro').innerHTML =
+    'Grouped the same way as the in-game Crafting List. <b>Tick the items you want to make</b> and the Shopping List at the bottom totals every raw material you need \u2014 sub-recipes (Potion, Catalyst, Gunpowder\u2026) are broken down automatically. '
+    + '<span class="weather-tip">Ingredients are marked on the map by default; staples like Trap Tools and barrels are sold at the Provisions Stockpile.</span>';
+  craftRender();
+  craftRenderCart();
+}
+
+function craftSetCat(cat, el) {
+  craftActiveCat = cat;
+  var bar = document.getElementById('craft-filter');
+  if (bar) bar.querySelectorAll('.sm-map-btn').forEach(function(b){ b.classList.remove('active'); });
+  if (el) el.classList.add('active');
+  craftRender();
+}
+
+function craftSearch(v) {
+  craftQuery = (v || '').trim().toLowerCase();
+  craftRender();
+}
+
+function craftMatch(it, q) {
+  if (!q) return true;
+  if (it.n.toLowerCase().indexOf(q) !== -1) return true;
+  if (it.e.toLowerCase().indexOf(q) !== -1) return true;
+  return it.r.some(function(ing){ return ing.toLowerCase().indexOf(q) !== -1; });
+}
+
+function craftEsc(s) { return s.replace(/"/g, '&quot;'); }
+
+function craftItemRow(it) {
+  var checked = !!craftChecked[it.n];
+  var mats = it.r.map(function(ing) {
+    var craftable = !!CRAFT_RECIPE[ing];
+    return '<span class="craft-mat' + (craftable ? ' craftable' : '') + '">'
+      + '<span class="craft-mat-dot"></span>' + ing
+      + (craftable ? '<span class="craft-mat-sub">(craft)</span>' : '') + '</span>';
+  }).join('');
+  if (it.alt) mats += '<span class="craft-mat"><span class="craft-mat-sub">' + it.alt + '</span></span>';
+  return '<tr class="craft-item' + (checked ? ' checked' : '') + '">'
+    + '<td class="ct-chk"><input type="checkbox" class="craft-chk" data-item="' + craftEsc(it.n) + '"' + (checked ? ' checked' : '') + ' onchange="craftToggle(this)"></td>'
+    + '<td><div class="craft-iname">' + it.n + '</div><div class="craft-ieff">' + it.e + '</div></td>'
+    + '<td class="ct-r"><span class="craft-rar r' + it.rar + '">' + it.rar + '</span></td>'
+    + '<td><div class="craft-mats">' + mats + '</div></td>'
+    + '</tr>';
+}
+
+function craftRender() {
+  var q = craftQuery;
+  var html = '';
+  CRAFT_CATS.forEach(function(c) {
+    if (craftActiveCat !== 'all' && craftActiveCat !== c.key) return;
+    var rows = '';
+    var total = 0;
+    c.groups.forEach(function(g) {
+      var items = g.items.filter(function(it){ return craftMatch(it, q); });
+      if (!items.length) return;
+      total += items.length;
+      rows += '<tr class="craft-sub"><td colspan="4">' + g.sub + '</td></tr>';
+      rows += items.map(craftItemRow).join('');
+    });
+    if (!total) return;
+    html += '<div class="craft-group">'
+      + '<div class="craft-group-head">'
+      + '<span class="craft-ic">' + c.icon + '</span>'
+      + '<div><div class="craft-gt">' + c.title + '</div><div class="craft-gd">' + c.desc + '</div></div>'
+      + '<span class="craft-gc">' + total + '</span>'
+      + '</div>'
+      + '<table class="craft-tbl"><thead><tr>'
+      + '<th class="ct-chk"></th><th>Craft Result</th><th class="ct-r">R</th><th>Materials</th>'
+      + '</tr></thead><tbody>' + rows + '</tbody></table>'
+      + '</div>';
+  });
+  if (!html) html = '<div class="craft-empty">No recipes match \u201C' + craftQuery + '\u201D.</div>';
+  document.getElementById('craft-content').innerHTML = html;
+}
+
+function craftToggle(el) {
+  var name = el.getAttribute('data-item');
+  if (el.checked) craftChecked[name] = 1; else delete craftChecked[name];
+  craftSaveChecked();
+  var tr = el.closest('.craft-item');
+  if (tr) tr.classList.toggle('checked', el.checked);
+  craftRenderCart();
+}
+
+function craftCartToggle() {
+  craftCartOpen = !craftCartOpen;
+  document.getElementById('craft-cart').classList.toggle('open', craftCartOpen);
+}
+
+function craftClear() {
+  craftChecked = {};
+  craftSaveChecked();
+  craftRender();
+  craftRenderCart();
+}
+
+function craftExpand(name, mult, raw, inter) {
+  var rec = CRAFT_RECIPE[name];
+  if (!rec) { raw[name] = (raw[name] || 0) + mult; return; }
+  rec.forEach(function(ing) {
+    if (CRAFT_RECIPE[ing]) {
+      inter[ing] = (inter[ing] || 0) + mult;
+      craftExpand(ing, mult, raw, inter);
+    } else {
+      raw[ing] = (raw[ing] || 0) + mult;
+    }
+  });
+}
+
+function craftRenderCart() {
+  var names = Object.keys(craftChecked);
+  var cart = document.getElementById('craft-cart');
+  var n = names.length;
+  document.getElementById('craft-cart-n').textContent = n;
+  if (!n) { cart.style.display = 'none'; craftCartOpen = false; cart.classList.remove('open'); return; }
+  cart.style.display = 'block';
+
+  var raw = {}, inter = {};
+  names.forEach(function(nm){ craftExpand(nm, 1, raw, inter); });
+
+  function sortRows(obj) {
+    return Object.keys(obj).sort(function(a, b){ return obj[b] - obj[a] || a.localeCompare(b); });
+  }
+
+  var chips = names.sort().map(function(nm) {
+    return '<span class="craft-chip">' + nm
+      + '<span class="craft-chip-x" onclick="craftRemove(\'' + nm.replace(/'/g, "\\'") + '\')">\u00D7</span></span>';
+  }).join('');
+
+  var rawKeys = sortRows(raw);
+  var needHtml = rawKeys.map(function(k) {
+    var buy = CRAFT_BUY[k];
+    return '<div class="craft-need-row">'
+      + '<span class="craft-need-qty">\u00D7' + raw[k] + '</span>'
+      + '<span class="craft-need-name">' + k + '</span>'
+      + (buy ? '<span class="craft-need-tag buy">Buy</span>' : '<span class="craft-need-tag">Gather</span>')
+      + '</div>';
+  }).join('');
+
+  var interKeys = sortRows(inter);
+  var interHtml = '';
+  if (interKeys.length) {
+    interHtml = '<div class="craft-cart-h">Craft these first</div><div class="craft-need">'
+      + interKeys.map(function(k) {
+          return '<div class="craft-need-row">'
+            + '<span class="craft-need-qty">\u00D7' + inter[k] + '</span>'
+            + '<span class="craft-need-name">' + k + '</span>'
+            + '<span class="craft-need-tag">Sub-item</span></div>';
+        }).join('')
+      + '</div>';
+  }
+
+  document.getElementById('craft-cart-body').innerHTML =
+    '<div class="craft-cart-h">Selected (' + n + ')</div>'
+    + '<div class="craft-chips">' + chips + '</div>'
+    + '<div class="craft-cart-h">Materials to gather</div>'
+    + '<div class="craft-need">' + needHtml + '</div>'
+    + interHtml
+    + '<div class="craft-cart-actions"><button class="craft-cart-clear" onclick="craftClear()">Clear all</button></div>';
+}
+
+function craftRemove(name) {
+  delete craftChecked[name];
+  craftSaveChecked();
+  var cb = document.querySelector('.craft-chk[data-item="' + name.replace(/"/g, '&quot;') + '"]');
+  if (cb) { cb.checked = false; var tr = cb.closest('.craft-item'); if (tr) tr.classList.remove('checked'); }
+  craftRenderCart();
 }
 
 // Init gathering tabs on load
