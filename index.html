@@ -202,6 +202,16 @@
     position: relative;
     width: 100%;
   }
+  .search-opt {
+    display: flex; align-items: center; gap: 0.4rem; cursor: pointer;
+    margin-top: 0.4rem; padding-left: 0.15rem;
+    font-family: 'Lato', sans-serif; font-size: 0.66rem; color: var(--text-muted);
+    user-select: none;
+  }
+  .search-opt input[type="checkbox"] {
+    width: 0.9rem; height: 0.9rem; cursor: pointer; accent-color: var(--gold-dim); margin: 0;
+  }
+  .search-opt:hover { color: var(--text); }
   .search-wrap svg {
     position: absolute;
     left: 0.6rem;
@@ -555,6 +565,11 @@
     border-color: #c0a0e0;
     color: #6840a8;
   }
+  .coat-pill-ico {
+    width: 0.85rem; height: 0.85rem; object-fit: contain;
+    vertical-align: middle; flex-shrink: 0;
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,0.2));
+  }
 
   /* ── EMPTY STATE ── */
   .empty {
@@ -637,10 +652,15 @@
     display: flex; align-items: flex-start; gap: 0.6rem;
   }
   .moveset-row .moveset-list { flex: 1; min-width: 0; }
-  .tips-shot {
-    display: block; width: 38%; flex-shrink: 0; aspect-ratio: 3 / 4;
-    margin: 0.35rem 0 0.1rem; align-self: flex-start;
-    border: 1px solid var(--border);
+  .tips-shot-wrap {
+    width: 40%; flex-shrink: 0; align-self: flex-start;
+    margin: 0.2rem 0 0.1rem;
+    background: radial-gradient(ellipse at 50% 38%, rgba(196,164,92,0.14), transparent 70%);
+    border-radius: 8px;
+  }
+  .tips-shot-img {
+    display: block; width: 100%; height: auto; object-fit: contain;
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.35));
   }
   .card-tabs { flex-wrap: wrap; }
   .card-tab-btn { white-space: nowrap; }
@@ -1192,6 +1212,11 @@
     padding: 0.45rem 0.6rem;
   }
   .sm-card-clickable { cursor: pointer; }
+  .sm-ico {
+    width: 2.6rem; height: 2.6rem; flex-shrink: 0; object-fit: contain;
+    border-radius: 7px; background: var(--surface); border: 1px solid var(--border);
+    padding: 0.1rem;
+  }
   .sm-card-clickable:hover { border-color: var(--gold-light); background: var(--surface); }
   .sm-chevron { font-size: 0.45rem; color: var(--text-muted); margin-left: auto; flex-shrink: 0; }
   .sm-drop-panel { border-top: 1px solid var(--border); padding: 0.5rem 0.6rem; }
@@ -1657,6 +1682,80 @@
     font-style: italic; padding: 0.2rem 0;
   }
 
+  /* ── Material Retrieval sub-tab ──────────────── */
+  .g-subtabs {
+    display: flex; gap: 0.4rem; padding: 0.5rem 0.8rem 0;
+  }
+  .g-subtab {
+    display: inline-flex; align-items: center; gap: 0.3rem;
+    font-family: 'Cinzel', serif; font-weight: 700; font-size: 0.52rem;
+    color: var(--text-muted); background: var(--surface);
+    border: 1px solid var(--border); border-radius: 8px 8px 0 0;
+    padding: 0.4rem 0.7rem; cursor: pointer; border-bottom: none;
+  }
+  .g-subtab .tab-icon { font-size: 0.7rem; }
+  .g-subtab.active { color: var(--gold-light); background: var(--card); border-color: var(--gold); }
+  #g-npc-view { padding: 0.6rem 0 3rem; }
+  .npc-table-wrap {
+    margin: 0 0.8rem; overflow-x: auto;
+    border: 1px solid var(--border); border-radius: 8px; background: var(--card);
+  }
+  .npc-table {
+    border-collapse: collapse; width: 100%; min-width: 540px;
+  }
+  .npc-table th, .npc-table td {
+    border: 1px solid var(--border);
+  }
+  .npc-mat-th {
+    position: sticky; left: 0; z-index: 3;
+    background: var(--surface); text-align: left;
+    font-family: 'Cinzel', serif; font-weight: 700; font-size: 0.46rem;
+    text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-muted);
+    padding: 0.4rem 0.55rem; min-width: 7.5rem;
+  }
+  .npc-col {
+    background: var(--surface); border-top-width: 3px;
+    padding: 0.4rem 0.3rem; vertical-align: bottom; min-width: 4.6rem;
+  }
+  .npc-col-name {
+    display: block; font-family: 'Cinzel', serif; font-weight: 700; font-size: 0.5rem;
+  }
+  .npc-col-map {
+    display: block; font-family: 'Crimson Pro', serif; font-size: 0.4rem;
+    color: var(--text-muted); margin-top: 0.1rem; line-height: 1.2;
+  }
+  .npc-mat-name {
+    position: sticky; left: 0; z-index: 2;
+    background: var(--card);
+    font-family: 'Crimson Pro', serif; font-weight: 600; font-size: 0.5rem; color: var(--text);
+    padding: 0.32rem 0.55rem; white-space: nowrap;
+  }
+  .npc-mat-name { display: flex; align-items: center; gap: 0.4rem; }
+  .npc-mat-ico {
+    width: 1.15rem; height: 1.15rem; flex-shrink: 0; object-fit: contain;
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,0.2));
+  }
+  .npc-cell { text-align: center; padding: 0.32rem 0.3rem; }
+  .npc-yes { background: rgba(196,164,92,0.1); }
+  .npc-check { font-size: 0.66rem; font-weight: 700; }
+  .npc-table tbody tr:nth-child(even) .npc-mat-name { background: var(--surface); }
+  .npc-table tbody tr:nth-child(even) .npc-cell { background: rgba(0,0,0,0.015); }
+  .npc-table tbody tr:nth-child(even) .npc-yes { background: rgba(196,164,92,0.13); }
+  .npc-table tbody tr:hover td { background: rgba(196,164,92,0.08); }
+  .npc-legend {
+    margin: 0.7rem 0.8rem 0; display: flex; flex-direction: column; gap: 0.3rem;
+  }
+  .npc-legend-item {
+    font-family: 'Crimson Pro', serif; font-size: 0.46rem; color: var(--text-muted);
+    line-height: 1.4; text-wrap: pretty;
+    display: flex; align-items: baseline; gap: 0.35rem; flex-wrap: wrap;
+  }
+  .npc-legend-dot {
+    width: 0.45rem; height: 0.45rem; border-radius: 50%; flex-shrink: 0;
+    align-self: center;
+  }
+  .npc-legend-loc { color: var(--text); }
+
   /* ── Crafting tab ────────────────────────────── */
   #section-crafting { padding-bottom: 5rem; }
   .craft-group {
@@ -1709,6 +1808,54 @@
   .craft-iname {
     font-family: 'Cinzel', serif; font-weight: 700; font-size: 0.5rem; color: var(--gold-light);
     line-height: 1.2;
+    display: flex; align-items: center; gap: 0.35rem;
+  }
+  .craft-iico {
+    width: 1.35rem; height: 1.35rem; flex-shrink: 0; object-fit: contain;
+    image-rendering: auto;
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,0.25));
+  }
+  .craft-iico-none {
+    background: var(--surface); border: 1px dashed var(--border); border-radius: 5px;
+    box-sizing: border-box;
+  }
+  .craft-iname-txt { min-width: 0; }
+  /* Bow Coatings reference panel */
+  .coat-panel {
+    margin: 0 0.8rem 0.9rem; padding: 0.75rem 0.85rem;
+    background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  }
+  .coat-head {
+    font-family: 'Cinzel', serif; font-weight: 700; font-size: 0.66rem; color: var(--gold-light);
+  }
+  .coat-note {
+    font-family: 'Crimson Pro', serif; font-size: 0.46rem; line-height: 1.4;
+    color: var(--text-muted); margin: 0.3rem 0 0.6rem; text-wrap: pretty;
+  }
+  .coat-note b { color: var(--text); }
+  .coat-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.45rem;
+  }
+  .coat-card {
+    display: flex; align-items: flex-start; gap: 0.45rem;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    padding: 0.45rem 0.5rem;
+  }
+  .coat-card .craft-iico { width: 1.5rem; height: 1.5rem; margin-top: 0.05rem; }
+  .coat-meta { min-width: 0; }
+  .coat-name {
+    font-family: 'Cinzel', serif; font-weight: 700; font-size: 0.5rem; color: var(--text);
+    display: flex; align-items: center; gap: 0.3rem; flex-wrap: wrap;
+  }
+  .coat-tag {
+    font-family: 'Cinzel', serif; font-weight: 700; font-size: 0.36rem; letter-spacing: 0.03em;
+    border-radius: 999px; padding: 0.03rem 0.32rem; border: 1px solid;
+  }
+  .coat-tag.coat-damage { color:#7a3010; border-color:#c87040; background:#f8ece4; }
+  .coat-tag.coat-status { color:#5a2090; border-color:#9a60c8; background:#f0e8fa; }
+  .coat-eff {
+    font-family: 'Crimson Pro', serif; font-size: 0.44rem; line-height: 1.35;
+    color: var(--text-muted); margin-top: 0.12rem; text-wrap: pretty;
   }
   .craft-ieff {
     font-family: 'Crimson Pro', serif; font-size: 0.44rem; line-height: 1.35;
@@ -1724,6 +1871,13 @@
   .craft-rar.r3 { color:#7a5810; border-color:#c8a040; background:#faf2e0; }
   .craft-rar.r4 { color:#7a3010; border-color:#c87040; background:#f8ece4; }
   .craft-rar.r5 { color:#5a2090; border-color:#9a60c8; background:#f0e8fa; }
+  .craft-buy-badge {
+    display: inline-block; font-family: 'Cinzel', serif; font-weight: 700;
+    font-size: 0.4rem; letter-spacing: 0.03em; vertical-align: middle;
+    color: #2f7a3a; border: 1px solid #6fb87a; background: #e8f6ea;
+    border-radius: 999px; padding: 0.04rem 0.36rem; margin-left: 0.3rem;
+    white-space: nowrap;
+  }
   .craft-mats { display: flex; flex-direction: column; gap: 0.22rem; }
   .craft-mat {
     display: inline-flex; align-items: center; gap: 0.25rem;
@@ -1797,7 +1951,13 @@
     background: rgba(122,80,16,0.1); border-radius: 6px; padding: 0.05rem 0.4rem;
     min-width: 1.4rem; text-align: center; flex-shrink: 0;
   }
-  .craft-need-name { color: var(--text); flex: 1; }
+  .craft-need-mid { flex: 1; display: flex; flex-direction: column; gap: 0.1rem; min-width: 0; }
+  .craft-need-name { color: var(--text); }
+  .craft-need-npc {
+    font-family: 'Crimson Pro', serif; font-size: 0.42rem; color: var(--text-muted);
+    line-height: 1.3; text-wrap: pretty;
+  }
+  .craft-need-npc b { color: #4a7838; font-weight: 700; }
   .craft-need-tag {
     font-family: 'Cinzel', serif; font-size: 0.38rem; font-weight: 700;
     text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-muted);
@@ -1848,9 +2008,6 @@
   <div class="main-tab" id="tab-gathering" onclick="switchTab('gathering')">
     <span class="tab-icon">⛏</span>Gathering
   </div>
-  <div class="main-tab" id="tab-small" onclick="switchTab('small')">
-    <span class="tab-icon">🐾</span>Small
-  </div>
   <div class="main-tab" id="tab-trade" onclick="switchTab('trade')">
     <span class="tab-icon">🤝</span>Trade
   </div>
@@ -1863,12 +2020,18 @@
     <span class="tab-icon">🌦️</span>Weather
   </div>
   <div class="main-tab" id="tab-crafting" onclick="switchTab('crafting')">
-    <span class="tab-icon">⚗️</span>Crafting
+    <span class="tab-icon">⚗️</span>Consumables Crafting
   </div>
 </div>
 
 <div class="section active" id="section-monsters">
 
+<div class="g-subtabs">
+  <button class="g-subtab active" id="mon-sub-large" onclick="monSubTab('large')"><span class="tab-icon">🐉</span>Large Monster</button>
+  <button class="g-subtab" id="mon-sub-small" onclick="monSubTab('small')"><span class="tab-icon">🐾</span>Small Monster</button>
+</div>
+
+<div id="mon-large-view">
 <div class="controls">
   <div class="search-wrap">
     <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -1876,6 +2039,7 @@
     </svg>
     <input type="text" id="search" placeholder="Search monsters…" autocomplete="off" />
   </div>
+  <label class="search-opt"><input type="checkbox" id="search-drops" onchange="render()" /><span>Search by dropped part name</span></label>
   <div class="controls-row">
     <div class="filter-group" id="element-filters">
       <button class="filter-btn active" data-filter="all">All</button>
@@ -1898,10 +2062,23 @@
 
 <div class="grid" id="grid"></div>
 
+</div><!-- end mon-large-view -->
+
+<div id="mon-small-view" style="display:none">
+  <div class="g-search-wrap"><input class="g-search-input" id="sm-search" placeholder="Search small monster drops…" oninput="smSearch(this.value)" autocomplete="off"></div>
+  <div class="sm-filter-bar" id="sm-map-filter"></div>
+  <div id="sm-normal-view"><div class="sm-content" id="sm-content"></div></div>
+  <div id="sm-search-view" style="display:none" class="g-search-results"></div>
+</div><!-- end mon-small-view -->
 
 </div><!-- end section-monsters -->
 
 <div class="section" id="section-gathering">
+  <div class="g-subtabs">
+    <button class="g-subtab active" id="g-sub-map" onclick="gSubTab('map')"><span class="tab-icon">⛏</span>By Map</button>
+    <button class="g-subtab" id="g-sub-npc" onclick="gSubTab('npc')"><span class="tab-icon">📦</span>Material Retrieval</button>
+  </div>
+  <div id="g-map-view">
   <div class="map-tabs" id="g-map-tabs"></div>
   <div class="g-search-wrap"><input class="g-search-input" id="g-search" placeholder="Search ore or material…" oninput="gSearch(this.value)" autocomplete="off"></div>
   <div class="g-type-filter" id="g-type-filter">
@@ -1918,14 +2095,12 @@
   <div class="g-stats" id="g-stats"></div>
   <div id="g-normal-view"><div class="g-content" id="g-content"></div></div>
   <div id="g-search-view" style="display:none" class="g-search-results"></div>
+  </div><!-- end g-map-view -->
+  <div id="g-npc-view" style="display:none">
+    <div class="weather-intro" id="g-npc-intro"></div>
+    <div id="g-npc-content"></div>
+  </div>
 </div><!-- end section-gathering -->
-
-<div class="section" id="section-small">
-  <div class="g-search-wrap"><input class="g-search-input" id="sm-search" placeholder="Search small monster drops…" oninput="smSearch(this.value)" autocomplete="off"></div>
-  <div class="sm-filter-bar" id="sm-map-filter"></div>
-  <div id="sm-normal-view"><div class="sm-content" id="sm-content"></div></div>
-  <div id="sm-search-view" style="display:none" class="g-search-results"></div>
-</div><!-- end section-small -->
 
 <div class="section" id="section-trade">
   <div class="g-search-wrap"><input class="g-search-input" id="trade-search" placeholder="Search trade items…" oninput="tradeSearch(this.value)" autocomplete="off"></div>
@@ -2117,12 +2292,14 @@ function makeTag(el) {
 }
 
 function makeCoating(coating) {
+  var pierce = '<img class="coat-pill-ico" src="images/items/Pierce_Coating.png" alt="">';
+  var close = '<img class="coat-pill-ico" src="images/items/Close_range_Coating.png" alt="">';
   if (coating === 'pierce') {
-    return '<span class="coating-pill coating-pierce">\uD83C\uDFF9 Pierce</span>';
+    return '<span class="coating-pill coating-pierce">' + pierce + 'Pierce</span>';
   } else if (coating === 'close') {
-    return '<span class="coating-pill coating-close">\uD83C\uDFAF Close Range</span>';
+    return '<span class="coating-pill coating-close">' + close + 'Close Range</span>';
   } else {
-    return '<span style="display:inline-flex;gap:0.3rem;flex-shrink:0"><span class="coating-pill coating-close">\uD83C\uDFAF Close</span><span class="coating-pill coating-pierce">\uD83C\uDFF9 Pierce</span></span>';
+    return '<span style="display:inline-flex;gap:0.3rem;flex-shrink:0"><span class="coating-pill coating-close">' + close + 'Close</span><span class="coating-pill coating-pierce">' + pierce + 'Pierce</span></span>';
   }
 }
 
@@ -2842,7 +3019,7 @@ function makeTipsPanel(name) {
   var moves = MONSTER_MOVESET[name] || [];
   if (!tips.length && !moves.length) return '<div class="tips-empty">No combat tips yet for this monster.</div>';
   var slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-  var shot = '<image-slot class="tips-shot" id="tips-shot-' + slug + '" shape="rounded" radius="6" placeholder="Drop an image of ' + name + '"></image-slot>';
+  var shot = '<div class="tips-shot-wrap"><img class="tips-shot-img" src="images/monsters/' + slug + '-render.png" alt="' + name + '" loading="lazy" onerror="this.closest(&quot;.tips-shot-wrap&quot;).style.display=&quot;none&quot;"></div>';
   var html = '';
   if (moves.length) {
     html += '<div class="tips-section-h">Moveset</div>';
@@ -2931,12 +3108,13 @@ var activeSort = 'name';
 
 function render() {
   var query = document.getElementById('search').value.toLowerCase().trim();
+  var includeDrops = document.getElementById('search-drops').checked;
   // track which monsters matched via drops (not name/type)
   var dropMatchSet = {};
   var list = MONSTERS.filter(function(m) {
     var matchSearch = !query || m.name.toLowerCase().indexOf(query) !== -1 || m.type.toLowerCase().indexOf(query) !== -1;
     var matchDrop = false;
-    if (query && m.drops) {
+    if (includeDrops && query && m.drops) {
       ['LR','HR'].forEach(function(rank) {
         var r = m.drops[rank];
         if (!r) return;
@@ -3142,12 +3320,22 @@ function switchTab(tab) {
   document.querySelectorAll('.section').forEach(function(s){ s.classList.remove('active'); });
   document.getElementById('tab-' + tab).classList.add('active');
   document.getElementById('section-' + tab).classList.add('active');
+  if (tab === 'monsters') { monSubTab(monActiveSub); }
   if (tab === 'gathering') { gBuildMapTabs(); gRender(); }
-  if (tab === 'small') { smInit(); }
   if (tab === 'trade') { tradeInit(); }
   if (tab === 'events') { evInit(); }
   if (tab === 'weather') { weatherRender(); }
   if (tab === 'crafting') { craftInit(); }
+}
+
+var monActiveSub = 'large';
+function monSubTab(which) {
+  monActiveSub = which;
+  document.getElementById('mon-sub-large').classList.toggle('active', which === 'large');
+  document.getElementById('mon-sub-small').classList.toggle('active', which === 'small');
+  document.getElementById('mon-large-view').style.display = which === 'large' ? 'block' : 'none';
+  document.getElementById('mon-small-view').style.display = which === 'small' ? 'block' : 'none';
+  if (which === 'small') smInit();
 }
 
 function gBuildMapTabs() {
@@ -3184,6 +3372,69 @@ function gToggleType(type, btn) {
     b.className = 'g-type-btn' + (gActiveTypes.has(b.dataset.gtype) ? ' on-' + b.dataset.gtype : '');
   });
   gRender();
+}
+
+// ── Material Retrieval (NPC collectors) ──────────────────────────
+var G_NPC_COLLECTORS = [
+  { name:'Murtabak', region:'Windward Plains', accent:'#9a6f1e', loc:'Kunafa, the Windsong Village', unlock:'Side quest \u201CContinuing Conflict\u201D \u2014 slay a Tempered Rathian + Tempered Quematrice (opens after mission 5-2).', mats:['Herb','Honey','Thunderbug Capacitor','Blue Mushroom','Sleep Herb','Fire Herb','Dragonfell Berry','Adamant Seed','Nitroshroom','Blastnut'] },
+  { name:'Plumpeach', region:'Scarlet Forest', accent:'#4a7838', loc:'Wudwud Hideout', unlock:'Side quest \u201CMake Fluffy Dealings\u201D \u2014 bring a Vibrant Pelt+ from a Congalala (opens after mission 4-2).', mats:['Honey','Blue Mushroom','Herb','Ivy','Flowfern','Adamant Seed','Gloamgrass Bud','Mandragora','Slashberry','Bitterbug Broth'] },
+  { name:'Sabar', region:'Oilwell Basin', accent:'#9a4628', loc:'Azuz, the Everforge', unlock:'Side quest \u201CAida\u2019s Apprehensions\u201D \u2014 defeat a Rompopolo (opens after mission 4-1).', mats:['Honey','Flashbug Phosphor','Smokenut','Toadstool','Parashroom','Might Seed','Nitroshroom','Devil\u2019s Blight','Blastnut','Bomberry'] },
+  { name:'Apar', region:'Iceshard Cliffs', accent:'#2f6f9a', loc:'Suja, Peaks of Accord (Peaks Back Gate)', unlock:'Side quest \u201CEchoing from the Cliffs\u201D \u2014 slay a Hirabami + Blangonga (opens after mission 5-2).', mats:['Nulberry','Honey','Godbug Essence','Mandragora','Sleep Herb','Snow Herb','Slashberry','Dragonstrike Nut','Spider Web'] },
+  { name:'Rysher', region:'Ruins of Wyveria', accent:'#7040b0', loc:'Sild, the Keeper\u2019s Vigil', unlock:'Side quest \u201CAstonishing Adaptability\u201D \u2014 defeat Xu Wu (opens after mission 4-3).', mats:['Honey','Flashbug Phosphor','Nulberry','Bitterbug Broth','Parashroom','Might Seed','Exciteshroom','Devil\u2019s Blight','Gloamgrass Bud','Slashberry','Godbug Essence'] },
+];
+
+var gSubView = 'map';
+
+function gSubTab(which) {
+  gSubView = which;
+  document.getElementById('g-sub-map').classList.toggle('active', which === 'map');
+  document.getElementById('g-sub-npc').classList.toggle('active', which === 'npc');
+  document.getElementById('g-map-view').style.display = which === 'map' ? 'block' : 'none';
+  document.getElementById('g-npc-view').style.display = which === 'npc' ? 'block' : 'none';
+  if (which === 'npc') gNpcRender();
+}
+
+function gNpcRender() {
+  var intro = document.getElementById('g-npc-intro');
+  if (intro) intro.innerHTML =
+    'Once unlocked, each collector gathers materials from their home region while you hunt \u2014 send them out, sleep or hunt a day, then collect. '
+    + '<span class="weather-tip">To unlock Material Retrieval and Trade, progress the story (around <b>Chapter 4</b>) and reach <b>High Rank</b>. <b>Nata</b> handles the Village Intermediary \u2014 find him sitting by the Hunter\u2019s tent in any Base Camp to send every collector and pick up their hauls without travelling. Star ratings depend on the current weather \u2014 fewer stars means a smaller haul.</span>';
+
+  // Build the union of all retrievable materials (rows), sorted alphabetically.
+  var allMats = {};
+  G_NPC_COLLECTORS.forEach(function(c){ c.mats.forEach(function(m){ allMats[m] = true; }); });
+  var rows = Object.keys(allMats).sort();
+
+  var head = '<tr><th class="npc-mat-th">Material</th>'
+    + G_NPC_COLLECTORS.map(function(c){
+        return '<th class="npc-col" style="border-top-color:' + c.accent + '">'
+          + '<span class="npc-col-name" style="color:' + c.accent + '">' + c.name + '</span>'
+          + '<span class="npc-col-map">' + c.region + '</span></th>';
+      }).join('')
+    + '</tr>';
+
+  var body = rows.map(function(m){
+    var cells = G_NPC_COLLECTORS.map(function(c){
+      var has = c.mats.indexOf(m) !== -1;
+      return has
+        ? '<td class="npc-cell npc-yes"><span class="npc-check" style="color:' + c.accent + '">\u2714</span></td>'
+        : '<td class="npc-cell"></td>';
+    }).join('');
+    var icoSrc = 'images/items/' + m.replace(/[^A-Za-z0-9]+/g,'_') + '.png';
+    var ico = '<img class="npc-mat-ico" src="' + icoSrc + '" alt="" loading="lazy" onerror="this.style.visibility=&quot;hidden&quot;">';
+    return '<tr><td class="npc-mat-name">' + ico + '<span>' + m + '</span></td>' + cells + '</tr>';
+  }).join('');
+
+  var locLegend = '<div class="npc-legend">'
+    + G_NPC_COLLECTORS.map(function(c){
+        return '<div class="npc-legend-item"><span class="npc-legend-dot" style="background:' + c.accent + '"></span>'
+          + '<b style="color:' + c.accent + '">' + c.name + '</b> \u2014 ' + c.region + ' \u00B7 <span class="npc-legend-loc">\uD83D\uDCCD ' + c.loc + '</span></div>';
+      }).join('')
+    + '</div>';
+
+  document.getElementById('g-npc-content').innerHTML =
+    '<div class="npc-table-wrap"><table class="npc-table"><thead>' + head + '</thead><tbody>' + body + '</tbody></table></div>'
+    + locLegend;
 }
 
 function gSearch(query) {
@@ -3410,6 +3661,7 @@ function smRender() {
     var chevron = hasDrops ? '<span class="sm-chevron">▶</span>' : '';
     return '<div class="' + cardClass + '"' + clickAttr + '>'
       + '<div class="sm-card-header">'
+      + '<img class="sm-ico" src="images/monsters/' + m.name.replace(/[^A-Za-z0-9]+/g,'_') + '.png" alt="" loading="lazy" onerror="this.style.visibility=&quot;hidden&quot;">'
       + '<div class="sm-name">' + m.name + '</div>'
       + '<div class="sm-type">' + m.type + '</div>'
       + '<div class="sm-maps">' + pills + '</div>'
@@ -4682,6 +4934,47 @@ CRAFT_CATS.forEach(function(c){ c.groups.forEach(function(g){ g.items.forEach(fu
 // Base materials bought from the Provisions Stockpile rather than gathered
 var CRAFT_BUY = { 'Trap Tool':1, 'Small Barrel':1, 'Large Barrel':1, 'First-aid Med':1 };
 
+// Item names that have an in-game icon saved under images/items/ (filename = name with non-alnum -> _)
+var CRAFT_ICON_NAMES = ['Potion','Mega Potion','First-aid Med+','Max Potion','Ancient Potion','Lifepowder','Dust of Life','Antidote','Herbal Medicine','Herbal Powder','Deodorant','Cleanser','Energy Drink','Cool Drink','Hot Drink','Dash Juice','Catalyst','Immunizer','Demondrug','Mega Demondrug','Demon Powder','Might Pill','Armorskin','Mega Armorskin','Hardshell Powder','Adamant Pill','Poisoned Meat','Tinged Meat','Drugged Meat','Farcaster','Pitfall Trap','Shock Trap','Tranq Bomb','Barrel Bomb','Large Barrel Bomb','Mega Barrel Bomb','Poison Smoke Bomb','Flash Pod','Dung Pod','Large Dung Pod','Luring Pod','Close-range Coating','Power Coating','Pierce Coating','Poison Coating','Paralysis Coating','Sleep Coating','Blast Coating'];
+var CRAFT_ICON_SET = {};
+CRAFT_ICON_NAMES.forEach(function(n){ CRAFT_ICON_SET[n] = 'images/items/' + n.replace(/[^A-Za-z0-9]+/g,'_') + '.png'; });
+function craftIconHtml(name){
+  var src = CRAFT_ICON_SET[name];
+  return src ? '<img class="craft-iico" src="' + src + '" alt="" loading="lazy">' : '<span class="craft-iico craft-iico-none"></span>';
+}
+
+// Bow coatings — in Wilds these are NOT crafted; applied via the Trick Arrow Gauge (8 shots/segment), infinite per bow.
+var COATINGS = [
+  { n:'Close-range Coating', tag:'Damage', e:'Increases damage but shortens effective range.' },
+  { n:'Power Coating', tag:'Damage', e:'Raises the bow\u2019s raw attack power.' },
+  { n:'Pierce Coating', tag:'Damage', e:'Arrows — and Dragon Piercer — pierce through the monster.' },
+  { n:'Poison Coating', tag:'Status', e:'Builds up poison for damage over time.' },
+  { n:'Paralysis Coating', tag:'Status', e:'Builds up paralysis to freeze the monster in place.' },
+  { n:'Sleep Coating', tag:'Status', e:'Builds up sleep; the monster sleeps when the gauge fills.' },
+  { n:'Blast Coating', tag:'Status', e:'Builds up blast, triggering an explosion when full.' },
+  { n:'Exhaust Coating', tag:'Status', e:'Builds up stun/exhaust, draining the monster\u2019s stamina.' }
+];
+function craftRenderCoatings(){
+  var host = document.getElementById('craft-coatings');
+  if (!host || host.dataset.built) return;
+  var cards = COATINGS.map(function(c){
+    return '<div class="coat-card">'
+      + craftIconHtml(c.n)
+      + '<div class="coat-meta"><div class="coat-name">' + c.n.replace(' Coating','') + '<span class="coat-tag coat-' + c.tag.toLowerCase() + '">' + c.tag + '</span></div>'
+      + '<div class="coat-eff">' + c.e + '</div></div></div>';
+  }).join('');
+  host.innerHTML = '<div class="coat-head">🏹 Bow Coatings</div>'
+    + '<div class="coat-note">Not crafted in Wilds — coatings are applied from the <b>Trick Arrow Gauge</b> (8 shots per segment) and never run out. Each bow only supports its own set of coatings; check the Equipment menu.</div>'
+    + '<div class="coat-grid">' + cards + '</div>';
+  host.dataset.built = '1';
+}
+
+// Finished consumables that can also be purchased from the Supplier / Provisions Stockpile
+var CRAFT_SHOP_ITEMS = {
+  'Potion':1, 'Antidote':1, 'Energy Drink':1, 'Cool Drink':1, 'Hot Drink':1,
+  'Net':1, 'Catalyst':1, 'Cleanser':1, 'Smoke Bomb':1
+};
+
 var craftActiveCat = 'all';
 var craftQuery = '';
 var craftChecked = {};
@@ -4742,7 +5035,7 @@ function craftItemRow(it) {
   if (it.alt) mats += '<span class="craft-mat"><span class="craft-mat-sub">' + it.alt + '</span></span>';
   return '<tr class="craft-item' + (checked ? ' checked' : '') + '">'
     + '<td class="ct-chk"><input type="checkbox" class="craft-chk" data-item="' + craftEsc(it.n) + '"' + (checked ? ' checked' : '') + ' onchange="craftToggle(this)"></td>'
-    + '<td><div class="craft-iname">' + it.n + '</div><div class="craft-ieff">' + it.e + '</div></td>'
+    + '<td><div class="craft-iname">' + craftIconHtml(it.n) + '<span class="craft-iname-txt">' + it.n + (CRAFT_SHOP_ITEMS[it.n] ? ' <span class="craft-buy-badge" title="Also sold by the Supplier / Provisions Stockpile">\uD83D\uDCB0 BUY</span>' : '') + '</span></div><div class="craft-ieff">' + it.e + '</div></td>'
     + '<td class="ct-r"><span class="craft-rar r' + it.rar + '">' + it.rar + '</span></td>'
     + '<td><div class="craft-mats">' + mats + '</div></td>'
     + '</tr>';
@@ -4835,9 +5128,13 @@ function craftRenderCart() {
   var rawKeys = sortRows(raw);
   var needHtml = rawKeys.map(function(k) {
     var buy = CRAFT_BUY[k];
+    var npcs = G_NPC_COLLECTORS.filter(function(c){ return c.mats.indexOf(k) !== -1; }).map(function(c){ return c.name; });
+    var npcLine = npcs.length
+      ? '<span class="craft-need-npc">\uD83D\uDCE6 Retrieval: <b>' + npcs.join('</b>, <b>') + '</b></span>'
+      : '';
     return '<div class="craft-need-row">'
       + '<span class="craft-need-qty">\u00D7' + raw[k] + '</span>'
-      + '<span class="craft-need-name">' + k + '</span>'
+      + '<div class="craft-need-mid"><span class="craft-need-name">' + k + '</span>' + npcLine + '</div>'
       + (buy ? '<span class="craft-need-tag buy">Buy</span>' : '<span class="craft-need-tag">Gather</span>')
       + '</div>';
   }).join('');
@@ -4849,7 +5146,7 @@ function craftRenderCart() {
       + interKeys.map(function(k) {
           return '<div class="craft-need-row">'
             + '<span class="craft-need-qty">\u00D7' + inter[k] + '</span>'
-            + '<span class="craft-need-name">' + k + '</span>'
+            + '<div class="craft-need-mid"><span class="craft-need-name">' + k + '</span></div>'
             + '<span class="craft-need-tag">Sub-item</span></div>';
         }).join('')
       + '</div>';
