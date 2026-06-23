@@ -1,33 +1,41 @@
-# Monster Hunter Wilds — Field Guide
+# Monster Hunter Wilds — Field Guide & Armor Build Planner
 
-A single-page, offline-friendly field guide for **Monster Hunter Wilds**: monster weaknesses & hitzones, gathering spots, small monsters, and trade-in materials with detailed acquisition notes.
+A single-page, offline-friendly companion for **Monster Hunter Wilds**: monster
+weaknesses & hitzones, gathering, trade, weather, consumable crafting, and a new
+**Armor Build Planner** (BETA).
 
-## Contents
+## Files
 
 ```
-index.html          The guide (open directly in any browser)
-images/monsters/     Big-monster icons (34 .jpg files)
+index.html        The app (open directly in any browser)
+armor.js          Armor build planner (sets, skills, slots, build codes)
+support.js        Shared helpers
+image-slot.js     Image drop-slot component
+images/           Icons, items, materials, monster art
 ```
 
 ## View it
 
 - **Locally:** open `index.html` in any modern browser.
-- **GitHub Pages:** push this folder to a repo, then enable
-  *Settings → Pages → Branch: main / root*. The guide will be served at
-  `https://<your-username>.github.io/<repo>/`.
+- **GitHub Pages:** push this folder, then *Settings → Pages → Branch: main / root*.
+  Served at `https://<your-username>.github.io/<repo>/`.
 
 ## Features
 
-- **Monsters** — weaknesses, status susceptibility, and per-part hitzone values
-- **Gathering** — what to collect in each region, with rank-specific loot
-- **Small monsters** — drops by rank
-- **Trade** — every trader's daily exchanges; click any trade-in item for a
-  detailed breakdown of **where, how, when, and tips** to acquire it
+- **Monsters** — weaknesses, status susceptibility, per-part hitzones
+- **Gathering / Trade / Weather** — region loot, trader exchanges, conditions
+- **Consumable crafting** — checklist + auto shopping list (expands sub-recipes,
+  labels each raw material with what it's *for*)
+- **Armor Build Planner (BETA)** — mix pieces across sets; auto-totals skills
+  (current/max, over-cap warning), tracks Set Bonus + Group Skills, shows
+  decoration slots, rarity-colored icons, search/filter, and short shareable
+  **build codes**
 
-## Notes
+## Beta notes
 
-- The guide references the `images/` folder, so keep it alongside `index.html`.
-- Data reflects community knowledge and may need updating as the game changes.
+Armor data is **not fully verified yet** and may contain mistakes; decoration
+data has not been checked against the Transcend version. Still to come: weapons,
+decoration slotting, charms.
 
 ---
 *Fan-made reference. Monster Hunter is a trademark of Capcom.*

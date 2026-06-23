@@ -2038,6 +2038,9 @@
   <div class="main-tab" id="tab-crafting" onclick="switchTab('crafting')">
     <span class="tab-icon">⚗️</span>Consumables Crafting
   </div>
+  <div class="main-tab" id="tab-armor" onclick="switchTab('armor')">
+    <span class="tab-icon">🛡️</span>Armor
+  </div>
 </div>
 
 <div class="section active" id="section-monsters">
@@ -2153,6 +2156,24 @@
     <div class="craft-cart-body" id="craft-cart-body"></div>
   </div>
 </div><!-- end section-crafting -->
+
+<div class="section" id="section-armor">
+  <div class="weather-intro" id="armor-intro"></div>
+  <div id="armor-build"></div>
+  <div class="g-search-wrap armor-search-row">
+    <input class="g-search-input" id="armor-search" placeholder="Search sets, skills, or pieces…" oninput="armorSearch(this.value)" autocomplete="off">
+    <select class="armor-slot-filter" id="armor-slot-filter" onchange="armorSetSlotFilter(this.value)" aria-label="Filter by piece">
+      <option value="">Any piece</option>
+      <option value="Head">Head</option>
+      <option value="Chest">Chest</option>
+      <option value="Arms">Arms</option>
+      <option value="Waist">Waist</option>
+      <option value="Legs">Legs</option>
+    </select>
+  </div>
+  <div id="armor-content"></div>
+  <div class="armor-foot">Tap <b>+ Equip</b> on any piece to add it to your build above. Mix pieces from different sets — skills, decoration slots, and set/group thresholds tally automatically. Builds save to this device.</div>
+</div><!-- end section-armor -->
 
 </div><!-- end main-app -->
 
@@ -3305,6 +3326,7 @@ function switchTab(tab) {
   if (tab === 'events') { evInit(); }
   if (tab === 'weather') { weatherRender(); }
   if (tab === 'crafting') { craftInit(); }
+  if (tab === 'armor') { armorInit(); }
 }
 
 var monActiveSub = 'large';
@@ -5107,15 +5129,26 @@ function craftClear() {
   craftRenderCart();
 }
 
-function craftExpand(name, mult, raw, inter) {
+// `parent` is the immediate thing each ingredient is being made FOR:
+// the selected item for its own direct ingredients, or the sub-recipe
+// (e.g. Immunizer) for the materials that sub-recipe consumes.
+function craftExpand(name, mult, raw, inter, parent, rawUsedBy, interUsedBy) {
   var rec = CRAFT_RECIPE[name];
-  if (!rec) { raw[name] = (raw[name] || 0) + mult; return; }
+  if (!rec) {
+    raw[name] = (raw[name] || 0) + mult;
+    if (parent && rawUsedBy) (rawUsedBy[name] = rawUsedBy[name] || {})[parent] = 1;
+    return;
+  }
   rec.forEach(function(ing) {
     if (CRAFT_RECIPE[ing]) {
       inter[ing] = (inter[ing] || 0) + mult;
-      craftExpand(ing, mult, raw, inter);
+      if (parent && interUsedBy) (interUsedBy[ing] = interUsedBy[ing] || {})[parent] = 1;
+      // recurse with the sub-recipe itself as the parent, so its raw
+      // materials are attributed to it (Mandragora/Bitterbug -> Immunizer)
+      craftExpand(ing, mult, raw, inter, ing, rawUsedBy, interUsedBy);
     } else {
       raw[ing] = (raw[ing] || 0) + mult;
+      if (parent && rawUsedBy) (rawUsedBy[ing] = rawUsedBy[ing] || {})[parent] = 1;
     }
   });
 }
@@ -5128,17 +5161,11 @@ function craftRenderCart() {
   if (!n) { cart.style.display = 'none'; craftCartOpen = false; cart.classList.remove('open'); return; }
   cart.style.display = 'block';
 
-  var raw = {}, inter = {};
-  names.forEach(function(nm){ craftExpand(nm, 1, raw, inter); });
-
-  // Track which selected item(s) each raw material / intermediate is used for.
-  var rawUsedBy = {}, interUsedBy = {};
-  names.forEach(function(nm){
-    var r = {}, i = {};
-    craftExpand(nm, 1, r, i);
-    Object.keys(r).forEach(function(k){ (rawUsedBy[k] = rawUsedBy[k] || {})[nm] = 1; });
-    Object.keys(i).forEach(function(k){ (interUsedBy[k] = interUsedBy[k] || {})[nm] = 1; });
-  });
+  // Expand every selected item once. Each raw material / sub-item also records
+  // the immediate thing it is FOR: direct ingredients point at the selected
+  // item, while a sub-recipe's materials point at that sub-recipe.
+  var raw = {}, inter = {}, rawUsedBy = {}, interUsedBy = {};
+  names.forEach(function(nm){ craftExpand(nm, 1, raw, inter, nm, rawUsedBy, interUsedBy); });
   function usedByLine(map, k) {
     var arr = map[k] ? Object.keys(map[k]).sort() : [];
     return arr.length
@@ -5201,5 +5228,6 @@ function craftRemove(name) {
 
 // Init gathering tabs on load
 </script>
+<script src="armor.js"></script>
 </body>
 </html>
